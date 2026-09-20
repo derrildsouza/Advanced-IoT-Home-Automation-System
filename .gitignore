@@ -1,0 +1,18 @@
+# ── Credentials & Secrets ─────────────────────────────────────────────────────
+# NEVER commit these files — they contain real passwords and API tokens
+firmware/secrets.h
+
+# ── Build artifacts ────────────────────────────────────────────────────────────
+build/
+bin/
+*.elf
+*.bin
+*.hex
+/tmp/
+
+# ── IDE & Editor ───────────────────────────────────────────────────────────────
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
