@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1150" width="1920" height="1150">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2240 1260" width="2240" height="1260">
   <defs>
     <style>
       .bg { fill: #070d17; }
       .grid-line { stroke: #1e293b; stroke-width: 0.8; stroke-opacity: 0.35; }
-      .main-title { font-family: 'Segoe UI', Roboto, -apple-system, sans-serif; font-size: 28px; font-weight: 800; fill: #f8fafc; }
-      .sub-title { font-family: 'Segoe UI', Roboto, -apple-system, sans-serif; font-size: 14px; fill: #94a3b8; }
-      .box-title { font-family: 'Segoe UI', Roboto, -apple-system, sans-serif; font-size: 14px; font-weight: 700; fill: #38bdf8; }
+      .main-title { font-family: 'Segoe UI', Roboto, sans-serif; font-size: 28px; font-weight: 800; fill: #f8fafc; }
+      .sub-title { font-family: 'Segoe UI', Roboto, sans-serif; font-size: 14px; fill: #94a3b8; }
+      .box-title { font-family: 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 700; fill: #38bdf8; }
       .pin-lbl { font-family: 'SF Pro Text', Consolas, 'Fira Code', monospace; font-size: 10px; fill: #94a3b8; }
       .pin-act { font-family: 'SF Pro Text', Consolas, 'Fira Code', monospace; font-size: 10.5px; font-weight: 700; }
       .wire-lbl { font-family: 'SF Pro Text', Consolas, 'Fira Code', monospace; font-size: 10px; font-weight: 700; }
-      .card-txt { font-family: 'Segoe UI', Roboto, -apple-system, sans-serif; font-size: 11px; fill: #cbd5e1; }
-      .badge-lbl { font-family: 'Segoe UI', Roboto, -apple-system, sans-serif; font-size: 11px; font-weight: 800; }
+      .card-txt { font-family: 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #cbd5e1; }
+      .badge-lbl { font-family: 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 800; }
     </style>
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000" flood-opacity="0.6"/>
-    </filter>
     <linearGradient id="pcb-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#1e3a8a"/>
       <stop offset="100%" stop-color="#0f2557"/>
@@ -30,13 +27,13 @@
     </linearGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="1920" height="1150" class="bg"/>
+  <!-- Background Layer -->
+  <rect width="2240" height="1260" class="bg"/>
 
-  <!-- Blueprint Grid -->
+  <!-- Grid Layer -->
   <g class="grid-line">
-    <path d="M 0,60 L 1920,60 M 0,120 L 1920,120 M 0,180 L 1920,180 M 0,240 L 1920,240 M 0,300 L 1920,300 M 0,360 L 1920,360 M 0,420 L 1920,420 M 0,480 L 1920,480 M 0,540 L 1920,540 M 0,600 L 1920,600 M 0,660 L 1920,660 M 0,720 L 1920,720 M 0,780 L 1920,780 M 0,840 L 1920,840 M 0,900 L 1920,900 M 0,960 L 1920,960 M 0,1020 L 1920,1020 M 0,1080 L 1920,1080" />
-    <path d="M 60,0 L 60,1150 M 120,0 L 120,1150 M 180,0 L 180,1150 M 240,0 L 240,1150 M 300,0 L 300,1150 M 360,0 L 360,1150 M 420,0 L 420,1150 M 480,0 L 480,1150 M 540,0 L 540,1150 M 600,0 L 600,1150 M 660,0 L 660,1150 M 720,0 L 720,1150 M 780,0 L 780,1150 M 840,0 L 840,1150 M 900,0 L 900,1150 M 960,0 L 960,1150 M 1020,0 L 1020,1150 M 1080,0 L 1080,1150 M 1140,0 L 1140,1150 M 1200,0 L 1200,1150 M 1260,0 L 1260,1150 M 1320,0 L 1320,1150 M 1380,0 L 1380,1150 M 1440,0 L 1440,1150 M 1500,0 L 1500,1150 M 1560,0 L 1560,1150 M 1620,0 L 1620,1150 M 1680,0 L 1680,1150 M 1740,0 L 1740,1150 M 1800,0 L 1800,1150 M 1860,0 L 1860,1150" />
+    <path d="M 0,60 L 2240,60"/><path d="M 0,120 L 2240,120"/><path d="M 0,180 L 2240,180"/><path d="M 0,240 L 2240,240"/><path d="M 0,300 L 2240,300"/><path d="M 0,360 L 2240,360"/><path d="M 0,420 L 2240,420"/><path d="M 0,480 L 2240,480"/><path d="M 0,540 L 2240,540"/><path d="M 0,600 L 2240,600"/><path d="M 0,660 L 2240,660"/><path d="M 0,720 L 2240,720"/><path d="M 0,780 L 2240,780"/><path d="M 0,840 L 2240,840"/><path d="M 0,900 L 2240,900"/><path d="M 0,960 L 2240,960"/><path d="M 0,1020 L 2240,1020"/><path d="M 0,1080 L 2240,1080"/><path d="M 0,1140 L 2240,1140"/><path d="M 0,1200 L 2240,1200"/>
+    <path d="M 60,0 L 60,1260"/><path d="M 120,0 L 120,1260"/><path d="M 180,0 L 180,1260"/><path d="M 240,0 L 240,1260"/><path d="M 300,0 L 300,1260"/><path d="M 360,0 L 360,1260"/><path d="M 420,0 L 420,1260"/><path d="M 480,0 L 480,1260"/><path d="M 540,0 L 540,1260"/><path d="M 600,0 L 600,1260"/><path d="M 660,0 L 660,1260"/><path d="M 720,0 L 720,1260"/><path d="M 780,0 L 780,1260"/><path d="M 840,0 L 840,1260"/><path d="M 900,0 L 900,1260"/><path d="M 960,0 L 960,1260"/><path d="M 1020,0 L 1020,1260"/><path d="M 1080,0 L 1080,1260"/><path d="M 1140,0 L 1140,1260"/><path d="M 1200,0 L 1200,1260"/><path d="M 1260,0 L 1260,1260"/><path d="M 1320,0 L 1320,1260"/><path d="M 1380,0 L 1380,1260"/><path d="M 1440,0 L 1440,1260"/><path d="M 1500,0 L 1500,1260"/><path d="M 1560,0 L 1560,1260"/><path d="M 1620,0 L 1620,1260"/><path d="M 1680,0 L 1680,1260"/><path d="M 1740,0 L 1740,1260"/><path d="M 1800,0 L 1800,1260"/><path d="M 1860,0 L 1860,1260"/><path d="M 1920,0 L 1920,1260"/><path d="M 1980,0 L 1980,1260"/><path d="M 2040,0 L 2040,1260"/><path d="M 2100,0 L 2100,1260"/><path d="M 2160,0 L 2160,1260"/><path d="M 2220,0 L 2220,1260"/>
   </g>
 
   <!-- Header Banner -->
@@ -44,572 +41,574 @@
     <circle cx="16" cy="0" r="16" fill="#38bdf8"/>
     <text x="16" y="6" text-anchor="middle" fill="#070d17" font-family="sans-serif" font-size="17" font-weight="900">⚡</text>
     <text x="45" y="0" class="main-title">ADVANCED IOT HOME AUTOMATION - COMPLETE HARDWARE SYSTEM SCHEMATIC</text>
-    <text x="45" y="24" class="sub-title">ESP32 DevKit V1 (30-Pin) | 4-Channel Optocoupled Relay Matrix | 4x Buttons | 4x PWM Status LEDs | LDR Lux Sensor | 38kHz IR Receiver</text>
+    <text x="45" y="24" class="sub-title">Broadened ESP32-WROOM-32 | 4-Channel Isolated Relay Module | Channelized User Controls | Dual-Rail Power Supply</text>
   </g>
 
   <!-- ========================================================================= -->
-  <!-- 1. ESP32 30-PIN DEV BOARD (CENTER-LEFT)                                   -->
-  <!-- Box: X=580, Y=140, W=260, H=660                                          -->
+  <!-- LAYER 1: COMPONENT MODULES & HARDWARE BODIES                              -->
   <!-- ========================================================================= -->
-  <g transform="translate(580, 140)" filter="url(#shadow)">
-    <rect width="260" height="660" rx="14" fill="url(#esp-grad)" stroke="#3f3f46" stroke-width="2"/>
+
+  <!-- ESP32 DEV BOARD -->
+  <g id="esp32_board">
+    <rect x="654" y="144" width="440" height="680" rx="14" fill="#000000" opacity="0.45"/>
+    <rect x="650" y="140" width="440" height="680" rx="14" fill="url(#esp-grad)" stroke="#3f3f46" stroke-width="2"/>
     
-    <!-- ESP-WROOM-32 Can -->
-    <rect x="55" y="20" width="150" height="135" rx="6" fill="#27272a" stroke="#52525b" stroke-width="1.5"/>
-    <text x="130" y="80" text-anchor="middle" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700">ESP-WROOM-32</text>
-    <text x="130" y="98" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="10">2.4GHz Wi-Fi + BLE</text>
-    <path d="M 75,32 Q 90,42 105,32 T 135,32 T 165,32 T 185,32" fill="none" stroke="#eab308" stroke-width="2.5"/>
+    <!-- Metal Shield Can (Centered) -->
+    <rect x="780" y="160" width="180" height="135" rx="6" fill="#27272a" stroke="#52525b" stroke-width="1.5"/>
+    <text x="870" y="215" text-anchor="middle" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="800">ESP-WROOM-32</text>
+    <text x="870" y="235" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="10.5">2.4GHz Wi-Fi + BLE</text>
+    <path d="M 805,172 Q 830,182 855,172 T 905,172 T 935,172" fill="none" stroke="#eab308" stroke-width="2.5"/>
 
     <!-- Micro-USB Jack -->
-    <rect x="100" y="635" width="60" height="25" rx="3" fill="#52525b" stroke="#71717a" stroke-width="1.5"/>
-    <text x="130" y="652" text-anchor="middle" fill="#d4d4d8" font-family="sans-serif" font-size="9" font-weight="700">MICRO USB</text>
+    <rect x="835" y="785" width="70" height="25" rx="3" fill="#52525b" stroke="#71717a" stroke-width="1.5"/>
+    <text x="870" y="802" text-anchor="middle" fill="#d4d4d8" font-family="sans-serif" font-size="9" font-weight="700">MICRO USB</text>
 
-    <!-- Board Name -->
-    <text x="130" y="185" text-anchor="middle" class="box-title">ESP32 DevKit (30-Pin)</text>
+    <!-- Center Xtensa IC Graphic -->
+    <rect x="825" y="520" width="90" height="90" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="870" y="555" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="10" font-weight="700">ESP32</text>
+    <text x="870" y="572" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="8">D0WDQ6</text>
+    <text x="870" y="588" text-anchor="middle" fill="#e2e8f0" font-family="sans-serif" font-size="7.5">Dual-Core 240MHz</text>
 
-    <!-- LEFT HEADER (15 Pins) -->
-    <!-- Pins: EN, VP(36), VN(39), D34, D35, D32, D33, D25, D26, D27, D14, D12, D13, GND, VIN -->
-    <g transform="translate(20, 210)">
-      <!-- 1: EN --> <circle cx="0" cy="0" r="5" fill="#3f3f46"/><text x="14" y="4" class="pin-lbl">EN</text>
-      <!-- 2: VP --> <circle cx="0" cy="27" r="5" fill="#3f3f46"/><text x="14" y="31" class="pin-lbl">VP (GPIO 36)</text>
-      <!-- 3: VN --> <circle cx="0" cy="54" r="5" fill="#3f3f46"/><text x="14" y="58" class="pin-lbl">VN (GPIO 39)</text>
-      
-      <!-- 4: D34 (LDR ADC1) -->
-      <circle cx="0" cy="81" r="6" fill="#eab308" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="14" y="85" class="pin-act" fill="#facc15">◄ D34 (LDR ADC1)</text>
-      
-      <!-- 5: D35 --> <circle cx="0" cy="108" r="5" fill="#3f3f46"/><text x="14" y="112" class="pin-lbl">D35</text>
-      
-      <!-- 6: D32 (Reset Button) -->
-      <circle cx="0" cy="135" r="6" fill="#ec4899" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="14" y="139" class="pin-act" fill="#f472b6">◄ D32 (Config/Reset)</text>
-      
-      <!-- 7: D33 --> <circle cx="0" cy="162" r="5" fill="#3f3f46"/><text x="14" y="166" class="pin-lbl">D33</text>
-      
-      <!-- RELAY OUTPUTS (8 to 11) -->
-      <!-- 8: D25 --> <circle cx="0" cy="189" r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/><text x="14" y="193" class="pin-act" fill="#fbbf24">D25 (GPIO 25) ──► IN1</text>
-      <!-- 9: D26 --> <circle cx="0" cy="216" r="6" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/><text x="14" y="220" class="pin-act" fill="#34d399">D26 (GPIO 26) ──► IN2</text>
-      <!-- 10: D27 --> <circle cx="0" cy="243" r="6" fill="#06b6d4" stroke="#ffffff" stroke-width="1.5"/><text x="14" y="247" class="pin-act" fill="#38bdf8">D27 (GPIO 27) ──► IN3</text>
-      <!-- 11: D14 --> <circle cx="0" cy="270" r="6" fill="#a855f7" stroke="#ffffff" stroke-width="1.5"/><text x="14" y="274" class="pin-act" fill="#c084fc">D14 (GPIO 14) ──► IN4</text>
-      
-      <!-- 12: D12 --> <circle cx="0" cy="297" r="5" fill="#3f3f46"/><text x="14" y="301" class="pin-lbl">D12</text>
-      
-      <!-- 13: D13 (IR TSOP) -->
-      <circle cx="0" cy="324" r="6" fill="#6366f1" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="14" y="328" class="pin-act" fill="#818cf8">◄ D13 (IR 38kHz)</text>
-      
-      <!-- 14: GND -->
-      <circle cx="0" cy="351" r="5.5" fill="#1e293b" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="14" y="355" class="pin-act" fill="#cbd5e1">GND (Sensor Rail)</text>
-      
-      <!-- 15: VIN -->
-      <circle cx="0" cy="378" r="6" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="14" y="382" class="pin-act" fill="#f87171">◄ VIN (+5V Main In)</text>
-    </g>
+    <!-- EN & BOOT Buttons -->
+    <rect x="805" y="735" width="28" height="20" rx="2" fill="#27272a" stroke="#71717a"/>
+    <circle cx="819" cy="745" r="5" fill="#a1a1aa"/>
+    <text x="819" y="765" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="7.5">EN</text>
 
-    <!-- RIGHT HEADER (15 Pins) -->
-    <!-- Pins: D23, D22, TX0, RX0, D21, D19, D18, D5, TX2, RX2, D4, D2, D15, GND, 3V3 -->
-    <g transform="translate(240, 210)">
-      <!-- 1: D23 (Button 4) -->
-      <circle cx="0" cy="0" r="6" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="4" text-anchor="end" class="pin-act" fill="#38bdf8">D23 (Button 4) ──►</text>
-      
-      <!-- 2: D22 (LED 4) -->
-      <circle cx="0" cy="27" r="6" fill="#a855f7" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="31" text-anchor="end" class="pin-act" fill="#c084fc">D22 (LED 4 PWM) ──►</text>
-      
-      <!-- 3: TX0 --> <circle cx="0" cy="54" r="5" fill="#3f3f46"/><text x="-14" y="58" text-anchor="end" class="pin-lbl">TX0</text>
-      <!-- 4: RX0 --> <circle cx="0" cy="81" r="5" fill="#3f3f46"/><text x="-14" y="85" text-anchor="end" class="pin-lbl">RX0</text>
-      
-      <!-- 5: D21 (LED 3) -->
-      <circle cx="0" cy="108" r="6" fill="#06b6d4" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="112" text-anchor="end" class="pin-act" fill="#22d3ee">D21 (LED 3 PWM) ──►</text>
-      
-      <!-- 6: D19 --> <circle cx="0" cy="135" r="5" fill="#3f3f46"/><text x="-14" y="139" text-anchor="end" class="pin-lbl">D19</text>
-      
-      <!-- 7: D18 (Button 3) -->
-      <circle cx="0" cy="162" r="6" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="166" text-anchor="end" class="pin-act" fill="#38bdf8">D18 (Button 3) ──►</text>
-      
-      <!-- 8: D5 (LED 2) -->
-      <circle cx="0" cy="189" r="6" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="193" text-anchor="end" class="pin-act" fill="#34d399">D5 (LED 2 PWM) ──►</text>
-      
-      <!-- 9: TX2 / GPIO 17 (Button 2) -->
-      <circle cx="0" cy="216" r="6" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="220" text-anchor="end" class="pin-act" fill="#38bdf8">GPIO 17 (Btn 2) ──►</text>
-      
-      <!-- 10: RX2 / GPIO 16 (Button 1) -->
-      <circle cx="0" cy="243" r="6" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="247" text-anchor="end" class="pin-act" fill="#38bdf8">GPIO 16 (Btn 1) ──►</text>
-      
-      <!-- 11: D4 (LED 1) -->
-      <circle cx="0" cy="270" r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="274" text-anchor="end" class="pin-act" fill="#fbbf24">D4 (LED 1 PWM) ──►</text>
-      
-      <!-- 12: D2 (Blue Wi-Fi LED) -->
-      <circle cx="0" cy="297" r="6" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="301" text-anchor="end" class="pin-act" fill="#38bdf8">D2 (Wi-Fi Blue LED)</text>
-      
-      <!-- 13: D15 --> <circle cx="0" cy="324" r="5" fill="#3f3f46"/><text x="-14" y="328" text-anchor="end" class="pin-lbl">D15</text>
-      
-      <!-- 14: GND -->
-      <circle cx="0" cy="351" r="5.5" fill="#1e293b" stroke="#ffffff" stroke-width="1.5"/>
-      <text x="-14" y="355" text-anchor="end" class="pin-act" fill="#cbd5e1">GND (Common)</text>
-      
-      <!-- 15: 3V3 -->
-      <circle cx="0" cy="378" r="6.5" fill="#ef4444" stroke="#ffffff" stroke-width="2"/>
-      <text x="-14" y="382" text-anchor="end" class="pin-act" fill="#f87171">3V3 (Logic Power) ──►</text>
-    </g>
+    <rect x="907" y="735" width="28" height="20" rx="2" fill="#27272a" stroke="#71717a"/>
+    <circle cx="921" cy="745" r="5" fill="#a1a1aa"/>
+    <text x="921" y="765" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="7.5">BOOT</text>
+
+    <!-- Board Title -->
+    <text x="870" y="325" text-anchor="middle" class="box-title">ESP32 DevKit (30-Pin)</text>
+    <circle cx="675" cy="350" r="5" fill="#3f3f46"/>
+    <text x="689" y="354" class="pin-lbl">EN</text>
+    <circle cx="675" cy="378" r="5" fill="#3f3f46"/>
+    <text x="689" y="382" class="pin-lbl">VP (GPIO 36)</text>
+    <circle cx="675" cy="406" r="5" fill="#3f3f46"/>
+    <text x="689" y="410" class="pin-lbl">VN (GPIO 39)</text>
+    <circle cx="675" cy="434" r="6" fill="#facc15" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="689" y="438" class="pin-act" fill="#facc15">◄ D34 (LDR ADC1)</text>
+    <circle cx="675" cy="462" r="5" fill="#3f3f46"/>
+    <text x="689" y="466" class="pin-lbl">D35</text>
+    <circle cx="675" cy="490" r="6" fill="#f472b6" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="689" y="494" class="pin-act" fill="#f472b6">◄ D32 (Config/Reset)</text>
+    <circle cx="675" cy="518" r="5" fill="#3f3f46"/>
+    <text x="689" y="522" class="pin-lbl">D33</text>
+    <circle cx="675" cy="546" r="6" fill="#fbbf24" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="689" y="550" class="pin-act" fill="#fbbf24">D25 (GPIO 25) ──► IN1</text>
+    <circle cx="675" cy="574" r="6" fill="#34d399" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="689" y="578" class="pin-act" fill="#34d399">D26 (GPIO 26) ──► IN2</text>
+    <circle cx="675" cy="602" r="6" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="689" y="606" class="pin-act" fill="#38bdf8">D27 (GPIO 27) ──► IN3</text>
+    <circle cx="675" cy="630" r="6" fill="#c084fc" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="689" y="634" class="pin-act" fill="#c084fc">D14 (GPIO 14) ──► IN4</text>
+    <circle cx="675" cy="658" r="5" fill="#3f3f46"/>
+    <text x="689" y="662" class="pin-lbl">D12</text>
+    <circle cx="675" cy="686" r="6" fill="#818cf8" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="689" y="690" class="pin-act" fill="#818cf8">◄ D13 (IR 38kHz)</text>
+    <circle cx="675" cy="714" r="6" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="689" y="718" class="pin-act" fill="#cbd5e1">◄ GND (Sensor / MCU)</text>
+    <circle cx="675" cy="742" r="6" fill="#f87171" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="689" y="746" class="pin-act" fill="#f87171">◄ VIN (+5V Main In)</text>
+    <circle cx="1065" cy="350" r="6" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="354" text-anchor="end" class="pin-act" fill="#38bdf8">D23 (Button 4) ──►</text>
+    <circle cx="1065" cy="378" r="6" fill="#c084fc" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="382" text-anchor="end" class="pin-act" fill="#c084fc">D22 (LED 4 PWM) ──►</text>
+    <circle cx="1065" cy="406" r="5" fill="#3f3f46"/>
+    <text x="1051" y="410" text-anchor="end" class="pin-lbl">TX0</text>
+    <circle cx="1065" cy="434" r="5" fill="#3f3f46"/>
+    <text x="1051" y="438" text-anchor="end" class="pin-lbl">RX0</text>
+    <circle cx="1065" cy="462" r="6" fill="#22d3ee" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="466" text-anchor="end" class="pin-act" fill="#22d3ee">D21 (LED 3 PWM) ──►</text>
+    <circle cx="1065" cy="490" r="5" fill="#3f3f46"/>
+    <text x="1051" y="494" text-anchor="end" class="pin-lbl">D19</text>
+    <circle cx="1065" cy="518" r="6" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="522" text-anchor="end" class="pin-act" fill="#38bdf8">D18 (Button 3) ──►</text>
+    <circle cx="1065" cy="546" r="6" fill="#34d399" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="550" text-anchor="end" class="pin-act" fill="#34d399">D5 (LED 2 PWM) ──►</text>
+    <circle cx="1065" cy="574" r="6" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="578" text-anchor="end" class="pin-act" fill="#38bdf8">GPIO 17 (Btn 2) ──►</text>
+    <circle cx="1065" cy="602" r="6" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="606" text-anchor="end" class="pin-act" fill="#38bdf8">GPIO 16 (Btn 1) ──►</text>
+    <circle cx="1065" cy="630" r="6" fill="#fbbf24" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="634" text-anchor="end" class="pin-act" fill="#fbbf24">D4 (LED 1 PWM) ──►</text>
+    <circle cx="1065" cy="658" r="6" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="662" text-anchor="end" class="pin-act" fill="#38bdf8">D2 (Wi-Fi Blue LED)</text>
+    <circle cx="1065" cy="686" r="5" fill="#3f3f46"/>
+    <text x="1051" y="690" text-anchor="end" class="pin-lbl">D15</text>
+    <circle cx="1065" cy="714" r="6" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="718" text-anchor="end" class="pin-act" fill="#cbd5e1">GND (Common)</text>
+    <circle cx="1065" cy="742" r="6" fill="#f87171" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1051" y="746" text-anchor="end" class="pin-act" fill="#f87171">3V3 (Logic Power) ──►</text>
   </g>
 
-  <!-- ========================================================================= -->
-  <!-- 2. LEFT COLUMN: SENSORS & INPUT CONTROLS                                  -->
-  <!-- ========================================================================= -->
-
-  <!-- A. LDR AMBIENT LIGHT SENSOR MODULE (TOP-LEFT) -->
-  <!-- Box: X=80, Y=140, W=420, H=210 -->
-  <g transform="translate(80, 140)" filter="url(#shadow)">
-    <rect width="420" height="210" rx="12" fill="#0f172a" stroke="#eab308" stroke-width="1.5"/>
-    <text x="210" y="28" text-anchor="middle" fill="#facc15" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">LDR Ambient Light Sensor (Nighttime Dimming)</text>
+  <!-- LDR SENSOR BOX -->
+  <g id="ldr_box">
+    <rect x="64" y="144" width="420" height="200" rx="12" fill="#000000" opacity="0.45"/>
+    <rect x="60" y="140" width="420" height="200" rx="12" fill="#0f172a" stroke="#eab308" stroke-width="1.5"/>
+    <text x="270" y="166" text-anchor="middle" fill="#facc15" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700">LDR Ambient Light Sensor (Nighttime Dimming)</text>
     
-    <!-- Schematic Symbol Area -->
-    <g transform="translate(50, 45)">
-      <!-- 3.3V In -->
-      <text x="50" y="20" fill="#ef4444" font-family="monospace" font-size="11" font-weight="700">+3.3V (ESP32 Rail)</text>
-      <path d="M 120,25 L 120,50" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+    <g transform="translate(90, 180)">
+      <text x="30" y="20" fill="#ef4444" font-family="monospace" font-size="11" font-weight="700">+3.3V Rail</text>
+      <path d="M 100,25 L 100,48" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+      <rect x="88" y="48" width="24" height="38" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.5"/>
+      <text x="125" y="70" fill="#cbd5e1" font-family="monospace" font-size="10">10kΩ</text>
       
-      <!-- 10k Resistor -->
-      <rect x="108" y="50" width="24" height="40" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.5"/>
-      <text x="145" y="74" fill="#cbd5e1" font-family="monospace" font-size="10">10kΩ</text>
+      <path d="M 100,86 L 100,105 L 340,105" fill="none" stroke="#eab308" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="100" cy="105" r="4" fill="#eab308"/>
+      <circle cx="340" cy="105" r="5" fill="#eab308"/>
       
-      <!-- Divider Midpoint to GPIO 34 -->
-      <path d="M 120,90 L 120,110 L 260,110" fill="none" stroke="#eab308" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="120" cy="100" r="4" fill="#eab308"/>
-      <circle cx="260" cy="110" r="5" fill="#eab308"/>
-      <text x="270" y="114" fill="#facc15" font-family="monospace" font-size="11" font-weight="700">──► To GPIO 34 (ADC1_CH6)</text>
+      <path d="M 100,105 L 100,122" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+      <circle cx="100" cy="134" r="12" fill="#1e293b" stroke="#eab308" stroke-width="1.5"/>
+      <path d="M 93,134 L 107,134" stroke="#eab308" stroke-width="2"/>
+      <path d="M 78,118 L 89,128 M 81,114 L 92,124" stroke="#facc15" stroke-width="1.5"/>
+      <text x="125" y="138" fill="#cbd5e1" font-family="monospace" font-size="10">LDR (5mm)</text>
       
-      <!-- LDR -->
-      <path d="M 120,110 L 120,130" fill="none" stroke="#e2e8f0" stroke-width="2"/>
-      <circle cx="120" cy="142" r="14" fill="#1e293b" stroke="#eab308" stroke-width="1.5"/>
-      <path d="M 112,142 L 128,142" stroke="#eab308" stroke-width="2"/>
-      <!-- Incoming Light Arrows -->
-      <path d="M 95,125 L 108,135 M 98,120 L 111,130" stroke="#facc15" stroke-width="1.5"/>
-      <text x="145" y="146" fill="#cbd5e1" font-family="monospace" font-size="10">LDR (5mm)</text>
-      
-      <!-- GND -->
-      <path d="M 120,156 L 120,175" fill="none" stroke="#94a3b8" stroke-width="2.5"/>
-      <path d="M 108,175 L 132,175 M 112,180 L 128,180 M 116,185 L 124,185" stroke="#94a3b8" stroke-width="1.5"/>
-      <text x="140" y="182" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
+      <path d="M 100,146 L 100,160" fill="none" stroke="#94a3b8" stroke-width="2.5"/>
+      <path d="M 90,160 L 110,160 M 94,164 L 106,164" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="120" y="166" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
     </g>
   </g>
 
-  <!-- B. SYSTEM RESET & CONFIG BUTTON (MID-LEFT) -->
-  <!-- Box: X=80, Y=375, W=420, H=170 -->
-  <g transform="translate(80, 375)" filter="url(#shadow)">
-    <rect width="420" height="170" rx="12" fill="#0f172a" stroke="#ec4899" stroke-width="1.5"/>
-    <text x="210" y="28" text-anchor="middle" fill="#f472b6" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">System Reset / AP Mode Config Button</text>
+  <!-- RESET BUTTON BOX -->
+  <g id="reset_box">
+    <rect x="64" y="374" width="420" height="160" rx="12" fill="#000000" opacity="0.45"/>
+    <rect x="60" y="370" width="420" height="160" rx="12" fill="#0f172a" stroke="#ec4899" stroke-width="1.5"/>
+    <text x="270" y="396" text-anchor="middle" fill="#f472b6" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700">System Reset / AP Mode Config Button</text>
     
-    <g transform="translate(50, 45)">
-      <!-- Button Symbol -->
-      <rect x="80" y="25" width="80" height="40" rx="6" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
-      <circle cx="120" cy="45" r="10" fill="#ec4899"/>
-      <text x="120" y="90" text-anchor="middle" fill="#f472b6" font-family="sans-serif" font-size="10" font-weight="700">TACTILE SWITCH</text>
+    <g transform="translate(90, 410)">
+      <rect x="70" y="25" width="80" height="38" rx="6" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
+      <circle cx="110" cy="44" r="10" fill="#ec4899"/>
+      <text x="110" y="85" text-anchor="middle" fill="#f472b6" font-family="sans-serif" font-size="10" font-weight="700">TACTILE SWITCH</text>
       
-      <!-- Lead 1 to GPIO 32 -->
-      <path d="M 80,45 L 30,45 L 30,15 L 260,15" fill="none" stroke="#ec4899" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="260" cy="15" r="5" fill="#ec4899"/>
-      <text x="270" y="19" fill="#f472b6" font-family="monospace" font-size="11" font-weight="700">──► To GPIO 32 (PULLUP)</text>
+      <path d="M 70,44 L 20,44 L 20,15 L 340,15" fill="none" stroke="#ec4899" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="340" cy="15" r="5" fill="#ec4899"/>
       
-      <!-- Lead 2 to GND -->
-      <path d="M 160,45 L 210,45 L 210,75" fill="none" stroke="#94a3b8" stroke-width="2.5"/>
-      <path d="M 200,75 L 220,75 M 204,80 L 216,80 M 207,85 L 213,85" stroke="#94a3b8" stroke-width="1.5"/>
-      <text x="228" y="82" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
-      
-      <text x="210" y="110" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="10">Short Press: Hard Reboot | 5s Hold: Reset to Wi-Fi AP Mode</text>
+      <path d="M 150,44 L 200,44 L 200,70" fill="none" stroke="#94a3b8" stroke-width="2.5"/>
+      <path d="M 190,70 L 210,70 M 194,74 L 206,74" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="218" y="74" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
+      <text x="170" y="105" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="9.5">Short: Reboot | 5s Hold: AP Mode</text>
     </g>
   </g>
 
-  <!-- C. 3-PIN TSOP 38kHz IR RECEIVER (LOWER-LEFT) -->
-  <!-- Box: X=80, Y=570, W=420, H=230 -->
-  <g transform="translate(80, 570)" filter="url(#shadow)">
-    <rect width="420" height="230" rx="12" fill="#0f172a" stroke="#6366f1" stroke-width="1.5"/>
-    <text x="210" y="28" text-anchor="middle" fill="#818cf8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">3-Pin TSOP 38kHz IR Receiver (15120P / TSOP38238)</text>
+  <!-- TSOP IR RECEIVER BOX -->
+  <g id="tsop_box">
+    <rect x="64" y="564" width="420" height="220" rx="12" fill="#000000" opacity="0.45"/>
+    <rect x="60" y="560" width="420" height="220" rx="12" fill="#0f172a" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="270" y="586" text-anchor="middle" fill="#818cf8" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700">3-Pin TSOP 38kHz IR Receiver (15120P / TSOP38238)</text>
     
-    <g transform="translate(40, 45)">
-      <!-- TSOP Package Body -->
-      <rect x="70" y="30" width="80" height="90" rx="8" fill="#18181b" stroke="#6366f1" stroke-width="1.5"/>
-      <!-- Lens Dome -->
-      <circle cx="110" cy="70" r="18" fill="#312e81" stroke="#818cf8" stroke-width="1.5"/>
-      <text x="110" y="74" text-anchor="middle" fill="#c7d2fe" font-family="sans-serif" font-size="9" font-weight="700">IR LENS</text>
+    <g transform="translate(90, 600)">
+      <rect x="60" y="30" width="80" height="85" rx="8" fill="#18181b" stroke="#6366f1" stroke-width="1.5"/>
+      <circle cx="100" cy="68" r="16" fill="#312e81" stroke="#818cf8" stroke-width="1.5"/>
+      <text x="100" y="72" text-anchor="middle" fill="#c7d2fe" font-family="sans-serif" font-size="9" font-weight="700">IR LENS</text>
       
-      <!-- 3 Pins (Bottom of TSOP) -->
-      <!-- Pin 1: OUT -->
-      <path d="M 85,120 L 85,150 L 260,150" fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="85" cy="120" r="4" fill="#6366f1"/>
-      <circle cx="260" cy="150" r="5" fill="#6366f1"/>
-      <text x="65" y="135" fill="#818cf8" font-family="monospace" font-size="9">Pin 1 (OUT)</text>
-      <text x="270" y="154" fill="#818cf8" font-family="monospace" font-size="11" font-weight="700">──► To GPIO 13</text>
-
-      <!-- Pin 2: GND -->
-      <path d="M 110,120 L 110,170" fill="none" stroke="#94a3b8" stroke-width="2.5"/>
-      <circle cx="110" cy="120" r="4" fill="#94a3b8"/>
-      <path d="M 100,170 L 120,170 M 104,175 L 116,175 M 107,180 L 113,180" stroke="#94a3b8" stroke-width="1.5"/>
-      <text x="125" y="172" fill="#94a3b8" font-family="monospace" font-size="9">Pin 2 (GND)</text>
-
-      <!-- Pin 3: VCC with 100Ω and 4.7µF Cap -->
-      <path d="M 135,120 L 135,90 L 200,90" fill="none" stroke="#ef4444" stroke-width="2.5"/>
-      <circle cx="135" cy="120" r="4" fill="#ef4444"/>
-      <!-- 100Ω Resistor -->
-      <rect x="200" y="80" width="30" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.5"/>
-      <text x="215" y="94" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="8">100Ω</text>
-      <path d="M 230,90 L 260,90" fill="none" stroke="#ef4444" stroke-width="2.5"/>
-      <text x="270" y="94" fill="#f87171" font-family="monospace" font-size="11" font-weight="700">◄── +3.3V ESP32</text>
+      <path d="M 75,115 L 75,145 L 340,145" fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="75" cy="115" r="4" fill="#6366f1"/>
+      <circle cx="340" cy="145" r="5" fill="#6366f1"/>
+      <text x="55" y="130" fill="#818cf8" font-family="monospace" font-size="9">Pin 1 (OUT)</text>
       
-      <!-- 4.7µF Decoupling Cap -->
-      <path d="M 170,90 L 170,125" fill="none" stroke="#38bdf8" stroke-width="2"/>
-      <circle cx="170" cy="90" r="3" fill="#38bdf8"/>
-      <path d="M 160,125 L 180,125 M 160,130 L 180,130" stroke="#38bdf8" stroke-width="2"/>
-      <path d="M 170,130 L 170,145 L 110,145" fill="none" stroke="#94a3b8" stroke-width="2"/>
-      <text x="185" y="130" fill="#38bdf8" font-family="monospace" font-size="8">4.7µF</text>
+      <path d="M 100,115 L 100,160" fill="none" stroke="#94a3b8" stroke-width="2.5"/>
+      <circle cx="100" cy="115" r="4" fill="#94a3b8"/>
+      <path d="M 90,160 L 110,160 M 94,164 L 106,164" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="118" y="162" fill="#94a3b8" font-family="monospace" font-size="9">Pin 2 (GND)</text>
+      
+      <path d="M 125,115 L 125,85 L 180,85" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+      <circle cx="125" cy="115" r="4" fill="#ef4444"/>
+      <rect x="180" y="75" width="28" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.5"/>
+      <text x="194" y="89" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="8">100Ω</text>
+      <path d="M 208,85 L 250,85" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+      <text x="255" y="89" fill="#f87171" font-family="monospace" font-size="10" font-weight="700">◄ 3.3V</text>
+      <path d="M 150,85 L 150,120" fill="none" stroke="#38bdf8" stroke-width="2"/>
+      <circle cx="150" cy="85" r="3" fill="#38bdf8"/>
+      <path d="M 140,120 L 160,120 M 140,125 L 160,125" stroke="#38bdf8" stroke-width="2"/>
+      <path d="M 150,125 L 150,140 L 100,140" fill="none" stroke="#94a3b8" stroke-width="2"/>
+      <text x="165" y="125" fill="#38bdf8" font-family="monospace" font-size="8">4.7µF</text>
     </g>
   </g>
 
-  <!-- ========================================================================= -->
-  <!-- 3. TOP-RIGHT COLUMN: 4 TACTILE PUSH BUTTONS & 4 STATUS LEDS               -->
-  <!-- ========================================================================= -->
+  <!-- 4 INDEPENDENT CHANNEL USER I/O CARDS -->
+  <g id="channel_cards">
 
-  <!-- A. 4 TACTILE PUSH BUTTONS (TOP-RIGHT) -->
-  <!-- Box: X=890, Y=140, W=480, H=310 -->
-  <g transform="translate(890, 140)" filter="url(#shadow)">
-    <rect width="480" height="310" rx="12" fill="#0f172a" stroke="#0ea5e9" stroke-width="1.5"/>
-    <text x="240" y="28" text-anchor="middle" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">Physical Edge Control: 4 Tactile Push Buttons</text>
-    <text x="240" y="46" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="10">Direct Hardware Debounce (25ms) | Full Offline Edge Autonomy</text>
+    <!-- Channel 4 Card Body -->
+    <rect x="1144" y="144" width="440" height="145" rx="12" fill="#000000" opacity="0.45"/>
+    <rect x="1140" y="140" width="440" height="145" rx="12" fill="#0f172a" stroke="#c084fc" stroke-width="1.5"/>
+    
+    <rect x="1160" y="150" width="220" height="22" rx="4" fill="#18181b" stroke="#c084fc" stroke-width="1"/>
+    <text x="1170" y="165" fill="#c084fc" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="800">CHANNEL 4: APPLIANCE 4</text>
 
-    <!-- Button 1: GPIO 16 (RX2) -->
-    <g transform="translate(30, 65)">
-      <circle cx="10" cy="18" r="5" fill="#0ea5e9"/>
-      <text x="25" y="22" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="700">GPIO 16 (RX2) ──►</text>
-      <rect x="170" y="5" width="110" height="30" rx="5" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5"/>
-      <circle cx="225" cy="20" r="8" fill="#0ea5e9"/>
-      <text x="225" y="48" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="9">Button 1 (Sw 1)</text>
-      <path d="M 280,20 L 370,20" fill="none" stroke="#94a3b8" stroke-width="2"/>
-      <text x="380" y="24" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
-    </g>
+    <!-- Button Row -->
+    <rect x="1170" y="181" width="95" height="28" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="1217" cy="195" r="7" fill="#38bdf8"/>
+    <text x="1275" y="199" fill="#cbd5e1" font-family="sans-serif" font-size="10" font-weight="700">Button 4 (GPIO 23)</text>
+    <path d="M 1265,195 L 1270,195" stroke="#94a3b8" stroke-width="1.8"/>
+    <path d="M 1405,195 L 1440,195" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="1448" y="199" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
 
-    <!-- Button 2: GPIO 17 (TX2) -->
-    <g transform="translate(30, 125)">
-      <circle cx="10" cy="18" r="5" fill="#0ea5e9"/>
-      <text x="25" y="22" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="700">GPIO 17 (TX2) ──►</text>
-      <rect x="170" y="5" width="110" height="30" rx="5" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5"/>
-      <circle cx="225" cy="20" r="8" fill="#0ea5e9"/>
-      <text x="225" y="48" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="9">Button 2 (Sw 2)</text>
-      <path d="M 280,20 L 370,20" fill="none" stroke="#94a3b8" stroke-width="2"/>
-      <text x="380" y="24" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
-    </g>
+    <!-- LED Row -->
+    <rect x="1170" y="235" width="42" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.2"/>
+    <text x="1191" y="249" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="8.5">220Ω</text>
+    <path d="M 1212,245 L 1245,245" stroke="#c084fc" stroke-width="2"/>
+    <circle cx="1260" cy="245" r="11" fill="#c084fc" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1260" y="249" text-anchor="middle" fill="#070d17" font-family="sans-serif" font-size="9" font-weight="900">L4</text>
+    <text x="1282" y="249" fill="#cbd5e1" font-family="sans-serif" font-size="10">PWM Status Indicator</text>
+    <path d="M 1405,245 L 1440,245" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="1448" y="249" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
 
-    <!-- Button 3: GPIO 18 (D18) -->
-    <g transform="translate(30, 185)">
-      <circle cx="10" cy="18" r="5" fill="#0ea5e9"/>
-      <text x="25" y="22" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="700">GPIO 18 (D18) ──►</text>
-      <rect x="170" y="5" width="110" height="30" rx="5" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5"/>
-      <circle cx="225" cy="20" r="8" fill="#0ea5e9"/>
-      <text x="225" y="48" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="9">Button 3 (Sw 3)</text>
-      <path d="M 280,20 L 370,20" fill="none" stroke="#94a3b8" stroke-width="2"/>
-      <text x="380" y="24" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
-    </g>
+    <!-- Channel 3 Card Body -->
+    <rect x="1144" y="309" width="440" height="145" rx="12" fill="#000000" opacity="0.45"/>
+    <rect x="1140" y="305" width="440" height="145" rx="12" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
+    
+    <rect x="1160" y="315" width="220" height="22" rx="4" fill="#18181b" stroke="#06b6d4" stroke-width="1"/>
+    <text x="1170" y="330" fill="#06b6d4" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="800">CHANNEL 3: APPLIANCE 3</text>
 
-    <!-- Button 4: GPIO 23 (D23) -->
-    <g transform="translate(30, 245)">
-      <circle cx="10" cy="18" r="5" fill="#0ea5e9"/>
-      <text x="25" y="22" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="700">GPIO 23 (D23) ──►</text>
-      <rect x="170" y="5" width="110" height="30" rx="5" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5"/>
-      <circle cx="225" cy="20" r="8" fill="#0ea5e9"/>
-      <text x="225" y="48" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="9">Button 4 (Sw 4)</text>
-      <path d="M 280,20 L 370,20" fill="none" stroke="#94a3b8" stroke-width="2"/>
-      <text x="380" y="24" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
-    </g>
+    <!-- Button Row -->
+    <rect x="1170" y="346" width="95" height="28" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="1217" cy="360" r="7" fill="#38bdf8"/>
+    <text x="1275" y="364" fill="#cbd5e1" font-family="sans-serif" font-size="10" font-weight="700">Button 3 (GPIO 18)</text>
+    <path d="M 1265,360 L 1270,360" stroke="#94a3b8" stroke-width="1.8"/>
+    <path d="M 1405,360 L 1440,360" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="1448" y="364" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
+
+    <!-- LED Row -->
+    <rect x="1170" y="400" width="42" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.2"/>
+    <text x="1191" y="414" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="8.5">220Ω</text>
+    <path d="M 1212,410 L 1245,410" stroke="#06b6d4" stroke-width="2"/>
+    <circle cx="1260" cy="410" r="11" fill="#06b6d4" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1260" y="414" text-anchor="middle" fill="#070d17" font-family="sans-serif" font-size="9" font-weight="900">L3</text>
+    <text x="1282" y="414" fill="#cbd5e1" font-family="sans-serif" font-size="10">PWM Status Indicator</text>
+    <path d="M 1405,410 L 1440,410" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="1448" y="414" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
+
+    <!-- Channel 2 Card Body -->
+    <rect x="1144" y="474" width="440" height="145" rx="12" fill="#000000" opacity="0.45"/>
+    <rect x="1140" y="470" width="440" height="145" rx="12" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+    
+    <rect x="1160" y="480" width="220" height="22" rx="4" fill="#18181b" stroke="#10b981" stroke-width="1"/>
+    <text x="1170" y="495" fill="#10b981" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="800">CHANNEL 2: APPLIANCE 2</text>
+
+    <!-- Button Row -->
+    <rect x="1170" y="511" width="95" height="28" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="1217" cy="525" r="7" fill="#38bdf8"/>
+    <text x="1275" y="529" fill="#cbd5e1" font-family="sans-serif" font-size="10" font-weight="700">Button 2 (GPIO 17)</text>
+    <path d="M 1265,525 L 1270,525" stroke="#94a3b8" stroke-width="1.8"/>
+    <path d="M 1405,525 L 1440,525" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="1448" y="529" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
+
+    <!-- LED Row -->
+    <rect x="1170" y="565" width="42" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.2"/>
+    <text x="1191" y="579" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="8.5">220Ω</text>
+    <path d="M 1212,575 L 1245,575" stroke="#10b981" stroke-width="2"/>
+    <circle cx="1260" cy="575" r="11" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1260" y="579" text-anchor="middle" fill="#070d17" font-family="sans-serif" font-size="9" font-weight="900">L2</text>
+    <text x="1282" y="579" fill="#cbd5e1" font-family="sans-serif" font-size="10">PWM Status Indicator</text>
+    <path d="M 1405,575 L 1440,575" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="1448" y="579" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
+
+    <!-- Channel 1 Card Body -->
+    <rect x="1144" y="639" width="440" height="145" rx="12" fill="#000000" opacity="0.45"/>
+    <rect x="1140" y="635" width="440" height="145" rx="12" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
+    
+    <rect x="1160" y="645" width="220" height="22" rx="4" fill="#18181b" stroke="#f59e0b" stroke-width="1"/>
+    <text x="1170" y="660" fill="#f59e0b" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="800">CHANNEL 1: APPLIANCE 1</text>
+
+    <!-- Button Row -->
+    <rect x="1170" y="676" width="95" height="28" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="1217" cy="690" r="7" fill="#38bdf8"/>
+    <text x="1275" y="694" fill="#cbd5e1" font-family="sans-serif" font-size="10" font-weight="700">Button 1 (GPIO 16)</text>
+    <path d="M 1265,690 L 1270,690" stroke="#94a3b8" stroke-width="1.8"/>
+    <path d="M 1405,690 L 1440,690" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="1448" y="694" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
+
+    <!-- LED Row -->
+    <rect x="1170" y="730" width="42" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.2"/>
+    <text x="1191" y="744" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="8.5">220Ω</text>
+    <path d="M 1212,740 L 1245,740" stroke="#f59e0b" stroke-width="2"/>
+    <circle cx="1260" cy="740" r="11" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="1260" y="744" text-anchor="middle" fill="#070d17" font-family="sans-serif" font-size="9" font-weight="900">L1</text>
+    <text x="1282" y="744" fill="#cbd5e1" font-family="sans-serif" font-size="10">PWM Status Indicator</text>
+    <path d="M 1405,740 L 1440,740" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="1448" y="744" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
   </g>
 
-  <!-- B. 4 STATUS PWM FEEDBACK LEDS (MID-RIGHT) -->
-  <!-- Box: X=890, Y=475, W=480, H=325 -->
-  <g transform="translate(890, 475)" filter="url(#shadow)">
-    <rect width="480" height="325" rx="12" fill="#0f172a" stroke="#a855f7" stroke-width="1.5"/>
-    <text x="240" y="28" text-anchor="middle" fill="#c084fc" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">Visual State Feedback: 4 Status LEDs (PWM Auto-Dimming)</text>
-    <text x="240" y="46" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="10">Hardware LEDC PWM Channels 0–3 | Auto Brightness Adapted to Ambient Lux</text>
+  <!-- 4-CHANNEL RELAY MODULE BODY -->
+  <g id="relay_module_body">
+    <rect x="1664" y="144" width="520" height="880" rx="14" fill="#000000" opacity="0.45"/>
+    <rect x="1660" y="140" width="520" height="880" rx="14" fill="url(#pcb-grad)" stroke="#3b82f6" stroke-width="2"/>
+    <text x="1920" y="172" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="800">4-CHANNEL ISOLATED RELAY MODULE</text>
+    <text x="1920" y="190" text-anchor="middle" fill="#93c5fd" font-family="monospace" font-size="10.5">Songle SRD-05VDC-SL-C | AC Load Outputs &amp; Snubbers</text>
 
-    <!-- LED 1: GPIO 4 -->
-    <g transform="translate(30, 65)">
-      <circle cx="10" cy="18" r="5" fill="#f59e0b"/>
-      <text x="25" y="22" fill="#fbbf24" font-family="monospace" font-size="11" font-weight="700">GPIO 4 (Ch 0) ──►</text>
-      <rect x="160" y="8" width="45" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.5"/>
-      <text x="182" y="22" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="9">220Ω</text>
-      <path d="M 205,18 L 245,18" stroke="#f59e0b" stroke-width="2"/>
-      <circle cx="260" cy="18" r="10" fill="#f59e0b" stroke="#fff" stroke-width="1.5"/>
-      <text x="260" y="22" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="700">L1</text>
-      <path d="M 270,18 L 370,18" stroke="#94a3b8" stroke-width="2"/>
-      <text x="380" y="22" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
-    </g>
-
-    <!-- LED 2: GPIO 5 -->
-    <g transform="translate(30, 130)">
-      <circle cx="10" cy="18" r="5" fill="#10b981"/>
-      <text x="25" y="22" fill="#34d399" font-family="monospace" font-size="11" font-weight="700">GPIO 5 (Ch 1) ──►</text>
-      <rect x="160" y="8" width="45" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.5"/>
-      <text x="182" y="22" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="9">220Ω</text>
-      <path d="M 205,18 L 245,18" stroke="#10b981" stroke-width="2"/>
-      <circle cx="260" cy="18" r="10" fill="#10b981" stroke="#fff" stroke-width="1.5"/>
-      <text x="260" y="22" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="700">L2</text>
-      <path d="M 270,18 L 370,18" stroke="#94a3b8" stroke-width="2"/>
-      <text x="380" y="22" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
-    </g>
-
-    <!-- LED 3: GPIO 21 -->
-    <g transform="translate(30, 195)">
-      <circle cx="10" cy="18" r="5" fill="#06b6d4"/>
-      <text x="25" y="22" fill="#22d3ee" font-family="monospace" font-size="11" font-weight="700">GPIO 21 (Ch 2) ─►</text>
-      <rect x="160" y="8" width="45" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.5"/>
-      <text x="182" y="22" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="9">220Ω</text>
-      <path d="M 205,18 L 245,18" stroke="#06b6d4" stroke-width="2"/>
-      <circle cx="260" cy="18" r="10" fill="#06b6d4" stroke="#fff" stroke-width="1.5"/>
-      <text x="260" y="22" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="700">L3</text>
-      <path d="M 270,18 L 370,18" stroke="#94a3b8" stroke-width="2"/>
-      <text x="380" y="22" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
-    </g>
-
-    <!-- LED 4: GPIO 22 -->
-    <g transform="translate(30, 260)">
-      <circle cx="10" cy="18" r="5" fill="#a855f7"/>
-      <text x="25" y="22" fill="#c084fc" font-family="monospace" font-size="11" font-weight="700">GPIO 22 (Ch 3) ─►</text>
-      <rect x="160" y="8" width="45" height="20" rx="3" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.5"/>
-      <text x="182" y="22" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="9">220Ω</text>
-      <path d="M 205,18 L 245,18" stroke="#a855f7" stroke-width="2"/>
-      <circle cx="260" cy="18" r="10" fill="#a855f7" stroke="#fff" stroke-width="1.5"/>
-      <text x="260" y="22" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="700">L4</text>
-      <path d="M 270,18 L 370,18" stroke="#94a3b8" stroke-width="2"/>
-      <text x="380" y="22" fill="#94a3b8" font-family="monospace" font-size="10">GND</text>
-    </g>
-  </g>
-
-  <!-- ========================================================================= -->
-  <!-- 4. FAR-RIGHT COLUMN: 4-CHANNEL RELAY MODULE & AC MAINS LOADS              -->
-  <!-- Box: X=1410, Y=140, W=470, H=880                                         -->
-  <!-- ========================================================================= -->
-  <g transform="translate(1410, 140)" filter="url(#shadow)">
-    <!-- PCB Base -->
-    <rect width="470" height="880" rx="14" fill="url(#pcb-grad)" stroke="#3b82f6" stroke-width="2"/>
-    <text x="235" y="32" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="800">4-CHANNEL ISOLATED RELAY MODULE</text>
-    <text x="235" y="50" text-anchor="middle" fill="#93c5fd" font-family="monospace" font-size="10.5">Songle SRD-05VDC-SL-C | AC Load Outputs &amp; Snubbers</text>
-
-    <!-- 4 SONGLE RELAYS & SCREW TERMINALS -->
-    <!-- Channel 1 -->
-    <g transform="translate(30, 70)">
-      <rect width="180" height="95" rx="5" fill="url(#relay-grad)" stroke="#60a5fa" stroke-width="1.5"/>
-      <text x="90" y="30" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="800">SONGLE RELAY</text>
-      <text x="90" y="48" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="11" font-weight="700">SRD-05VDC-SL-C</text>
-      <text x="90" y="75" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="9.5" font-weight="700">K1 (Appliance 1)</text>
+    <g transform="translate(1685, 210)">
+      <rect width="190" height="95" rx="5" fill="url(#relay-grad)" stroke="#60a5fa" stroke-width="1.5"/>
+      <text x="95" y="30" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="800">SONGLE RELAY</text>
+      <text x="95" y="48" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="11" font-weight="700">SRD-05VDC-SL-C</text>
+      <text x="95" y="75" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="9.5" font-weight="700">K1 (Appliance 1)</text>
       
-      <!-- Screw Terminal -->
-      <g transform="translate(195, 10)">
+      <g transform="translate(205, 10)">
         <rect width="70" height="75" rx="4" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
         <text x="35" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10" font-weight="700">NO</text>
         <text x="35" y="46" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10" font-weight="700">COM</text>
         <text x="35" y="66" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="9">NC</text>
       </g>
-      <!-- Appliance 1 -->
-      <g transform="translate(280, 5)">
-        <rect width="135" height="42" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
-        <text x="67" y="20" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Appliance 1</text>
-        <text x="67" y="33" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8.5">250V AC / 10A</text>
-        <!-- RC Snubber Badge -->
-        <rect x="0" y="48" width="135" height="26" rx="4" fill="#18181b" stroke="#eab308" stroke-width="1"/>
-        <text x="67" y="65" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8" font-weight="700">RC Snubber (100nF+100Ω)</text>
+      <g transform="translate(290, 5)">
+        <rect width="180" height="42" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+        <text x="90" y="20" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Appliance 1</text>
+        <text x="90" y="33" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8.5">250V AC / 10A</text>
+        <rect x="0" y="48" width="180" height="26" rx="4" fill="#18181b" stroke="#eab308" stroke-width="1"/>
+        <text x="90" y="65" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8" font-weight="700">RC Snubber (100nF+100Ω)</text>
       </g>
     </g>
 
-    <!-- Channel 2 -->
-    <g transform="translate(30, 185)">
-      <rect width="180" height="95" rx="5" fill="url(#relay-grad)" stroke="#60a5fa" stroke-width="1.5"/>
-      <text x="90" y="30" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="800">SONGLE RELAY</text>
-      <text x="90" y="48" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="11" font-weight="700">SRD-05VDC-SL-C</text>
-      <text x="90" y="75" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="9.5" font-weight="700">K2 (Appliance 2)</text>
+    <g transform="translate(1685, 325)">
+      <rect width="190" height="95" rx="5" fill="url(#relay-grad)" stroke="#60a5fa" stroke-width="1.5"/>
+      <text x="95" y="30" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="800">SONGLE RELAY</text>
+      <text x="95" y="48" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="11" font-weight="700">SRD-05VDC-SL-C</text>
+      <text x="95" y="75" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="9.5" font-weight="700">K2 (Appliance 2)</text>
       
-      <g transform="translate(195, 10)">
+      <g transform="translate(205, 10)">
         <rect width="70" height="75" rx="4" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
         <text x="35" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10" font-weight="700">NO</text>
         <text x="35" y="46" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10" font-weight="700">COM</text>
         <text x="35" y="66" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="9">NC</text>
       </g>
-      <g transform="translate(280, 5)">
-        <rect width="135" height="42" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
-        <text x="67" y="20" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Appliance 2</text>
-        <text x="67" y="33" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8.5">250V AC / 10A</text>
-        <rect x="0" y="48" width="135" height="26" rx="4" fill="#18181b" stroke="#eab308" stroke-width="1"/>
-        <text x="67" y="65" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8" font-weight="700">RC Snubber (100nF+100Ω)</text>
+      <g transform="translate(290, 5)">
+        <rect width="180" height="42" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+        <text x="90" y="20" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Appliance 2</text>
+        <text x="90" y="33" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8.5">250V AC / 10A</text>
+        <rect x="0" y="48" width="180" height="26" rx="4" fill="#18181b" stroke="#eab308" stroke-width="1"/>
+        <text x="90" y="65" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8" font-weight="700">RC Snubber (100nF+100Ω)</text>
       </g>
     </g>
 
-    <!-- Channel 3 -->
-    <g transform="translate(30, 300)">
-      <rect width="180" height="95" rx="5" fill="url(#relay-grad)" stroke="#60a5fa" stroke-width="1.5"/>
-      <text x="90" y="30" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="800">SONGLE RELAY</text>
-      <text x="90" y="48" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="11" font-weight="700">SRD-05VDC-SL-C</text>
-      <text x="90" y="75" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="9.5" font-weight="700">K3 (Appliance 3)</text>
+    <g transform="translate(1685, 440)">
+      <rect width="190" height="95" rx="5" fill="url(#relay-grad)" stroke="#60a5fa" stroke-width="1.5"/>
+      <text x="95" y="30" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="800">SONGLE RELAY</text>
+      <text x="95" y="48" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="11" font-weight="700">SRD-05VDC-SL-C</text>
+      <text x="95" y="75" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="9.5" font-weight="700">K3 (Appliance 3)</text>
       
-      <g transform="translate(195, 10)">
+      <g transform="translate(205, 10)">
         <rect width="70" height="75" rx="4" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
         <text x="35" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10" font-weight="700">NO</text>
         <text x="35" y="46" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10" font-weight="700">COM</text>
         <text x="35" y="66" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="9">NC</text>
       </g>
-      <g transform="translate(280, 5)">
-        <rect width="135" height="42" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
-        <text x="67" y="20" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Appliance 3</text>
-        <text x="67" y="33" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8.5">250V AC / 10A</text>
-        <rect x="0" y="48" width="135" height="26" rx="4" fill="#18181b" stroke="#eab308" stroke-width="1"/>
-        <text x="67" y="65" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8" font-weight="700">RC Snubber (100nF+100Ω)</text>
+      <g transform="translate(290, 5)">
+        <rect width="180" height="42" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+        <text x="90" y="20" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Appliance 3</text>
+        <text x="90" y="33" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8.5">250V AC / 10A</text>
+        <rect x="0" y="48" width="180" height="26" rx="4" fill="#18181b" stroke="#eab308" stroke-width="1"/>
+        <text x="90" y="65" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8" font-weight="700">RC Snubber (100nF+100Ω)</text>
       </g>
     </g>
 
-    <!-- Channel 4 -->
-    <g transform="translate(30, 415)">
-      <rect width="180" height="95" rx="5" fill="url(#relay-grad)" stroke="#60a5fa" stroke-width="1.5"/>
-      <text x="90" y="30" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="800">SONGLE RELAY</text>
-      <text x="90" y="48" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="11" font-weight="700">SRD-05VDC-SL-C</text>
-      <text x="90" y="75" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="9.5" font-weight="700">K4 (Appliance 4)</text>
+    <g transform="translate(1685, 555)">
+      <rect width="190" height="95" rx="5" fill="url(#relay-grad)" stroke="#60a5fa" stroke-width="1.5"/>
+      <text x="95" y="30" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="800">SONGLE RELAY</text>
+      <text x="95" y="48" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="11" font-weight="700">SRD-05VDC-SL-C</text>
+      <text x="95" y="75" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="9.5" font-weight="700">K4 (Appliance 4)</text>
       
-      <g transform="translate(195, 10)">
+      <g transform="translate(205, 10)">
         <rect width="70" height="75" rx="4" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
         <text x="35" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10" font-weight="700">NO</text>
         <text x="35" y="46" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10" font-weight="700">COM</text>
         <text x="35" y="66" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="9">NC</text>
       </g>
-      <g transform="translate(280, 5)">
-        <rect width="135" height="42" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
-        <text x="67" y="20" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Appliance 4</text>
-        <text x="67" y="33" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8.5">250V AC / 10A</text>
-        <rect x="0" y="48" width="135" height="26" rx="4" fill="#18181b" stroke="#eab308" stroke-width="1"/>
-        <text x="67" y="65" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8" font-weight="700">RC Snubber (100nF+100Ω)</text>
+      <g transform="translate(290, 5)">
+        <rect width="180" height="42" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+        <text x="90" y="20" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Appliance 4</text>
+        <text x="90" y="33" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="8.5">250V AC / 10A</text>
+        <rect x="0" y="48" width="180" height="26" rx="4" fill="#18181b" stroke="#eab308" stroke-width="1"/>
+        <text x="90" y="65" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8" font-weight="700">RC Snubber (100nF+100Ω)</text>
       </g>
     </g>
 
-    <!-- 6-PIN INPUT CONTROL HEADER (LOWER-LEFT OF BOARD) -->
-    <!-- Pins: GND, IN1, IN2, IN3, IN4, VCC -->
-    <g transform="translate(20, 540)">
-      <rect width="190" height="190" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
-      <text x="95" y="-10" text-anchor="middle" fill="#e2e8f0" font-family="sans-serif" font-size="11" font-weight="800">6-PIN INPUT HEADER</text>
-      
-      <!-- Pin 1: GND -->
-      <circle cx="25" cy="25" r="6" fill="#1e293b" stroke="#fff" stroke-width="1.5"/>
-      <text x="42" y="29" fill="#cbd5e1" font-family="monospace" font-size="11" font-weight="700">GND (Ext 5V GND)</text>
-      
-      <!-- Pin 2: IN1 -->
-      <circle cx="25" cy="55" r="6" fill="#f59e0b" stroke="#fff" stroke-width="1.5"/>
-      <text x="42" y="59" fill="#fbbf24" font-family="monospace" font-size="11" font-weight="700">IN1 ◄── GPIO 25</text>
-      
-      <!-- Pin 3: IN2 -->
-      <circle cx="25" cy="85" r="6" fill="#10b981" stroke="#fff" stroke-width="1.5"/>
-      <text x="42" y="89" fill="#34d399" font-family="monospace" font-size="11" font-weight="700">IN2 ◄── GPIO 26</text>
-      
-      <!-- Pin 4: IN3 -->
-      <circle cx="25" cy="115" r="6" fill="#06b6d4" stroke="#fff" stroke-width="1.5"/>
-      <text x="42" y="119" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="700">IN3 ◄── GPIO 27</text>
-      
-      <!-- Pin 5: IN4 -->
-      <circle cx="25" cy="145" r="6" fill="#a855f7" stroke="#fff" stroke-width="1.5"/>
-      <text x="42" y="149" fill="#c084fc" font-family="monospace" font-size="11" font-weight="700">IN4 ◄── GPIO 14</text>
-      
-      <!-- Pin 6: VCC -->
-      <circle cx="25" cy="175" r="6" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
-      <text x="42" y="179" fill="#f87171" font-family="monospace" font-size="11" font-weight="700">VCC ◄── ESP32 3.3V</text>
-    </g>
+    <!-- 6-Pin Input Header -->
+    <rect x="1680" y="655" width="200" height="195" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
+    <text x="1780" y="645" text-anchor="middle" fill="#e2e8f0" font-family="sans-serif" font-size="11" font-weight="800">6-PIN INPUT HEADER</text>
+    
+    <!-- Pin 1: GND (Connected to Ext 5V GND) -->
+    <circle cx="1695" cy="680" r="6.5" fill="#94a3b8" stroke="#ffffff" stroke-width="2"/>
+    <text x="1711" y="684" fill="#ffffff" font-family="monospace" font-size="11" font-weight="800">GND ◄── Ext 5V GND</text>
 
-    <!-- 2-PIN JUMPER HEADER (BOTTOM) -->
-    <g transform="translate(20, 780)">
-      <rect width="190" height="70" rx="8" fill="#0f172a" stroke="#eab308" stroke-width="2"/>
-      <text x="95" y="-10" text-anchor="middle" fill="#facc15" font-family="sans-serif" font-size="11" font-weight="800">2-PIN JUMPER HEADER</text>
-      
-      <circle cx="45" cy="35" r="6.5" fill="#3f3f46" stroke="#94a3b8" stroke-width="1.5"/>
-      <text x="45" y="58" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="10" font-weight="800">VCC (NC)</text>
-      
-      <circle cx="140" cy="35" r="7" fill="#f97316" stroke="#ffffff" stroke-width="2"/>
-      <text x="140" y="58" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="10" font-weight="800">JD-VCC (+5V)</text>
-    </g>
+    <!-- Pin 2: IN1 -->
+    <circle cx="1695" cy="710" r="6.5" fill="#fbbf24" stroke="#ffffff" stroke-width="2"/>
+    <text x="1711" y="714" fill="#fbbf24" font-family="monospace" font-size="11" font-weight="700">IN1 ◄── GPIO 25</text>
 
-    <!-- JUMPER REMOVED BADGE -->
-    <g transform="translate(230, 780)">
-      <rect width="215" height="70" rx="8" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2"/>
-      <text x="107" y="26" text-anchor="middle" fill="#fbbf24" class="badge-lbl" font-size="11">✂ JUMPER REMOVED</text>
-      <text x="107" y="44" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="9.5">Separates ESP32 Logic Rail</text>
-      <text x="107" y="58" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="9">from Inductive Coil Noise</text>
-    </g>
+    <!-- Pin 3: IN2 -->
+    <circle cx="1695" cy="740" r="6.5" fill="#34d399" stroke="#ffffff" stroke-width="2"/>
+    <text x="1711" y="744" fill="#34d399" font-family="monospace" font-size="11" font-weight="700">IN2 ◄── GPIO 26</text>
+
+    <!-- Pin 4: IN3 -->
+    <circle cx="1695" cy="770" r="6.5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/>
+    <text x="1711" y="774" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="700">IN3 ◄── GPIO 27</text>
+
+    <!-- Pin 5: IN4 -->
+    <circle cx="1695" cy="800" r="6.5" fill="#c084fc" stroke="#ffffff" stroke-width="2"/>
+    <text x="1711" y="804" fill="#c084fc" font-family="monospace" font-size="11" font-weight="700">IN4 ◄── GPIO 14</text>
+
+    <!-- Pin 6: VCC -->
+    <circle cx="1695" cy="830" r="6.5" fill="#ef4444" stroke="#ffffff" stroke-width="2"/>
+    <text x="1711" y="834" fill="#f87171" font-family="monospace" font-size="11" font-weight="700">VCC ◄── ESP32 3.3V</text>
+
+    <!-- 2-Pin Jumper Header Box -->
+    <rect x="1685" y="935" width="200" height="60" rx="8" fill="#0f172a" stroke="#eab308" stroke-width="2"/>
+    <text x="1785" y="927" text-anchor="middle" fill="#facc15" font-family="sans-serif" font-size="11" font-weight="800">2-PIN JUMPER HEADER</text>
+    
+    <!-- VCC (NC) -->
+    <circle cx="1725" cy="960" r="6" fill="#3f3f46" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="1725" y="948" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="10" font-weight="800">VCC (NC)</text>
+
+    <!-- JD-VCC (+5V Ext) -->
+    <circle cx="1780" cy="960" r="7" fill="#f97316" stroke="#fff" stroke-width="2"/>
+    <text x="1780" y="948" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="10" font-weight="800">JD-VCC</text>
+
+    <!-- Jumper Removed Badge -->
+    <rect x="1905" y="935" width="220" height="60" rx="8" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="2015" y="955" text-anchor="middle" fill="#fbbf24" class="badge-lbl" font-size="11">✂ JUMPER REMOVED</text>
+    <text x="2015" y="972" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="9.5">Complete Optical Galvanic Isolation</text>
+  </g>
+
+  <!-- PRIMARY INDUSTRIAL POWER SUPPLY (CRYSTAL CLEAR) -->
+  <g id="power_supply_chassis">
+    <rect x="654" y="864" width="950" height="180" rx="14" fill="#000000" opacity="0.5"/>
+    <rect x="650" y="860" width="950" height="180" rx="14" fill="#0a0f1d" stroke="#38bdf8" stroke-width="2.5"/>
+    
+    <!-- Title Banner -->
+    <text x="1125" y="888" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="900" letter-spacing="0.5px">PRIMARY INDUSTRIAL POWER SUPPLY (5V DC 2A REGULATED SMPS)</text>
+    <text x="1125" y="908" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="700">Hi-Link HLK-PM01 / Industrial DIN Rail Supply — Complete Galvanic Rail Segregation</text>
+
+    <!-- ================= RAIL 1: ESP32 LOGIC SUPPLY ================= -->
+    <rect x="675" y="925" width="400" height="95" rx="10" fill="#111827" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="690" y="945" fill="#fca5a5" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="800">RAIL 1: ESP32 &amp; SENSOR POWER</text>
+    
+    <!-- Terminal 1: +5V VIN -->
+    <circle cx="740" cy="975" r="11" fill="#ef4444" stroke="#ffffff" stroke-width="2"/>
+    <text x="740" y="980" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900">+</text>
+    <text x="760" y="980" fill="#f87171" font-family="monospace" font-size="12" font-weight="800">+5V VIN</text>
+    
+    <!-- Terminal 2: ESP32 GND -->
+    <circle cx="880" cy="975" r="11" fill="#1e293b" stroke="#ffffff" stroke-width="2"/>
+    <text x="880" y="979" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900">−</text>
+    <text x="900" y="980" fill="#cbd5e1" font-family="monospace" font-size="12" font-weight="800">ESP32 GND</text>
+
+    <!-- ================= RAIL 2: RELAY COIL SUPPLY (ISOLATED) ================= -->
+    <rect x="1120" y="925" width="455" height="95" rx="10" fill="#111827" stroke="#f97316" stroke-width="1.5"/>
+    <text x="1135" y="945" fill="#fb923c" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="800">RAIL 2: ISOLATED 5V RELAY COIL POWER</text>
+    
+    <!-- Terminal 3: +5V JD-VCC -->
+    <circle cx="1250" cy="975" r="11" fill="#f97316" stroke="#ffffff" stroke-width="2"/>
+    <text x="1250" y="980" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900">+</text>
+    <text x="1270" y="980" fill="#fb923c" font-family="monospace" font-size="12" font-weight="800">+5V (JD-VCC)</text>
+    
+    <!-- Terminal 4: RELAY COIL GND -->
+    <circle cx="1420" cy="975" r="11" fill="#1e293b" stroke="#ffffff" stroke-width="2"/>
+    <text x="1420" y="979" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900">−</text>
+    <text x="1440" y="980" fill="#cbd5e1" font-family="monospace" font-size="12" font-weight="800">RELAY GND</text>
   </g>
 
   <!-- ========================================================================= -->
-  <!-- 5. POWER ARCHITECTURE (BOTTOM-CENTER)                                     -->
-  <!-- Box: X=580, Y=845, W=790, H=175                                          -->
+  <!-- LAYER 2 (TOP LAYER): ALL INTERCONNECTING WIRES & TERMINATIONS             -->
   <!-- ========================================================================= -->
-  <g transform="translate(580, 845)" filter="url(#shadow)">
-    <rect width="790" height="175" rx="14" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-    <text x="395" y="30" text-anchor="middle" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="800">PRIMARY INDUSTRIAL POWER SUPPLY (5V DC 2A REGULATED)</text>
-    <text x="395" y="48" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="11">Hi-Link HLK-PM01 / Industrial SMPS - Clean Independent Dual Rail Distribution</text>
+  <g id="top_layer_wiring">
 
-    <!-- Terminals & Distribution Blocks -->
-    <!-- +5V Rail to ESP32 VIN -->
-    <g transform="translate(40, 80)">
-      <rect width="320" height="70" rx="8" fill="#1e1b4b" stroke="#ef4444" stroke-width="1.5"/>
-      <circle cx="25" cy="35" r="10" fill="#ef4444"/>
-      <text x="25" y="40" text-anchor="middle" fill="#fff" font-weight="900">+</text>
-      <text x="45" y="28" fill="#f87171" font-family="monospace" font-size="12" font-weight="700">+5V DC (Rail 1) ──► ESP32 VIN</text>
-      <text x="45" y="48" fill="#cbd5e1" font-family="sans-serif" font-size="10">Powers ESP32 On-Board AMS1117-3.3V LDO</text>
-    </g>
+    <!-- LDR Wire to GPIO 34 -->
+    <path d="M 430,285 L 510,285 L 510,434 L 675,434" fill="none" stroke="#facc15" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="675" cy="434" r="6.5" fill="#facc15" stroke="#fff" stroke-width="1.5"/>
 
-    <!-- +5V Rail to Relay JD-VCC (Isolated) -->
-    <g transform="translate(410, 80)">
-      <rect width="340" height="70" rx="8" fill="#1e1b4b" stroke="#f97316" stroke-width="1.5"/>
-      <circle cx="25" cy="35" r="10" fill="#f97316"/>
-      <text x="25" y="40" text-anchor="middle" fill="#fff" font-weight="900">+</text>
-      <text x="45" y="28" fill="#fb923c" font-family="monospace" font-size="12" font-weight="700">+5V DC (Rail 2) ──► RELAY JD-VCC</text>
-      <text x="45" y="48" fill="#cbd5e1" font-family="sans-serif" font-size="10">Powers Relay Coils (~300mA all active)</text>
-    </g>
+    <!-- Reset Button Wire to GPIO 32 -->
+    <path d="M 430,425 L 490,425 L 490,490 L 675,490" fill="none" stroke="#f472b6" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="675" cy="490" r="6.5" fill="#f472b6" stroke="#fff" stroke-width="1.5"/>
+
+    <!-- TSOP Wire to GPIO 13 -->
+    <path d="M 430,745 L 470,745 L 470,686 L 675,686" fill="none" stroke="#818cf8" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="675" cy="686" r="6.5" fill="#818cf8" stroke="#fff" stroke-width="1.5"/>
+
+    <!-- IN1 (GPIO 25) -->
+    <path d="M 675,546 L 610,546 L 610,95 L 1630,95 L 1630,710 L 1695,710" fill="none" stroke="#fbbf24" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="675" cy="546" r="6.5" fill="#fbbf24" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1695" cy="710" r="6.5" fill="#fbbf24" stroke="#fff" stroke-width="1.5"/>
+
+    <!-- IN2 (GPIO 26) -->
+    <path d="M 675,574 L 590,574 L 590,83 L 1640,83 L 1640,740 L 1695,740" fill="none" stroke="#34d399" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="675" cy="574" r="6.5" fill="#34d399" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1695" cy="740" r="6.5" fill="#34d399" stroke="#fff" stroke-width="1.5"/>
+
+    <!-- IN3 (GPIO 27) -->
+    <path d="M 675,602 L 570,602 L 570,71 L 1650,71 L 1650,770 L 1695,770" fill="none" stroke="#38bdf8" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="675" cy="602" r="6.5" fill="#38bdf8" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1695" cy="770" r="6.5" fill="#38bdf8" stroke="#fff" stroke-width="1.5"/>
+
+    <!-- IN4 (GPIO 14) -->
+    <path d="M 675,630 L 550,630 L 550,59 L 1660,59 L 1660,800 L 1695,800" fill="none" stroke="#c084fc" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="675" cy="630" r="6.5" fill="#c084fc" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1695" cy="800" r="6.5" fill="#c084fc" stroke="#fff" stroke-width="1.5"/>
+
+    <!-- Button Wire -->
+    <path d="M 1065,350 L 1105,350 L 1105,195 L 1170,195" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1065" cy="350" r="5.5" fill="#38bdf8" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1170" cy="195" r="4.5" fill="#38bdf8"/>
+
+    <!-- LED Wire -->
+    <path d="M 1065,378 L 1122,378 L 1122,245 L 1170,245" fill="none" stroke="#c084fc" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1065" cy="378" r="5.5" fill="#c084fc" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1170" cy="245" r="4.5" fill="#c084fc"/>
+
+    <!-- Button Wire -->
+    <path d="M 1065,518 L 1105,518 L 1105,360 L 1170,360" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1065" cy="518" r="5.5" fill="#38bdf8" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1170" cy="360" r="4.5" fill="#38bdf8"/>
+
+    <!-- LED Wire -->
+    <path d="M 1065,462 L 1122,462 L 1122,410 L 1170,410" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1065" cy="462" r="5.5" fill="#06b6d4" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1170" cy="410" r="4.5" fill="#06b6d4"/>
+
+    <!-- Button Wire -->
+    <path d="M 1065,574 L 1105,574 L 1105,525 L 1170,525" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1065" cy="574" r="5.5" fill="#38bdf8" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1170" cy="525" r="4.5" fill="#38bdf8"/>
+
+    <!-- LED Wire -->
+    <path d="M 1065,546 L 1122,546 L 1122,575 L 1170,575" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1065" cy="546" r="5.5" fill="#10b981" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1170" cy="575" r="4.5" fill="#10b981"/>
+
+    <!-- Button Wire -->
+    <path d="M 1065,602 L 1105,602 L 1105,690 L 1170,690" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1065" cy="602" r="5.5" fill="#38bdf8" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1170" cy="690" r="4.5" fill="#38bdf8"/>
+
+    <!-- LED Wire -->
+    <path d="M 1065,630 L 1122,630 L 1122,740 L 1170,740" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1065" cy="630" r="5.5" fill="#f59e0b" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1170" cy="740" r="4.5" fill="#f59e0b"/>
+
+    <!-- ESP32 3.3V to Relay VCC -->
+    <path d="M 1065,742 L 1100,742 L 1100,830 L 1620,830 L 1620,830 L 1695,830" fill="none" stroke="#ef4444" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1065" cy="742" r="6.5" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1695" cy="830" r="6.5" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
+
+    <!-- Rail 1: +5V VIN to ESP32 VIN -->
+    <path d="M 740,975 L 740,810 L 630,810 L 630,742 L 675,742" fill="none" stroke="#ef4444" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="740" cy="975" r="6" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="675" cy="742" r="6.5" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
+
+    <!-- Rail 1: ESP32 GND to ESP32 Pin 14 -->
+    <path d="M 880,975 L 880,825 L 642,825 L 642,714 L 675,714" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="880" cy="975" r="6" fill="#94a3b8" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="675" cy="714" r="6" fill="#94a3b8" stroke="#fff" stroke-width="1.5"/>
+
+    <!-- Rail 2: +5V to Relay JD-VCC (Clear Routing below chassis) -->
+    <path d="M 1250,975 L 1250,1130 L 1780,1130 L 1780,960" fill="none" stroke="#f97316" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1250" cy="975" r="6" fill="#f97316" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1780" cy="960" r="7" fill="#f97316" stroke="#fff" stroke-width="2"/>
+    <rect x="1395" y="1119" width="230" height="22" rx="4" fill="#0f172a" stroke="#f97316" stroke-width="1.2"/>
+    <text x="1510" y="1134" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="10" font-weight="800">+5V ISOLATED RELAY COIL (JD-VCC)</text>
+
+    <!-- Rail 2: RELAY GND to Relay 6-Pin Header Pin 1 (Dedicated Ground Return) -->
+    <path d="M 1420,975 L 1420,1075 L 1610,1075 L 1610,680 L 1695,680" fill="none" stroke="#cbd5e1" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="1420" cy="975" r="6" fill="#cbd5e1" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1695" cy="680" r="6.5" fill="#cbd5e1" stroke="#fff" stroke-width="2"/>
+    <rect x="1435" y="1064" width="150" height="22" rx="4" fill="#0f172a" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="1510" y="1079" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="10" font-weight="700">RELAY COIL GND</text>
   </g>
-
-  <!-- ========================================================================= -->
-  <!-- 6. HIGH-VISIBILITY ROUTING & BUS LINES                                    -->
-  <!-- ========================================================================= -->
-
-  <!-- GPIO 25 to IN1: starts ESP32 Left Header (600, 399) -> runs up/over to Relay IN1 (1435, 595) -->
-  <path d="M 600,399 L 550,399 L 550,105 L 1380,105 L 1380,595 L 1435,595" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="600" cy="399" r="4.5" fill="#f59e0b"/>
-  <circle cx="1435" cy="595" r="4.5" fill="#f59e0b"/>
-
-  <!-- GPIO 26 to IN2: starts ESP32 Left Header (600, 426) -> runs up/over to Relay IN2 (1435, 625) -->
-  <path d="M 600,426 L 538,426 L 538,93 L 1390,93 L 1390,625 L 1435,625" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="600" cy="426" r="4.5" fill="#10b981"/>
-  <circle cx="1435" cy="625" r="4.5" fill="#10b981"/>
-
-  <!-- GPIO 27 to IN3: starts ESP32 Left Header (600, 453) -> runs up/over to Relay IN3 (1435, 655) -->
-  <path d="M 600,453 L 526,453 L 526,81 L 1400,81 L 1400,655 L 1435,655" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="600" cy="453" r="4.5" fill="#06b6d4"/>
-  <circle cx="1435" cy="655" r="4.5" fill="#06b6d4"/>
-
-  <!-- GPIO 14 to IN4: starts ESP32 Left Header (600, 480) -> runs up/over to Relay IN4 (1435, 685) -->
-  <path d="M 600,480 L 514,480 L 514,69 L 1410,69 L 1410,685 L 1435,685" fill="none" stroke="#a855f7" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="600" cy="480" r="4.5" fill="#a855f7"/>
-  <circle cx="1435" cy="685" r="4.5" fill="#a855f7"/>
-
-  <!-- ESP32 3.3V Logic to Relay VCC: starts (820, 588) -> (870, 588) -> (870, 810) -> (1370, 810) -> (1370, 715) -> (1435, 715) -->
-  <path d="M 820,588 L 860,588 L 860,815 L 1370,815 L 1370,715 L 1435,715" fill="none" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
-  <circle cx="820" cy="588" r="5" fill="#ef4444"/>
-  <circle cx="1435" cy="715" r="5" fill="#ef4444"/>
-
-  <!-- External +5V to JD-VCC: starts (1020, 925) -> (1550, 925) -> (1550, 815) -->
-  <path d="M 1020,925 L 1550,925 L 1550,815" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="1020" cy="925" r="5" fill="#f97316"/>
-  <circle cx="1550" cy="815" r="5" fill="#f97316"/>
-
-  <!-- External Supply GND to Relay Board GND: starts (960, 955) -> (1445, 955) -> (1445, 565) -->
-  <path d="M 960,955 L 1360,955 L 1360,565 L 1435,565" fill="none" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round"/>
-  <circle cx="1435" cy="565" r="5" fill="#94a3b8"/>
-
 </svg>
