@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 1080" width="540" height="1080">
+  <defs>
+    <!-- PCB Shading -->
+    <linearGradient id="pcb_base" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="50%" stop-color="#111113"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+    <linearGradient id="metal_shield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="25%" stop-color="#e2e8f0"/>
+      <stop offset="70%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <linearGradient id="gold_pin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <linearGradient id="usb_metal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#cbd5e1"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- PCB Drop Shadow -->
+  <rect x="66" y="48" width="420" height="1000" rx="18" fill="#000000" opacity="0.6"/>
+
+  <!-- PCB Board Body -->
+  <rect x="60" y="40" width="420" height="1000" rx="18" fill="url(#pcb_base)" stroke="#38bdf8" stroke-width="2.5"/>
+  <rect x="64" y="44" width="412" height="992" rx="15" fill="none" stroke="#27272a" stroke-width="1.5"/>
+
+  <!-- 4 Corner Mounting Holes with Gold Annular Rings -->
+  <g id="mounting_holes">
+    <circle cx="82" cy="62" r="12" fill="none" stroke="url(#gold_pin)" stroke-width="3"/>
+    <circle cx="82" cy="62" r="7" fill="#09090b"/>
+    <circle cx="458" cy="62" r="12" fill="none" stroke="url(#gold_pin)" stroke-width="3"/>
+    <circle cx="458" cy="62" r="7" fill="#09090b"/>
+    <circle cx="82" cy="1018" r="12" fill="none" stroke="url(#gold_pin)" stroke-width="3"/>
+    <circle cx="82" cy="1018" r="7" fill="#09090b"/>
+    <circle cx="458" cy="1018" r="12" fill="none" stroke="url(#gold_pin)" stroke-width="3"/>
+    <circle cx="458" cy="1018" r="7" fill="#09090b"/>
+  </g>
+
+  <!-- Antenna Area (Top) -->
+  <rect x="135" y="54" width="270" height="95" rx="6" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+  <!-- Meandering Gold PCB Antenna Trace -->
+  <path d="M 155,120 
+           L 155,75 
+           L 190,75 
+           L 190,115 
+           L 225,115 
+           L 225,75 
+           L 260,75 
+           L 260,115 
+           L 295,115 
+           L 295,75 
+           L 330,75 
+           L 330,115 
+           L 365,115 
+           L 365,75 
+           L 385,75" 
+        fill="none" stroke="url(#gold_pin)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Metal RF Shield Can (ESP-WROOM-32) -->
+  <g id="shield_can">
+    <rect x="155" y="165" width="230" height="210" rx="10" fill="url(#metal_shield)" stroke="#475569" stroke-width="2"/>
+    <rect x="161" y="171" width="218" height="198" rx="7" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+    
+    <!-- Laser Etching on Shield -->
+    <text x="270" y="215" text-anchor="middle" fill="#0f172a" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" letter-spacing="1px">ESP-WROOM-32</text>
+    <text x="270" y="242" text-anchor="middle" fill="#334155" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700">Wi-Fi + Bluetooth + BLE MCU</text>
+    <path d="M 195,258 L 345,258" stroke="#64748b" stroke-width="1"/>
+    <text x="270" y="278" text-anchor="middle" fill="#475569" font-family="monospace" font-size="11">FCC ID: 2AC7Z-ESPWROOM32</text>
+    <text x="270" y="296" text-anchor="middle" fill="#475569" font-family="monospace" font-size="11">CE 0700 · RoHS Compliant</text>
+    <circle cx="200" cy="320" r="8" fill="none" stroke="#475569" stroke-width="1.5"/>
+    <text x="200" y="324" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="10" font-weight="800">R</text>
+    <text x="280" y="324" text-anchor="middle" fill="#475569" font-family="monospace" font-size="10.5">211-161007</text>
+  </g>
+
+  <!-- Central Components on PCB -->
+  <!-- CP2102 USB Bridge IC -->
+  <g id="cp2102">
+    <rect x="234" y="540" width="72" height="72" rx="4" fill="#09090b" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle cx="246" cy="552" r="3" fill="#64748b"/>
+    <text x="270" y="576" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="10.5" font-weight="900">SILABS</text>
+    <text x="270" y="592" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="9" font-weight="700">CP2102</text>
+    <!-- IC Silver Pins -->
+    <rect x="225" y="548" width="8" height="4" fill="#cbd5e1"/><rect x="225" y="558" width="8" height="4" fill="#cbd5e1"/><rect x="225" y="568" width="8" height="4" fill="#cbd5e1"/><rect x="225" y="578" width="8" height="4" fill="#cbd5e1"/><rect x="225" y="588" width="8" height="4" fill="#cbd5e1"/><rect x="225" y="598" width="8" height="4" fill="#cbd5e1"/>
+    <rect x="307" y="548" width="8" height="4" fill="#cbd5e1"/><rect x="307" y="558" width="8" height="4" fill="#cbd5e1"/><rect x="307" y="568" width="8" height="4" fill="#cbd5e1"/><rect x="307" y="578" width="8" height="4" fill="#cbd5e1"/><rect x="307" y="588" width="8" height="4" fill="#cbd5e1"/><rect x="307" y="598" width="8" height="4" fill="#cbd5e1"/>
+    <rect x="244" y="532" width="4" height="8" fill="#cbd5e1"/><rect x="254" y="532" width="4" height="8" fill="#cbd5e1"/><rect x="264" y="532" width="4" height="8" fill="#cbd5e1"/><rect x="274" y="532" width="4" height="8" fill="#cbd5e1"/><rect x="284" y="532" width="4" height="8" fill="#cbd5e1"/><rect x="294" y="532" width="4" height="8" fill="#cbd5e1"/>
+    <rect x="244" y="612" width="4" height="8" fill="#cbd5e1"/><rect x="254" y="612" width="4" height="8" fill="#cbd5e1"/><rect x="264" y="612" width="4" height="8" fill="#cbd5e1"/><rect x="274" y="612" width="4" height="8" fill="#cbd5e1"/><rect x="284" y="612" width="4" height="8" fill="#cbd5e1"/><rect x="294" y="612" width="4" height="8" fill="#cbd5e1"/>
+  </g>
+
+  <!-- AMS1117-3.3 Voltage Regulator -->
+  <g id="regulator">
+    <rect x="240" y="415" width="60" height="45" rx="3" fill="#09090b" stroke="#52525b" stroke-width="1.2"/>
+    <rect x="250" y="405" width="40" height="10" rx="1" fill="#cbd5e1"/>
+    <text x="270" y="438" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="8.5" font-weight="700">AMS1117</text>
+    <text x="270" y="451" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="8">3.3V</text>
+    <rect x="248" y="460" width="8" height="12" fill="#cbd5e1"/>
+    <rect x="266" y="460" width="8" height="12" fill="#cbd5e1"/>
+    <rect x="284" y="460" width="8" height="12" fill="#cbd5e1"/>
+  </g>
+
+  <!-- Status LEDs -->
+  <!-- Red Power LED -->
+  <rect x="195" y="660" width="16" height="24" rx="2" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+  <circle cx="203" cy="672" r="5" fill="#ef4444" filter="url(#glow)"/>
+  <text x="203" y="696" text-anchor="middle" fill="#f87171" font-family="sans-serif" font-size="9" font-weight="800">PWR</text>
+
+  <!-- Blue GPIO 2 LED -->
+  <rect x="329" y="660" width="16" height="24" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+  <circle cx="337" cy="672" r="5" fill="#38bdf8" filter="url(#glow)"/>
+  <text x="337" y="696" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="9" font-weight="800">D2</text>
+
+  <!-- Tactile Buttons at Bottom -->
+  <!-- EN (Reset) Button -->
+  <g id="btn_en">
+    <rect x="110" y="930" width="42" height="42" rx="5" fill="#27272a" stroke="#71717a" stroke-width="1.5"/>
+    <circle cx="131" cy="951" r="12" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+    <circle cx="131" cy="951" r="8" fill="#e2e8f0"/>
+    <text x="131" y="985" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="900">EN</text>
+  </g>
+
+  <!-- BOOT (GPIO 0) Button -->
+  <g id="btn_boot">
+    <rect x="388" y="930" width="42" height="42" rx="5" fill="#27272a" stroke="#71717a" stroke-width="1.5"/>
+    <circle cx="409" cy="951" r="12" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+    <circle cx="409" cy="951" r="8" fill="#e2e8f0"/>
+    <text x="409" y="985" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="900">BOOT</text>
+  </g>
+
+  <!-- Micro-USB Jack (Bottom Center) -->
+  <g id="micro_usb">
+    <rect x="225" y="975" width="90" height="75" rx="5" fill="url(#usb_metal)" stroke="#475569" stroke-width="2"/>
+    <rect x="240" y="1025" width="60" height="25" rx="3" fill="#09090b"/>
+    <!-- Gold pins inside jack -->
+    <rect x="252" y="1030" width="4" height="15" fill="url(#gold_pin)"/><rect x="261" y="1030" width="4" height="15" fill="url(#gold_pin)"/><rect x="270" y="1030" width="4" height="15" fill="url(#gold_pin)"/><rect x="279" y="1030" width="4" height="15" fill="url(#gold_pin)"/><rect x="288" y="1030" width="4" height="15" fill="url(#gold_pin)"/>
+    <text x="270" y="1005" text-anchor="middle" fill="#0f172a" font-family="sans-serif" font-size="10" font-weight="900">USB</text>
+  </g>
+
+  <!-- Header Plastic Strips -->
+  <rect x="70" y="240" width="36" height="675" rx="4" fill="#09090b" stroke="#27272a" stroke-width="1.5"/>
+  <rect x="434" y="240" width="36" height="675" rx="4" fill="#09090b" stroke="#27272a" stroke-width="1.5"/>
+
+    <!-- Left Pin 0: EN -->
+    <circle cx="88" cy="260" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="255" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="260" r="3" fill="#ca8a04"/>
+    <text x="113" y="265" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">EN</text>
+
+    <!-- Left Pin 1: VP -->
+    <circle cx="88" cy="305" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="300" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="305" r="3" fill="#ca8a04"/>
+    <text x="113" y="310" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">VP</text>
+
+    <!-- Left Pin 2: VN -->
+    <circle cx="88" cy="350" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="345" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="350" r="3" fill="#ca8a04"/>
+    <text x="113" y="355" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">VN</text>
+
+    <!-- Left Pin 3: D34 -->
+    <circle cx="88" cy="395" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="390" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="395" r="3" fill="#ca8a04"/>
+    <text x="113" y="400" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D34</text>
+
+    <!-- Left Pin 4: D35 -->
+    <circle cx="88" cy="440" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="435" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="440" r="3" fill="#ca8a04"/>
+    <text x="113" y="445" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D35</text>
+
+    <!-- Left Pin 5: D32 -->
+    <circle cx="88" cy="485" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="480" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="485" r="3" fill="#ca8a04"/>
+    <text x="113" y="490" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D32</text>
+
+    <!-- Left Pin 6: D33 -->
+    <circle cx="88" cy="530" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="525" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="530" r="3" fill="#ca8a04"/>
+    <text x="113" y="535" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D33</text>
+
+    <!-- Left Pin 7: D25 -->
+    <circle cx="88" cy="575" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="570" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="575" r="3" fill="#ca8a04"/>
+    <text x="113" y="580" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D25</text>
+
+    <!-- Left Pin 8: D26 -->
+    <circle cx="88" cy="620" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="615" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="620" r="3" fill="#ca8a04"/>
+    <text x="113" y="625" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D26</text>
+
+    <!-- Left Pin 9: D27 -->
+    <circle cx="88" cy="665" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="660" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="665" r="3" fill="#ca8a04"/>
+    <text x="113" y="670" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D27</text>
+
+    <!-- Left Pin 10: D14 -->
+    <circle cx="88" cy="710" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="705" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="710" r="3" fill="#ca8a04"/>
+    <text x="113" y="715" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D14</text>
+
+    <!-- Left Pin 11: D12 -->
+    <circle cx="88" cy="755" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="750" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="755" r="3" fill="#ca8a04"/>
+    <text x="113" y="760" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D12</text>
+
+    <!-- Left Pin 12: D13 -->
+    <circle cx="88" cy="800" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="795" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="800" r="3" fill="#ca8a04"/>
+    <text x="113" y="805" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D13</text>
+
+    <!-- Left Pin 13: GND -->
+    <circle cx="88" cy="845" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="840" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="845" r="3" fill="#ca8a04"/>
+    <text x="113" y="850" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">GND</text>
+
+    <!-- Left Pin 14: VIN -->
+    <circle cx="88" cy="890" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="83" y="885" width="10" height="10" fill="#09090b"/>
+    <circle cx="88" cy="890" r="3" fill="#ca8a04"/>
+    <text x="113" y="895" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">VIN</text>
+
+    <!-- Right Pin 0: D23 -->
+    <circle cx="452" cy="260" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="255" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="260" r="3" fill="#ca8a04"/>
+    <text x="427" y="265" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D23</text>
+
+    <!-- Right Pin 1: D22 -->
+    <circle cx="452" cy="305" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="300" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="305" r="3" fill="#ca8a04"/>
+    <text x="427" y="310" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D22</text>
+
+    <!-- Right Pin 2: TX0 -->
+    <circle cx="452" cy="350" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="345" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="350" r="3" fill="#ca8a04"/>
+    <text x="427" y="355" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">TX0</text>
+
+    <!-- Right Pin 3: RX0 -->
+    <circle cx="452" cy="395" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="390" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="395" r="3" fill="#ca8a04"/>
+    <text x="427" y="400" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">RX0</text>
+
+    <!-- Right Pin 4: D21 -->
+    <circle cx="452" cy="440" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="435" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="440" r="3" fill="#ca8a04"/>
+    <text x="427" y="445" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D21</text>
+
+    <!-- Right Pin 5: D19 -->
+    <circle cx="452" cy="485" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="480" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="485" r="3" fill="#ca8a04"/>
+    <text x="427" y="490" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D19</text>
+
+    <!-- Right Pin 6: D18 -->
+    <circle cx="452" cy="530" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="525" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="530" r="3" fill="#ca8a04"/>
+    <text x="427" y="535" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D18</text>
+
+    <!-- Right Pin 7: D5 -->
+    <circle cx="452" cy="575" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="570" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="575" r="3" fill="#ca8a04"/>
+    <text x="427" y="580" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D5</text>
+
+    <!-- Right Pin 8: TX2 -->
+    <circle cx="452" cy="620" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="615" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="620" r="3" fill="#ca8a04"/>
+    <text x="427" y="625" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">TX2</text>
+
+    <!-- Right Pin 9: RX2 -->
+    <circle cx="452" cy="665" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="660" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="665" r="3" fill="#ca8a04"/>
+    <text x="427" y="670" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">RX2</text>
+
+    <!-- Right Pin 10: D4 -->
+    <circle cx="452" cy="710" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="705" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="710" r="3" fill="#ca8a04"/>
+    <text x="427" y="715" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D4</text>
+
+    <!-- Right Pin 11: D2 -->
+    <circle cx="452" cy="755" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="750" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="755" r="3" fill="#ca8a04"/>
+    <text x="427" y="760" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D2</text>
+
+    <!-- Right Pin 12: D15 -->
+    <circle cx="452" cy="800" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="795" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="800" r="3" fill="#ca8a04"/>
+    <text x="427" y="805" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">D15</text>
+
+    <!-- Right Pin 13: GND -->
+    <circle cx="452" cy="845" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="840" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="845" r="3" fill="#ca8a04"/>
+    <text x="427" y="850" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">GND</text>
+
+    <!-- Right Pin 14: 3V3 -->
+    <circle cx="452" cy="890" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1"/>
+    <rect x="447" y="885" width="10" height="10" fill="#09090b"/>
+    <circle cx="452" cy="890" r="3" fill="#ca8a04"/>
+    <text x="427" y="895" text-anchor="end" fill="#ffffff" font-family="'SF Pro Text', Consolas, monospace" font-size="14" font-weight="800">3V3</text>
+</svg>

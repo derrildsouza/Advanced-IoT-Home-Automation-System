@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 1080" width="840" height="1080">
+  <defs>
+    <!-- Relay Module Deep Blue PCB -->
+    <linearGradient id="relay_pcb" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="50%" stop-color="#0f2b5c"/>
+      <stop offset="100%" stop-color="#0a192f"/>
+    </linearGradient>
+
+    <!-- Songle Relay Blue Cube -->
+    <linearGradient id="songle_blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="40%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+
+    <!-- Terminal Block Cyan/Blue -->
+    <linearGradient id="term_block" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+
+    <!-- Brass Screw Head -->
+    <radialGradient id="brass_screw" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#eab308"/>
+      <stop offset="80%" stop-color="#a16207"/>
+      <stop offset="100%" stop-color="#713f12"/>
+    </radialGradient>
+
+    <linearGradient id="gold_pin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+  </defs>
+
+  <!-- PCB Drop Shadow -->
+  <rect x="43" y="50" width="770" height="1000" rx="18" fill="#000000" opacity="0.6"/>
+
+  <!-- PCB Board Body (Vivid Royal Blue) -->
+  <rect x="35" y="40" width="770" height="1000" rx="18" fill="url(#relay_pcb)" stroke="#60a5fa" stroke-width="2.5"/>
+  <rect x="41" y="46" width="758" height="988" rx="15" fill="none" stroke="#3b82f6" stroke-width="1.2" opacity="0.7"/>
+
+  <!-- 4 Corner Mounting Holes -->
+  <g id="mounting_holes">
+    <circle cx="61" cy="66" r="14" fill="none" stroke="#e2e8f0" stroke-width="3.5"/>
+    <circle cx="61" cy="66" r="8" fill="#020617"/>
+    <circle cx="779" cy="66" r="14" fill="none" stroke="#e2e8f0" stroke-width="3.5"/>
+    <circle cx="779" cy="66" r="8" fill="#020617"/>
+    <circle cx="61" cy="1014" r="14" fill="none" stroke="#e2e8f0" stroke-width="3.5"/>
+    <circle cx="61" cy="1014" r="8" fill="#020617"/>
+    <circle cx="779" cy="1014" r="14" fill="none" stroke="#e2e8f0" stroke-width="3.5"/>
+    <circle cx="779" cy="1014" r="8" fill="#020617"/>
+  </g>
+
+  <!-- Board Title Silkscreen -->
+  <text x="105" y="86" fill="#ffffff" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" letter-spacing="1.5px">4-CHANNEL RELAY MODULE</text>
+  <text x="105" y="108" fill="#93c5fd" font-family="monospace" font-size="12" font-weight="700">HIGH-VOLTAGE OPTICAL GALVANIC ISOLATION MATRIX</text>
+
+    <!-- Relay 1 -->
+    <rect x="284" y="139" width="340" height="195" rx="8" fill="#000000" opacity="0.4"/>
+    <rect x="280" y="135" width="340" height="195" rx="8" fill="url(#songle_blue)" stroke="#93c5fd" stroke-width="2"/>
+    <!-- Relay Top Bevel -->
+    <rect x="286" y="141" width="328" height="183" rx="6" fill="none" stroke="#bfdbfe" stroke-width="1" opacity="0.5"/>
+
+    <!-- High-Contrast Bold Markings -->
+    <text x="450" y="177" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="900" letter-spacing="1px">SONGLE</text>
+    <text x="450" y="209" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="20" font-weight="900">SRD-05VDC-SL-C</text>
+    <text x="450" y="240" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">10A 250VAC · 10A 125VAC</text>
+    <text x="450" y="263" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">10A 30VDC · 10A 28VDC</text>
+    
+    <!-- Channel Badge on Relay -->
+    <rect x="315" y="280" width="270" height="32" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="450" y="301" text-anchor="middle" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900">CHANNEL 1 (RELAY K1)</text>
+
+    <!-- Terminal Block for Channel 1 -->
+    <rect x="664" y="139" width="125" height="195" rx="8" fill="#000000" opacity="0.4"/>
+    <rect x="660" y="135" width="125" height="195" rx="8" fill="url(#term_block)" stroke="#38bdf8" stroke-width="2"/>
+    
+    <!-- Terminal Silkscreen Identifier -->
+    <text x="646" y="238" text-anchor="end" fill="#ffffff" font-family="monospace" font-size="18" font-weight="900">K1</text>
+
+      <!-- Terminal NO -->
+      <circle cx="715" cy="171" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="171" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="161" x2="727" y2="181" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="176" fill="#e2e8f0" font-family="monospace" font-size="14" font-weight="900">NO</text>
+
+      <!-- Terminal COM -->
+      <circle cx="715" cy="233" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="233" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="223" x2="727" y2="243" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="238" fill="#f87171" font-family="monospace" font-size="14" font-weight="900">COM</text>
+
+      <!-- Terminal NC -->
+      <circle cx="715" cy="295" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="295" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="285" x2="727" y2="305" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="300" fill="#94a3b8" font-family="monospace" font-size="14" font-weight="900">NC</text>
+
+    <!-- Optocoupler PC817 for Channel 1 -->
+    <rect x="205" y="180" width="46" height="56" rx="4" fill="#020617" stroke="#64748b" stroke-width="1.5"/>
+    <circle cx="215" cy="192" r="3" fill="#64748b"/>
+    <text x="228" y="212" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="9" font-weight="900">EL817</text>
+    <text x="228" y="225" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="8">OPTO</text>
+    <!-- Optocoupler Pins -->
+    <rect x="197" y="190" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="197" y="220" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="251" y="190" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="251" y="220" width="8" height="5" fill="#cbd5e1"/>
+
+    <!-- Status SMD LED -->
+    <rect x="173" y="192" width="16" height="26" rx="2" fill="#020617" stroke="#ef4444" stroke-width="1"/>
+    <circle cx="181" cy="205" r="5" fill="#ef4444"/>
+    <text x="181" y="230" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="8.5" font-weight="800">D1</text>
+
+    <!-- Flyback Diode -->
+    <rect x="175" y="255" width="14" height="28" rx="2" fill="#09090b" stroke="#64748b"/>
+    <rect x="175" y="255" width="14" height="6" fill="#e2e8f0"/>
+
+    <!-- Relay 2 -->
+    <rect x="284" y="359" width="340" height="195" rx="8" fill="#000000" opacity="0.4"/>
+    <rect x="280" y="355" width="340" height="195" rx="8" fill="url(#songle_blue)" stroke="#93c5fd" stroke-width="2"/>
+    <!-- Relay Top Bevel -->
+    <rect x="286" y="361" width="328" height="183" rx="6" fill="none" stroke="#bfdbfe" stroke-width="1" opacity="0.5"/>
+
+    <!-- High-Contrast Bold Markings -->
+    <text x="450" y="397" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="900" letter-spacing="1px">SONGLE</text>
+    <text x="450" y="429" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="20" font-weight="900">SRD-05VDC-SL-C</text>
+    <text x="450" y="460" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">10A 250VAC · 10A 125VAC</text>
+    <text x="450" y="483" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">10A 30VDC · 10A 28VDC</text>
+    
+    <!-- Channel Badge on Relay -->
+    <rect x="315" y="500" width="270" height="32" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="450" y="521" text-anchor="middle" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900">CHANNEL 2 (RELAY K2)</text>
+
+    <!-- Terminal Block for Channel 2 -->
+    <rect x="664" y="359" width="125" height="195" rx="8" fill="#000000" opacity="0.4"/>
+    <rect x="660" y="355" width="125" height="195" rx="8" fill="url(#term_block)" stroke="#38bdf8" stroke-width="2"/>
+    
+    <!-- Terminal Silkscreen Identifier -->
+    <text x="646" y="458" text-anchor="end" fill="#ffffff" font-family="monospace" font-size="18" font-weight="900">K2</text>
+
+      <!-- Terminal NO -->
+      <circle cx="715" cy="391" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="391" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="381" x2="727" y2="401" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="396" fill="#e2e8f0" font-family="monospace" font-size="14" font-weight="900">NO</text>
+
+      <!-- Terminal COM -->
+      <circle cx="715" cy="453" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="453" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="443" x2="727" y2="463" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="458" fill="#f87171" font-family="monospace" font-size="14" font-weight="900">COM</text>
+
+      <!-- Terminal NC -->
+      <circle cx="715" cy="515" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="515" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="505" x2="727" y2="525" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="520" fill="#94a3b8" font-family="monospace" font-size="14" font-weight="900">NC</text>
+
+    <!-- Optocoupler PC817 for Channel 2 -->
+    <rect x="205" y="400" width="46" height="56" rx="4" fill="#020617" stroke="#64748b" stroke-width="1.5"/>
+    <circle cx="215" cy="412" r="3" fill="#64748b"/>
+    <text x="228" y="432" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="9" font-weight="900">EL817</text>
+    <text x="228" y="445" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="8">OPTO</text>
+    <!-- Optocoupler Pins -->
+    <rect x="197" y="410" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="197" y="440" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="251" y="410" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="251" y="440" width="8" height="5" fill="#cbd5e1"/>
+
+    <!-- Status SMD LED -->
+    <rect x="173" y="412" width="16" height="26" rx="2" fill="#020617" stroke="#ef4444" stroke-width="1"/>
+    <circle cx="181" cy="425" r="5" fill="#ef4444"/>
+    <text x="181" y="450" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="8.5" font-weight="800">D2</text>
+
+    <!-- Flyback Diode -->
+    <rect x="175" y="475" width="14" height="28" rx="2" fill="#09090b" stroke="#64748b"/>
+    <rect x="175" y="475" width="14" height="6" fill="#e2e8f0"/>
+
+    <!-- Relay 3 -->
+    <rect x="284" y="579" width="340" height="195" rx="8" fill="#000000" opacity="0.4"/>
+    <rect x="280" y="575" width="340" height="195" rx="8" fill="url(#songle_blue)" stroke="#93c5fd" stroke-width="2"/>
+    <!-- Relay Top Bevel -->
+    <rect x="286" y="581" width="328" height="183" rx="6" fill="none" stroke="#bfdbfe" stroke-width="1" opacity="0.5"/>
+
+    <!-- High-Contrast Bold Markings -->
+    <text x="450" y="617" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="900" letter-spacing="1px">SONGLE</text>
+    <text x="450" y="649" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="20" font-weight="900">SRD-05VDC-SL-C</text>
+    <text x="450" y="680" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">10A 250VAC · 10A 125VAC</text>
+    <text x="450" y="703" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">10A 30VDC · 10A 28VDC</text>
+    
+    <!-- Channel Badge on Relay -->
+    <rect x="315" y="720" width="270" height="32" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="450" y="741" text-anchor="middle" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900">CHANNEL 3 (RELAY K3)</text>
+
+    <!-- Terminal Block for Channel 3 -->
+    <rect x="664" y="579" width="125" height="195" rx="8" fill="#000000" opacity="0.4"/>
+    <rect x="660" y="575" width="125" height="195" rx="8" fill="url(#term_block)" stroke="#38bdf8" stroke-width="2"/>
+    
+    <!-- Terminal Silkscreen Identifier -->
+    <text x="646" y="678" text-anchor="end" fill="#ffffff" font-family="monospace" font-size="18" font-weight="900">K3</text>
+
+      <!-- Terminal NO -->
+      <circle cx="715" cy="611" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="611" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="601" x2="727" y2="621" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="616" fill="#e2e8f0" font-family="monospace" font-size="14" font-weight="900">NO</text>
+
+      <!-- Terminal COM -->
+      <circle cx="715" cy="673" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="673" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="663" x2="727" y2="683" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="678" fill="#f87171" font-family="monospace" font-size="14" font-weight="900">COM</text>
+
+      <!-- Terminal NC -->
+      <circle cx="715" cy="735" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="735" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="725" x2="727" y2="745" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="740" fill="#94a3b8" font-family="monospace" font-size="14" font-weight="900">NC</text>
+
+    <!-- Optocoupler PC817 for Channel 3 -->
+    <rect x="205" y="620" width="46" height="56" rx="4" fill="#020617" stroke="#64748b" stroke-width="1.5"/>
+    <circle cx="215" cy="632" r="3" fill="#64748b"/>
+    <text x="228" y="652" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="9" font-weight="900">EL817</text>
+    <text x="228" y="665" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="8">OPTO</text>
+    <!-- Optocoupler Pins -->
+    <rect x="197" y="630" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="197" y="660" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="251" y="630" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="251" y="660" width="8" height="5" fill="#cbd5e1"/>
+
+    <!-- Status SMD LED -->
+    <rect x="173" y="632" width="16" height="26" rx="2" fill="#020617" stroke="#ef4444" stroke-width="1"/>
+    <circle cx="181" cy="645" r="5" fill="#ef4444"/>
+    <text x="181" y="670" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="8.5" font-weight="800">D3</text>
+
+    <!-- Flyback Diode -->
+    <rect x="175" y="695" width="14" height="28" rx="2" fill="#09090b" stroke="#64748b"/>
+    <rect x="175" y="695" width="14" height="6" fill="#e2e8f0"/>
+
+    <!-- Relay 4 -->
+    <rect x="284" y="799" width="340" height="195" rx="8" fill="#000000" opacity="0.4"/>
+    <rect x="280" y="795" width="340" height="195" rx="8" fill="url(#songle_blue)" stroke="#93c5fd" stroke-width="2"/>
+    <!-- Relay Top Bevel -->
+    <rect x="286" y="801" width="328" height="183" rx="6" fill="none" stroke="#bfdbfe" stroke-width="1" opacity="0.5"/>
+
+    <!-- High-Contrast Bold Markings -->
+    <text x="450" y="837" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="900" letter-spacing="1px">SONGLE</text>
+    <text x="450" y="869" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="20" font-weight="900">SRD-05VDC-SL-C</text>
+    <text x="450" y="900" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">10A 250VAC · 10A 125VAC</text>
+    <text x="450" y="923" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">10A 30VDC · 10A 28VDC</text>
+    
+    <!-- Channel Badge on Relay -->
+    <rect x="315" y="940" width="270" height="32" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="450" y="961" text-anchor="middle" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900">CHANNEL 4 (RELAY K4)</text>
+
+    <!-- Terminal Block for Channel 4 -->
+    <rect x="664" y="799" width="125" height="195" rx="8" fill="#000000" opacity="0.4"/>
+    <rect x="660" y="795" width="125" height="195" rx="8" fill="url(#term_block)" stroke="#38bdf8" stroke-width="2"/>
+    
+    <!-- Terminal Silkscreen Identifier -->
+    <text x="646" y="898" text-anchor="end" fill="#ffffff" font-family="monospace" font-size="18" font-weight="900">K4</text>
+
+      <!-- Terminal NO -->
+      <circle cx="715" cy="831" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="831" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="821" x2="727" y2="841" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="836" fill="#e2e8f0" font-family="monospace" font-size="14" font-weight="900">NO</text>
+
+      <!-- Terminal COM -->
+      <circle cx="715" cy="893" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="893" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="883" x2="727" y2="903" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="898" fill="#f87171" font-family="monospace" font-size="14" font-weight="900">COM</text>
+
+      <!-- Terminal NC -->
+      <circle cx="715" cy="955" r="22" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="715" cy="955" r="17" fill="url(#brass_screw)" stroke="#ca8a04" stroke-width="1.5"/>
+      <!-- Screwdriver Slot -->
+      <line x1="703" y1="945" x2="727" y2="965" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="755" y="960" fill="#94a3b8" font-family="monospace" font-size="14" font-weight="900">NC</text>
+
+    <!-- Optocoupler PC817 for Channel 4 -->
+    <rect x="205" y="840" width="46" height="56" rx="4" fill="#020617" stroke="#64748b" stroke-width="1.5"/>
+    <circle cx="215" cy="852" r="3" fill="#64748b"/>
+    <text x="228" y="872" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="9" font-weight="900">EL817</text>
+    <text x="228" y="885" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="8">OPTO</text>
+    <!-- Optocoupler Pins -->
+    <rect x="197" y="850" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="197" y="880" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="251" y="850" width="8" height="5" fill="#cbd5e1"/>
+    <rect x="251" y="880" width="8" height="5" fill="#cbd5e1"/>
+
+    <!-- Status SMD LED -->
+    <rect x="173" y="852" width="16" height="26" rx="2" fill="#020617" stroke="#ef4444" stroke-width="1"/>
+    <circle cx="181" cy="865" r="5" fill="#ef4444"/>
+    <text x="181" y="890" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="8.5" font-weight="800">D4</text>
+
+    <!-- Flyback Diode -->
+    <rect x="175" y="915" width="14" height="28" rx="2" fill="#09090b" stroke="#64748b"/>
+    <rect x="175" y="915" width="14" height="6" fill="#e2e8f0"/>
+
+  <!-- 6-Pin Input Header Housing (Leftmost Column) -->
+  <rect x="51" y="692" width="80" height="252" rx="6" fill="#020617" stroke="#38bdf8" stroke-width="2"/>
+  <text x="91" y="684" text-anchor="middle" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="900">INPUT</text>
+
+    <!-- Pin GND -->
+    <circle cx="75" cy="720" r="11" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1.2"/>
+    <rect x="70" y="715" width="10" height="10" fill="#020617"/>
+    <circle cx="75" cy="720" r="3" fill="#ca8a04"/>
+    <text x="93" y="725" fill="#cbd5e1" font-family="monospace" font-size="12" font-weight="900">GND</text>
+
+    <!-- Pin IN1 -->
+    <circle cx="75" cy="758" r="11" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1.2"/>
+    <rect x="70" y="753" width="10" height="10" fill="#020617"/>
+    <circle cx="75" cy="758" r="3" fill="#ca8a04"/>
+    <text x="93" y="763" fill="#f59e0b" font-family="monospace" font-size="12" font-weight="900">IN1</text>
+
+    <!-- Pin IN2 -->
+    <circle cx="75" cy="796" r="11" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1.2"/>
+    <rect x="70" y="791" width="10" height="10" fill="#020617"/>
+    <circle cx="75" cy="796" r="3" fill="#ca8a04"/>
+    <text x="93" y="801" fill="#10b981" font-family="monospace" font-size="12" font-weight="900">IN2</text>
+
+    <!-- Pin IN3 -->
+    <circle cx="75" cy="834" r="11" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1.2"/>
+    <rect x="70" y="829" width="10" height="10" fill="#020617"/>
+    <circle cx="75" cy="834" r="3" fill="#ca8a04"/>
+    <text x="93" y="839" fill="#06b6d4" font-family="monospace" font-size="12" font-weight="900">IN3</text>
+
+    <!-- Pin IN4 -->
+    <circle cx="75" cy="872" r="11" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1.2"/>
+    <rect x="70" y="867" width="10" height="10" fill="#020617"/>
+    <circle cx="75" cy="872" r="3" fill="#ca8a04"/>
+    <text x="93" y="877" fill="#c084fc" font-family="monospace" font-size="12" font-weight="900">IN4</text>
+
+    <!-- Pin VCC -->
+    <circle cx="75" cy="910" r="11" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1.2"/>
+    <rect x="70" y="905" width="10" height="10" fill="#020617"/>
+    <circle cx="75" cy="910" r="3" fill="#ca8a04"/>
+    <text x="93" y="915" fill="#ef4444" font-family="monospace" font-size="12" font-weight="900">VCC</text>
+
+  <!-- 2-Pin Jumper Header Box -->
+  <rect x="51" y="973" width="135" height="52" rx="6" fill="#020617" stroke="#eab308" stroke-width="2"/>
+  <text x="118" y="966" text-anchor="middle" fill="#facc15" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="900">JUMPER</text>
+
+  <!-- Pin 1: VCC -->
+  <circle cx="90" cy="998" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1.2"/>
+  <rect x="85" y="993" width="10" height="10" fill="#020617"/>
+  <text x="90" y="1018" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="10.5" font-weight="900">VCC</text>
+
+  <!-- Pin 2: JD-VCC -->
+  <circle cx="145" cy="998" r="10" fill="url(#gold_pin)" stroke="#ca8a04" stroke-width="1.2"/>
+  <rect x="140" y="993" width="10" height="10" fill="#020617"/>
+  <text x="145" y="1018" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="10.5" font-weight="900">JD-VCC</text>
+
+  <!-- JUMPER REMOVED Callout -->
+  <rect x="205" y="973" width="260" height="52" rx="6" fill="#1e1b4b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="335" y="993" text-anchor="middle" fill="#fbbf24" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="900">✂ JUMPER SHUNT REMOVED</text>
+  <text x="335" y="1012" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="10">True Galvanic Optical Isolation</text>
+</svg>
