@@ -42,7 +42,7 @@ The **Advanced IoT Home Automation System** is an industrial-grade, edge-resilie
 | **GPIO 22** | Output | **Status LED 4** | LEDC PWM (Ch 3) | Driven via 220Ω resistor; mirrors Relay 4 |
 | **GPIO 13** | Input | **IR Receiver (Data)** | Digital In / INT | 38kHz demodulated signal from VS1838B |
 | **GPIO 34** | Input | **LDR Ambient Sensor** | ADC1_CH6 | Analog voltage divider (10kΩ pull-up to 3.3V) |
-| **GPIO 35** | Input | **External Reset / Config**| Digital In | Momentary button with 10kΩ pull-up to 3.3V |
+| **GPIO 32** | Input | **External Reset / Config**| `INPUT_PULLUP` | Momentary button to GND (Short = Reboot; 5s hold = AP Mode) |
 | **GPIO 2**  | Output | **On-Board Blue LED** | Digital Out | Solid ON when Wi-Fi connected; OFF when disconnected/AP |
 
 ---
