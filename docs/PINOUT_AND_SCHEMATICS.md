@@ -12,7 +12,7 @@ The **Advanced IoT Home Automation System** is an industrial-grade, edge-resilie
 | **Edge Autonomy** | Zero-latency local switching without reliance on Wi-Fi, routers, or servers. | Dedicated hardware interrupt / tight polling loop running on ESP32 Core 1. |
 | **Physical Feedback** | Visual confirmation of active circuits and system state. | 4 status LEDs mapped 1:1 to relay channels, auto-dimmed via hardware PWM. |
 | **Ambient Adaptation** | Non-intrusive nighttime illumination. | LDR sensor on ADC1 measuring ambient lux and adjusting LED brightness via EMA filter. |
-| **Wireless Input** | Secondary local wireless line-of-sight control. | 38kHz IR receiver (VS1838B / TSOP38238) decoding NEC/RC5 protocols. |
+| **Wireless Input** | Secondary local wireless line-of-sight control (up to 15m range). | 3-Pin TSOP 38kHz IR Receiver (15120P / TSOP38238) decoding NEC/RC5 protocols. |
 | **Power-Cut Recovery** | Restore previous operational states after grid power failure. | Persistent state storage in ESP32 Non-Volatile Storage (NVS / Preferences API). |
 | **System Diagnostics** | Hard reboot and network reconfiguration. | Dedicated external button (short press = reboot; hold 5s = Wi-Fi config AP mode). |
 | **Network Interfaces** | Local browser UI, REST API, MQTT telemetry, and Raspberry Pi CLI. | Dual-core FreeRTOS task on Core 0 running HTTP server, WebSockets, and MQTT client. |
@@ -26,31 +26,37 @@ The **Advanced IoT Home Automation System** is an industrial-grade, edge-resilie
 > - LDR is positioned on **ADC1 (GPIO 34)** because ESP32's ADC2 is disabled when Wi-Fi is transmitting.
 > - Status LEDs utilize hardware **LEDC PWM channels (0–3)** for flicker-free dimming.
 
-| Pin | Direction | Component Function | Peripheral Mode | Hardware Electrical Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| **GPIO 25** | Output | **Relay 1 Control** | Digital Out | Active LOW trigger to optocoupler input |
-| **GPIO 26** | Output | **Relay 2 Control** | Digital Out | Active LOW trigger to optocoupler input |
-| **GPIO 27** | Output | **Relay 3 Control** | Digital Out | Active LOW trigger to optocoupler input |
-| **GPIO 14** | Output | **Relay 4 Control** | Digital Out | Active LOW trigger to optocoupler input |
-| **GPIO 16** | Input | **Button 1 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
-| **GPIO 17** | Input | **Button 2 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
-| **GPIO 18** | Input | **Button 3 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
-| **GPIO 23** | Input | **Button 4 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
-| **GPIO 4** | Output | **Status LED 1** | LEDC PWM (Ch 0) | Driven via 220Ω resistor; mirrors Relay 1 |
-| **GPIO 5** | Output | **Status LED 2** | LEDC PWM (Ch 1) | Driven via 220Ω resistor; mirrors Relay 2 |
-| **GPIO 21** | Output | **Status LED 3** | LEDC PWM (Ch 2) | Driven via 220Ω resistor; mirrors Relay 3 |
-| **GPIO 22** | Output | **Status LED 4** | LEDC PWM (Ch 3) | Driven via 220Ω resistor; mirrors Relay 4 |
-| **GPIO 13** | Input | **IR Receiver (Data)** | Digital In / INT | 38kHz demodulated signal from VS1838B |
-| **GPIO 34** | Input | **LDR Ambient Sensor** | ADC1_CH6 | Analog voltage divider (10kΩ pull-up to 3.3V) |
-| **GPIO 32** | Input | **External Reset / Config**| `INPUT_PULLUP` | Momentary button to GND (Short = Reboot; 5s hold = AP Mode) |
-| **GPIO 2**  | Output | **On-Board Blue LED** | Digital Out | Solid ON when Wi-Fi connected; OFF when disconnected/AP |
+| Pin | Physical Header | Direction | Component Function | Peripheral Mode | Hardware Electrical Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **GPIO 25** | Left Pin 8  | Output | **Relay 1 Control** | Digital Out | Active LOW trigger to optocoupler input |
+| **GPIO 26** | Left Pin 9  | Output | **Relay 2 Control** | Digital Out | Active LOW trigger to optocoupler input |
+| **GPIO 27** | Left Pin 10 | Output | **Relay 3 Control** | Digital Out | Active LOW trigger to optocoupler input |
+| **GPIO 14** | Left Pin 11 | Output | **Relay 4 Control** | Digital Out | Active LOW trigger to optocoupler input |
+| **GPIO 16** | Right Pin 10| Input  | **Button 1 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
+| **GPIO 17** | Right Pin 9 | Input  | **Button 2 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
+| **GPIO 18** | Right Pin 7 | Input  | **Button 3 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
+| **GPIO 23** | Right Pin 1 | Input  | **Button 4 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
+| **GPIO 4**  | Right Pin 11| Output | **Status LED 1** | LEDC PWM (Ch 0) | Driven via 220Ω resistor; mirrors Relay 1 |
+| **GPIO 5**  | Right Pin 8 | Output | **Status LED 2** | LEDC PWM (Ch 1) | Driven via 220Ω resistor; mirrors Relay 2 |
+| **GPIO 21** | Right Pin 5 | Output | **Status LED 3** | LEDC PWM (Ch 2) | Driven via 220Ω resistor; mirrors Relay 3 |
+| **GPIO 22** | Right Pin 2 | Output | **Status LED 4** | LEDC PWM (Ch 3) | Driven via 220Ω resistor; mirrors Relay 4 |
+| **GPIO 13** | Left Pin 13 | Input  | **TSOP 38kHz IR Receiver (Data)** | Digital In / INT | Demodulated pulse stream from 3-Pin TSOP |
+| **GPIO 34** | Left Pin 4  | Input  | **LDR Ambient Sensor** | ADC1_CH6 | Analog voltage divider (10kΩ pull-up to 3.3V) |
+| **GPIO 32** | Left Pin 6  | Input  | **External Reset / Config**| `INPUT_PULLUP` | Momentary button to GND (Short = Reboot; 5s hold = AP Mode) |
+| **GPIO 2**  | Right Pin 12| Output | **On-Board Blue LED** | Digital Out | Solid ON when Wi-Fi connected; OFF when disconnected/AP |
 
 ---
 
 ## 3. Electrical Schematics & Interface Circuits
 
+### Complete System Wiring Diagram
+![Full System Hardware Wiring Diagram](images/full_system_schematic_diagram.jpg)
+
+---
+
 ### 3.1 4-Channel Relay Isolation Circuit
 To protect the ESP32 from high-voltage spikes and electromagnetic interference (EMI):
+
 ```
 ESP32 (3.3V Logic)               Optocoupled Relay Module (5V Isolated)
 ┌─────────────────┐             ┌─────────────────────────────────────┐
@@ -71,11 +77,18 @@ ESP32 (3.3V Logic)               Optocoupled Relay Module (5V Isolated)
 > **Complete Galvanic Isolation:**
 > Remove the blue `VCC-JDVCC` jumper on the relay board! Connect `VCC` to ESP32 3.3V, and connect `JD-VCC` and `GND` directly to your dedicated 5V power supply. This ensures relay coil switching noise does not enter the ESP32 ground plane.
 
+#### Dedicated Relay Isolation & Power Hookup:
+![Dedicated Dual-Power Relay Isolation Diagram](images/relay_isolation_schematic.jpg)
+
+---
+
 ### 3.2 Inductive Load Snubber Network
 When driving inductive loads (fans, fluorescent ballasts, refrigerator compressors), the collapsing magnetic field produces a high-voltage spark across relay contacts.
 * Install an **RC Snubber** across each relay's `NO` and `COM` terminals:
   * **Capacitor:** `100nF (0.1µF) 275V AC X2 safety-rated metallized film`
   * **Resistor:** `100Ω 1W or 2W flame-proof metal oxide`
+
+---
 
 ### 3.3 LDR Ambient Light Voltage Divider
 ```
@@ -99,27 +112,34 @@ When driving inductive loads (fans, fluorescent ballasts, refrigerator compresso
   * **Dark room:** LDR resistance rises (>500kΩ) -> Voltage at GPIO 34 approaches 3.3V (ADC high).
   * *Firmware logic calculates Lux inversely and lowers LED PWM duty cycle at night.*
 
-### 3.4 38kHz IR Receiver (VS1838B / TSOP38238)
+---
+
+### 3.4 3-Pin TSOP 38kHz IR Receiver (15120P / TSOP38238)
 ```
           +3.3V (ESP32)
             │
            ┌┴┐ 100Ω Resistor
            └┬┘
-            ├───► VCC Pin (Pin 3 of VS1838B)
+            ├───► VCC Pin (Pin 3 of TSOP)
             │
            ─── 4.7µF Electrolytic Filter Cap
            ───
             │
-           GND ─► GND Pin (Pin 2 of VS1838B)
+           GND ─► GND Pin (Pin 2 of TSOP)
             
- ESP32 GPIO 13 ─► OUT Pin (Pin 1 of VS1838B) [With 10kΩ pull-up to 3.3V]
+ ESP32 GPIO 13 ─► OUT Pin (Pin 1 of TSOP) [Active LOW Demodulated Pulse Stream]
 ```
 
-### 3.5 Status LEDs (PWM Driven)
+---
+
+### 3.5 Status Feedback LEDs (PWM Driven)
 ```
  ESP32 GPIO (4, 5, 21, 22) ───[ 220Ω ]───►| (LED Anode) ───► GND (Cathode)
 ```
 * Software controls brightness from 0% (off) up to dynamic max (10% to 100% depending on ambient darkness).
+
+#### Dedicated Sensors, Buttons & Status LEDs Schematic:
+![Sensors and User IO Schematic Diagram](images/sensors_and_io_schematic.jpg)
 
 ---
 
