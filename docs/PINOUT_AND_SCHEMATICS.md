@@ -112,23 +112,35 @@ When driving inductive loads (fans, fluorescent ballasts, refrigerator compresso
   * **Dark room:** LDR resistance rises (>500kΩ) -> Voltage at GPIO 34 approaches 3.3V (ADC high).
   * *Firmware logic calculates Lux inversely and lowers LED PWM duty cycle at night.*
 
+#### Dedicated LDR Ambient Light Sensor & Voltage Divider Schematic:
+![LDR Ambient Light Sensor Schematic Diagram](images/ldr_circuit_schematic.jpg)
+
 ---
 
-### 3.4 3-Pin TSOP 38kHz IR Receiver (15120P / TSOP38238)
+### 3.4 3-Pin TSOP 38kHz IR Receiver (15120P / TSOP38238) Interface Module
 ```
           +3.3V (ESP32)
             │
-           ┌┴┐ 100Ω Resistor
+           ┌┴┐ 100Ω Decoupling Resistor (R_FLT)
            └┬┘
-            ├───► VCC Pin (Pin 3 of TSOP)
-            │
-           ─── 4.7µF Electrolytic Filter Cap
-           ───
-            │
-           GND ─► GND Pin (Pin 2 of TSOP)
-            
- ESP32 GPIO 13 ─► OUT Pin (Pin 1 of TSOP) [Active LOW Demodulated Pulse Stream]
+            ├───► Filtered VCC (3.3V)
+            │       │                        │
+            │       ├─► VCC (Pin 3 TSOP)     ├─► [ 10kΩ R_PULL ] ──┐
+            │       │                        │                     │
+           ───      │                        └─►| (D_ACT LED)      │
+           ─── 4.7µF Bulk Cap (C_FLT)          │                   │
+            │  || 100nF Ceramic (C_BYP)       [ 470Ω R_LED ]       │
+            │       │                                │             │
+           GND ─────┴─► GND (Pin 2 TSOP)             ▼             ▼
+                                                     │             │
+ ESP32 GPIO 13 ◄─────────────────────── OUT (Pin 1) ─┴─────────────┘
 ```
+* **Active-LOW Reception Indicator LED ($D_{\text{ACT}}$):** Connected between Filtered VCC and OUT via a $470\Omega$ resistor ($R_{\text{LED}}$). Sits OFF during idle (both sides at 3.3V); flashes instantly (<5ms) on incoming 38kHz bursts when TSOP sinks Pin 1 to 0V.
+* **10kΩ Pull-Up ($R_{\text{PULL}}$):** Hardens the logic HIGH state against line capacitance and Wi-Fi RF crosstalk.
+* **Dual Decoupling Filter ($100\Omega + 4.7\mu\text{F} + 100\text{nF}$):** Blocks SMPS switching ripple and Wi-Fi RF brownout chatter ($f_c \approx 338.6\text{ Hz}$), eliminating phantom interrupts on GPIO 13.
+
+#### Dedicated 3-Pin TSOP 38kHz IR Receiver & Active Filter Schematic:
+![3-Pin TSOP 38kHz IR Receiver Schematic Diagram](images/ir_receiver_schematic.jpg)
 
 ---
 
