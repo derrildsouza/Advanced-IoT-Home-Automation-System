@@ -22,7 +22,7 @@ The system is split across two computing nodes: your **Raspberry Pi Server** (fo
 | **Raspberry Pi Server** | Smart Home | `Home Assistant` (Optional) | Receives MQTT auto-discovery packets to auto-populate dashboard entities. |
 | **Raspberry Pi Server** | Remote Gateway | `SSH / Tailscale / Tunnel` | Provides secure access from anywhere outside your local network. |
 | **ESP32 Microcontroller** | FreeRTOS Scheduler | [`firmware/firmware.ino`](firmware/firmware.ino) | Initializes tasks, creates FreeRTOS queues, and coordinates cross-core events. |
-| **ESP32 Microcontroller** | **Core 0 (Network Engine)** | [`firmware/wifi_manager.cpp`](firmware/wifi_manager.cpp) | Manages Wi-Fi STA connection, mDNS (`smartswitch.local`), fallback AP mode, and **On-Board Blue LED (GPIO 2)** status. |
+| **ESP32 Microcontroller** | **Core 0 (Network Engine)** | [`firmware/wifi_manager.cpp`](firmware/wifi_manager.cpp) | Manages Wi-Fi STA connection, mDNS (`smartswitch.local`), fallback AP mode, and **Wi-Fi Status LED (GPIO 2)** via LEDC PWM. |
 | **ESP32 Microcontroller** | **Core 0 (Network Engine)** | [`firmware/web_server.cpp`](firmware/web_server.cpp) | Serves REST API endpoints (`/api/status`, `/api/relay/{ch}/toggle`, `/api/reboot`). |
 | **ESP32 Microcontroller** | **Core 0 (Network Engine)** | [`firmware/web_dashboard.h`](firmware/web_dashboard.h) | Self-contained, responsive dark-mode HTML5/CSS/JS dashboard stored in PROGMEM. |
 | **ESP32 Microcontroller** | **Core 0 (Network Engine)** | [`firmware/web_server.cpp`](firmware/web_server.cpp) | WebSockets server on port 81 for zero-latency, bidirectional UI synchronization. |
@@ -31,30 +31,39 @@ The system is split across two computing nodes: your **Raspberry Pi Server** (fo
 | **ESP32 Microcontroller** | **Core 1 (Hardware Engine)** | [`firmware/relay_controller.cpp`](firmware/relay_controller.cpp) | 4-channel active-low relay driver with **NVS flash state persistence** (restores states after power cut). |
 | **ESP32 Microcontroller** | **Core 1 (Hardware Engine)** | [`firmware/button_matrix.cpp`](firmware/button_matrix.cpp) | Non-blocking tactile button debouncing (35ms) and reset button hold detection. |
 | **ESP32 Microcontroller** | **Core 1 (Hardware Engine)** | [`firmware/ir_controller.cpp`](firmware/ir_controller.cpp) | 38kHz IR signal receiver (`IRremoteESP8266`) with default NEC codes and live learning. |
-| **ESP32 Microcontroller** | **Core 1 (Hardware Engine)** | [`firmware/ambient_dimmer.cpp`](firmware/ambient_dimmer.cpp) | Reads ADC1 LDR with Exponential Moving Average (EMA) and drives 4 status LEDs via hardware LEDC PWM. |
+| **ESP32 Microcontroller** | **Core 1 (Hardware Engine)** | [`firmware/ambient_dimmer.cpp`](firmware/ambient_dimmer.cpp) | Reads ADC1 LDR with Exponential Moving Average (EMA) and drives 6-channel auto-dimmed LEDs (Relay 1-4, Power, Wi-Fi) via hardware LEDC PWM. |
 
 ---
 
-## Hardware Pinout Matrix
+## Hardware Pinout Matrix (100% GPIO Utilization — 25/25 Pins)
 
-| Peripheral | ESP32 GPIO | Mode / Type | Description |
-| :--- | :--- | :--- | :--- |
-| **Relay 1** | `GPIO 25` | Output (Active LOW) | Optocoupled Relay Channel 1 |
-| **Relay 2** | `GPIO 26` | Output (Active LOW) | Optocoupled Relay Channel 2 |
-| **Relay 3** | `GPIO 27` | Output (Active LOW) | Optocoupled Relay Channel 3 |
-| **Relay 4** | `GPIO 14` | Output (Active LOW) | Optocoupled Relay Channel 4 |
-| **Button 1** | `GPIO 16` | `INPUT_PULLUP` | Tactile Button 1 to GND |
-| **Button 2** | `GPIO 17` | `INPUT_PULLUP` | Tactile Button 2 to GND |
-| **Button 3** | `GPIO 18` | `INPUT_PULLUP` | Tactile Button 3 to GND |
-| **Button 4** | `GPIO 23` | `INPUT_PULLUP` | Tactile Button 4 to GND |
-| **Status LED 1** | `GPIO 4` | LEDC PWM (Ch 0) | Auto-dimmed feedback LED 1 |
-| **Status LED 2** | `GPIO 5` | LEDC PWM (Ch 1) | Auto-dimmed feedback LED 2 |
-| **Status LED 3** | `GPIO 21` | LEDC PWM (Ch 2) | Auto-dimmed feedback LED 3 |
-| **Status LED 4** | `GPIO 22` | LEDC PWM (Ch 3) | Auto-dimmed feedback LED 4 |
-| **IR Receiver** | `GPIO 13` | Digital In / INT | 38kHz IR (VS1838B / TSOP) |
-| **Ambient LDR** | `GPIO 34` | ADC1_CH6 | Voltage divider (works with Wi-Fi) |
-| **Config/Reset** | `GPIO 32` | `INPUT_PULLUP` | Short = Reboot; Hold 5s = AP Mode |
-| **On-Board LED** | `GPIO 2`  | Digital Out | **Solid Blue** when Wi-Fi connected; **OFF** when disconnected |
+| Peripheral / Signal | ESP32 GPIO | Physical Pin | Mode / Type | Electrical / Functional Description |
+| :--- | :--- | :--- | :--- | :--- |
+| **Relay 1** | `GPIO 25` | Left Pin 8 | Digital Out | Optocoupled Relay Channel 1 (Active LOW trigger) |
+| **Relay 2** | `GPIO 26` | Left Pin 9 | Digital Out | Optocoupled Relay Channel 2 (Active LOW trigger) |
+| **Relay 3** | `GPIO 27` | Left Pin 10 | Digital Out | Optocoupled Relay Channel 3 (Active LOW trigger) |
+| **Relay 4** | `GPIO 14` | Left Pin 11 | Digital Out | Optocoupled Relay Channel 4 (Active LOW trigger) |
+| **Button 1 (Manual)** | `GPIO 35` | Left Pin 5 | Digital In (GPI) | Momentary to GND + **Mandatory external 10kΩ pull-up to 3.3V** |
+| **Button 2 (Manual)** | `GPIO 36` (VP) | Left Pin 2 | Digital In (GPI) | Momentary to GND + **Mandatory external 10kΩ pull-up to 3.3V** |
+| **Button 3 (Manual)** | `GPIO 39` (VN) | Left Pin 3 | Digital In (GPI) | Momentary to GND + **Mandatory external 10kΩ pull-up to 3.3V** |
+| **Button 4 (Manual)** | `GPIO 16` (RX2) | Right Pin 10 | `INPUT_PULLUP` | Momentary push button to GND (Internal pull-up enabled) |
+| **Config / Reset** | `GPIO 17` (TX2) | Right Pin 9 | `INPUT_PULLUP` | Momentary to GND (Short = Reboot; Hold 5s = AP Mode) |
+| **Status LED 1** | `GPIO 4` | Right Pin 11 | LEDC PWM (Ch 0) | 220Ω resistor; mirrors Relay 1 (PWM auto-dimmed via LDR) |
+| **Status LED 2** | `GPIO 15` | Right Pin 13 | LEDC PWM (Ch 1) | 220Ω resistor; mirrors Relay 2 (*MTDO strapping safe*, auto-dimmed) |
+| **Status LED 3** | `GPIO 32` | Left Pin 6 | LEDC PWM (Ch 2) | 220Ω resistor; mirrors Relay 3 (PWM auto-dimmed via LDR) |
+| **Status LED 4** | `GPIO 33` | Left Pin 7 | LEDC PWM (Ch 3) | 220Ω resistor; mirrors Relay 4 (PWM auto-dimmed via LDR) |
+| **Power Indicator LED** | `GPIO 12` | Left Pin 12 | LEDC PWM (Ch 4) | 330Ω to GND; Always ON (*MTDI 3.3V flash boot-safe*, auto-dimmed) |
+| **Wi-Fi Status LED** | `GPIO 2` | Right Pin 12 | LEDC PWM (Ch 5) | On-board Blue LED (Solid connected / Breathing AP / Auto-dimmed) |
+| **TSOP 38kHz IR RX** | `GPIO 13` | Left Pin 13 | Digital In / INT | 38kHz IR demodulator (TSOP38238 / 15120P) + Active LED indicator |
+| **Ambient LDR Sensor** | `GPIO 34` | Left Pin 4 | ADC1_CH6 | 10kΩ voltage divider (ADC1 operates concurrently with Wi-Fi) |
+| **[RESERVED] I2C SDA** | `GPIO 21` | Right Pin 5 | Hardware I2C | Native Wire Data line for OLED displays, RTC, sensors |
+| **[RESERVED] I2C SCL** | `GPIO 22` | Right Pin 2 | Hardware I2C | Native Wire Clock line |
+| **[RESERVED] SPI MOSI** | `GPIO 23` | Right Pin 1 | Hardware VSPI | Native Master-Out Slave-In line for SD cards / TFTs |
+| **[RESERVED] SPI MISO** | `GPIO 19` | Right Pin 6 | Hardware VSPI | Native Master-In Slave-Out line |
+| **[RESERVED] SPI SCK** | `GPIO 18` | Right Pin 7 | Hardware VSPI | Native High-Speed Clock line |
+| **[RESERVED] SPI CS** | `GPIO 5` | Right Pin 8 | Hardware VSPI | Native Chip Select line (Internal pull-up at boot) |
+| **[RESERVED] UART TX** | `GPIO 1` (TX0) | Right Pin 3 | Hardware UART0 | Native Serial Monitor / CP2102 USB Bridge |
+| **[RESERVED] UART RX** | `GPIO 3` (RX0) | Right Pin 4 | Hardware UART0 | Native Serial Monitor / CP2102 USB Bridge |
 
 Detailed schematics and isolation rules: [`docs/PINOUT_AND_SCHEMATICS.md`](docs/PINOUT_AND_SCHEMATICS.md).
 
@@ -85,13 +94,15 @@ Network credentials are kept in a dedicated header file:
 
 If `secrets.h` is missing, [`firmware/config.h`](firmware/config.h) automatically falls back to placeholder constants with a compiler warning.
 
-### 2. On-Board Wi-Fi Status LED Indicator (`GPIO 2`)
+### 2. Wi-Fi Status LED Indicator (`GPIO 2`)
 * **Solid Blue LED:** Connected to Wi-Fi network and operational.
-* **LED OFF:** Disconnected, reconnecting, or in AP configuration mode.
+* **Pulsing / Breathing LED:** SoftAP configuration mode (`SmartSwitch-Setup`).
+* **Blinking LED:** Attempting Wi-Fi connection / reconnecting.
+* **Auto-Dimmed:** Peak brightness dynamically scales with ambient room light (LEDC Ch 5).
 
 ### 3. Fallback SoftAP Mode
 If the configured Wi-Fi network is unavailable or credentials need to be changed without reflashing:
-1. Hold the Config button (`GPIO 32`) for **5 seconds**.
+1. Hold the Config button (`GPIO 17 / TX2`) for **5 seconds**.
 2. Connect to the Wi-Fi hotspot:
    * **SSID:** `SmartSwitch-Setup`
    * **Password:** `12345678`

@@ -24,10 +24,6 @@ void WiFiManager::setCredentials(const String& newSsid, const String& newPass) {
 }
 
 void WiFiManager::begin() {
-    // Configure on-board blue LED (GPIO 2)
-    pinMode(PIN_ONBOARD_LED, OUTPUT);
-    digitalWrite(PIN_ONBOARD_LED, LOW);
-
     loadCredentials();
 
     WiFi.mode(WIFI_STA);
@@ -51,13 +47,11 @@ void WiFiManager::begin() {
     Serial.println();
 
     if (WiFi.status() == WL_CONNECTED) {
-        digitalWrite(PIN_ONBOARD_LED, HIGH); // Turn on blue LED when connected
         Serial.printf("[WiFi] Connected! IP: %s\n", WiFi.localIP().toString().c_str());
         if (MDNS.begin(HOSTNAME)) {
             Serial.printf("[mDNS] Responder started at http://%s.local\n", HOSTNAME);
         }
     } else {
-        digitalWrite(PIN_ONBOARD_LED, LOW);
         Serial.println("[WiFi] Connection failed. Fallback to AP Mode.");
         startAP();
     }
@@ -65,7 +59,6 @@ void WiFiManager::begin() {
 
 void WiFiManager::startAP() {
     apModeActive = true;
-    digitalWrite(PIN_ONBOARD_LED, LOW);
     WiFi.mode(WIFI_AP);
     WiFi.softAP(AP_SSID, AP_PASS);
     Serial.printf("[WiFi AP] Started AP: %s (Pass: %s)\n", AP_SSID, AP_PASS);
@@ -74,15 +67,7 @@ void WiFiManager::startAP() {
 
 void WiFiManager::update() {
     if (apModeActive) {
-        digitalWrite(PIN_ONBOARD_LED, LOW);
         return;
-    }
-
-    // Sync on-board blue LED with actual WiFi connection state
-    if (WiFi.status() == WL_CONNECTED) {
-        digitalWrite(PIN_ONBOARD_LED, HIGH);
-    } else {
-        digitalWrite(PIN_ONBOARD_LED, LOW);
     }
 
     uint32_t now = millis();

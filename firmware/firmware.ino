@@ -112,10 +112,10 @@ void vHardwareTask(void *pvParameters) {
             }
         }
 
-        // 4. Update status LEDs and ambient auto-dimming
+        // 4. Update status LEDs, power LED, and Wi-Fi status LED with ambient auto-dimming
         bool currentStates[4];
         for (int i = 0; i < 4; i++) currentStates[i] = relayCtrl.getState(i);
-        ambientDimmer.update(currentStates);
+        ambientDimmer.update(currentStates, wifiMgr.isConnected(), wifiMgr.isAPMode());
 
         // Deterministic tick pause
         vTaskDelay(pdMS_TO_TICKS(10));

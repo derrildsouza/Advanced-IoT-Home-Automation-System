@@ -30,9 +30,9 @@ void ButtonMatrix::begin(ButtonCallback_t onButtonPress, ResetButtonCallback_t o
     buttonCallback = onButtonPress;
     resetCallback = onResetPress;
 
-    // 4 Tactile switches with internal pull-up (active LOW)
+    // 4 Tactile switches: pins >= 34 are Input-Only (GPI) with external 10k pull-ups; pins < 34 use internal INPUT_PULLUP
     for (int i = 0; i < 4; i++) {
-        pinMode(buttonPins[i], INPUT_PULLUP);
+        pinMode(buttonPins[i], (buttonPins[i] >= 34) ? INPUT : INPUT_PULLUP);
         lastSteadyState[i] = digitalRead(buttonPins[i]);
         lastFlickerState[i] = lastSteadyState[i];
     }

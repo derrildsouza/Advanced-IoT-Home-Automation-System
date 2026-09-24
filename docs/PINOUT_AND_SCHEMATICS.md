@@ -19,12 +19,39 @@ The **Advanced IoT Home Automation System** is an industrial-grade, edge-resilie
 
 ---
 
-## 2. ESP32 Master Pin Allocation Table
+## 2. ESP32 Master Pin Allocation Table (30-Pin NodeMCU V1)
 
-> **Pin Selection Safeguards:**
-> - Avoids boot-strapping pins (`GPIO 0, 2, 12, 15`) that cause boot failure or relay chatter.
-> - LDR is positioned on **ADC1 (GPIO 34)** because ESP32's ADC2 is disabled when Wi-Fi is transmitting.
-> - Status LEDs utilize hardware **LEDC PWM channels (0–3)** for flicker-free dimming.
+> **Hardware Design & Stability Safeguards (100% GPIO Utilization — 25/25 Pins):**
+> - **Zero Pin Conflicts:** All 25 accessible GPIO pins on the 30-pin board are strategically assigned with zero wasted pins and zero port expanders.
+> - **Boot-Strapping Safety (`GPIO 12, 15, 2, 5`):**
+>   - `GPIO 12 (MTDI)`: Flash voltage select. Connected to **Power LED** (Active-HIGH: Anode to GP12, Cathode through 330Ω to GND). Acts as a hardware pull-down at boot, **guaranteeing 3.3V flash boot**.
+>   - `GPIO 15 (MTDO)`: Connected to **Status LED 2**; brief power-on boot PWM clock is benign to an LED and never toggles relays.
+>   - `GPIO 2`: Connected to **Wi-Fi Status LED** (leverages on-board blue LED pulled to GND).
+>   - `GPIO 5`: Connected to **Reserved SPI CS** (internal pull-up at boot keeps SPI devices deselected).
+> - **Input-Only Pins (`GPIO 34, 35, 36, 39`):** Lack internal pull-ups/pull-downs. Used for LDR (`GPIO 34` on ADC1) and manual buttons 1–3 (`GPIO 35, 36, 39`) with **mandatory external $10\text{k}\Omega$ pull-up resistors** to 3.3V.
+> - **Relay Immunity:** All 4 relays sit on dedicated, glitch-free GPIOs (`GPIO 25, 26, 27, 14`).
+> - **6-Channel Auto-Dimming (LEDC):** Status LEDs 1–4, Power LED, and Wi-Fi Status LED are driven by hardware LEDC PWM channels (0–5), auto-dimmed synchronously via the LDR sensor.
+> - **Dedicated Communication Busses:** Full native hardware I2C (`GPIO 21/22`), SPI (`GPIO 18/19/23/5`), and UART0 (`GPIO 1/3`) are reserved for external peripherals.
+
+```
+                      +-------------------+
+             EN (RST) | [ ]           [ ] | D23 (VSPI MOSI) [RESERVED]
+    Button 2 (GPIO36) | [ ]           [ ] | D22 (I2C SCL)   [RESERVED]
+    Button 3 (GPIO39) | [ ]           [ ] | TX0 (UART0 TX)  [RESERVED]
+      LDR In (GPIO34) | [ ]           [ ] | RX0 (UART0 RX)  [RESERVED]
+    Button 1 (GPIO35) | [ ]   ESP32   [ ] | D21 (I2C SDA)   [RESERVED]
+  Status LED 3 (GP32) | [ ]  WROOM-32 [ ] | D19 (VSPI MISO) [RESERVED]
+  Status LED 4 (GP33) | [ ]   30-PIN  [ ] | D18 (VSPI SCK)  [RESERVED]
+     Relay 1 (GPIO25) | [ ]           [ ] | D5  (VSPI CS)   [RESERVED]
+     Relay 2 (GPIO26) | [ ]           [ ] | TX2 (Reset / Config AP Button - GP17)
+     Relay 3 (GPIO27) | [ ]           [ ] | RX2 (Button 4 - GP16)
+     Relay 4 (GPIO14) | [ ]           [ ] | D4  (Status LED 1 - GP4)
+   Power LED (GPIO12) | [ ]           [ ] | D2  (Wi-Fi Status LED - GP2)
+  TSOP IR RX (GPIO13) | [ ]           [ ] | D15 (Status LED 2 - GP15)
+                  GND | [ ]           [ ] | GND
+                  VIN | [ ]           [ ] | 3V3
+                      +-------------------+
+```
 
 | Pin | Physical Header | Direction | Component Function | Peripheral Mode | Hardware Electrical Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -32,18 +59,27 @@ The **Advanced IoT Home Automation System** is an industrial-grade, edge-resilie
 | **GPIO 26** | Left Pin 9  | Output | **Relay 2 Control** | Digital Out | Active LOW trigger to optocoupler input |
 | **GPIO 27** | Left Pin 10 | Output | **Relay 3 Control** | Digital Out | Active LOW trigger to optocoupler input |
 | **GPIO 14** | Left Pin 11 | Output | **Relay 4 Control** | Digital Out | Active LOW trigger to optocoupler input |
-| **GPIO 16** | Right Pin 10| Input  | **Button 1 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
-| **GPIO 17** | Right Pin 9 | Input  | **Button 2 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
-| **GPIO 18** | Right Pin 7 | Input  | **Button 3 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
-| **GPIO 23** | Right Pin 1 | Input  | **Button 4 (Tactile)** | `INPUT_PULLUP` | Momentary push button to GND (25ms debounce) |
-| **GPIO 4**  | Right Pin 11| Output | **Status LED 1** | LEDC PWM (Ch 0) | Driven via 220Ω resistor; mirrors Relay 1 |
-| **GPIO 5**  | Right Pin 8 | Output | **Status LED 2** | LEDC PWM (Ch 1) | Driven via 220Ω resistor; mirrors Relay 2 |
-| **GPIO 21** | Right Pin 5 | Output | **Status LED 3** | LEDC PWM (Ch 2) | Driven via 220Ω resistor; mirrors Relay 3 |
-| **GPIO 22** | Right Pin 2 | Output | **Status LED 4** | LEDC PWM (Ch 3) | Driven via 220Ω resistor; mirrors Relay 4 |
-| **GPIO 13** | Left Pin 13 | Input  | **TSOP 38kHz IR Receiver (Data)** | Digital In / INT | Demodulated pulse stream from 3-Pin TSOP |
-| **GPIO 34** | Left Pin 4  | Input  | **LDR Ambient Sensor** | ADC1_CH6 | Analog voltage divider (10kΩ pull-up to 3.3V) |
-| **GPIO 32** | Left Pin 6  | Input  | **External Reset / Config**| `INPUT_PULLUP` | Momentary button to GND (Short = Reboot; 5s hold = AP Mode) |
-| **GPIO 2**  | Right Pin 12| Output | **On-Board Blue LED** | Digital Out | Solid ON when Wi-Fi connected; OFF when disconnected/AP |
+| **GPIO 4**  | Right Pin 11| Output | **Status LED 1** | LEDC PWM (Ch 0) | $220\Omega$ resistor; mirrors Relay 1 (PWM auto-dimmed) |
+| **GPIO 15** | Right Pin 13| Output | **Status LED 2** | LEDC PWM (Ch 1) | $220\Omega$ resistor; mirrors Relay 2 (*MTDO strapping safe*) |
+| **GPIO 32** | Left Pin 6  | Output | **Status LED 3** | LEDC PWM (Ch 2) | $220\Omega$ resistor; mirrors Relay 3 (PWM auto-dimmed) |
+| **GPIO 33** | Left Pin 7  | Output | **Status LED 4** | LEDC PWM (Ch 3) | $220\Omega$ resistor; mirrors Relay 4 (PWM auto-dimmed) |
+| **GPIO 12** | Left Pin 12 | Output | **Power Indicator LED** | LEDC PWM (Ch 4) | $330\Omega$ resistor to GND; **PWM auto-dimmed** (*MTDI safe pull-down*) |
+| **GPIO 2**  | Right Pin 12| Output | **Wi-Fi Status LED** | LEDC PWM (Ch 5) | On-board Blue LED (or external); **PWM auto-dimmed** |
+| **GPIO 13** | Left Pin 13 | Input  | **TSOP 38kHz IR RX** | Digital In / INT | Demodulated Active-LOW pulse stream from TSOP38238 |
+| **GPIO 34** | Left Pin 4  | Input  | **LDR Ambient Sensor**| ADC1_CH6 | Analog voltage divider (ADC1 operates concurrently with Wi-Fi) |
+| **GPIO 35** | Left Pin 5  | Input  | **Button 1 (Manual)** | Digital In (GPI) | Momentary to GND + **External $10\text{k}\Omega$ pull-up to 3.3V** |
+| **GPIO 36** | Left Pin 2 (VP)| Input | **Button 2 (Manual)** | Digital In (GPI) | Momentary to GND + **External $10\text{k}\Omega$ pull-up to 3.3V** |
+| **GPIO 39** | Left Pin 3 (VN)| Input | **Button 3 (Manual)** | Digital In (GPI) | Momentary to GND + **External $10\text{k}\Omega$ pull-up to 3.3V** |
+| **GPIO 16** | Right Pin 10| Input  | **Button 4 (Manual)** | `INPUT_PULLUP` | Momentary push button to GND (Internal pull-up enabled) |
+| **GPIO 17** | Right Pin 9 | Input  | **Reset / Config AP** | `INPUT_PULLUP` | Momentary to GND (Short = Reboot; 5s hold = AP Mode) |
+| **GPIO 21** | Right Pin 5 | Bidirectional | **[RESERVED] I2C SDA**| Hardware I2C | Native Wire Data line (OLED, RTC, BME280) |
+| **GPIO 22** | Right Pin 2 | Output | **[RESERVED] I2C SCL**| Hardware I2C | Native Wire Clock line |
+| **GPIO 18** | Right Pin 7 | Output | **[RESERVED] SPI SCK** | Hardware VSPI | Native High-Speed Clock line |
+| **GPIO 19** | Right Pin 6 | Input  | **[RESERVED] SPI MISO**| Hardware VSPI | Native Master-In Slave-Out line |
+| **GPIO 23** | Right Pin 1 | Output | **[RESERVED] SPI MOSI**| Hardware VSPI | Native Master-Out Slave-In line |
+| **GPIO 5**  | Right Pin 8 | Output | **[RESERVED] SPI CS**  | Hardware VSPI | Native Chip Select line (Internal pull-up at boot) |
+| **GPIO 1**  | Right Pin 3 (TX0)| Output | **[RESERVED] UART TX**| Hardware UART0 | Native Serial Monitor / CP2102 USB Bridge |
+| **GPIO 3**  | Right Pin 4 (RX0)| Input  | **[RESERVED] UART RX**| Hardware UART0 | Native Serial Monitor / CP2102 USB Bridge |
 
 ---
 
@@ -144,14 +180,44 @@ When driving inductive loads (fans, fluorescent ballasts, refrigerator compresso
 
 ---
 
-### 3.5 Status Feedback LEDs (PWM Driven)
+### 3.5 6-Channel Status & Diagnostic LEDs (LEDC PWM Auto-Dimmed)
 ```
- ESP32 GPIO (4, 5, 21, 22) ───[ 220Ω ]───►| (LED Anode) ───► GND (Cathode)
-```
-* Software controls brightness from 0% (off) up to dynamic max (10% to 100% depending on ambient darkness).
+ Appliance Status LEDs (Channels 1–4):
+  ESP32 GPIO 4  (LEDC Ch 0) ───[ 220Ω ]───►| (Green LED 1) ───► GND
+  ESP32 GPIO 15 (LEDC Ch 1) ───[ 220Ω ]───►| (Green LED 2) ───► GND  [*MTDO Strapping Safe*]
+  ESP32 GPIO 32 (LEDC Ch 2) ───[ 220Ω ]───►| (Green LED 3) ───► GND
+  ESP32 GPIO 33 (LEDC Ch 3) ───[ 220Ω ]───►| (Green LED 4) ───► GND
 
-#### Dedicated Sensors, Buttons & Status LEDs Schematic:
-![Sensors and User IO Schematic Diagram](images/sensors_and_io_schematic.jpg)
+ System Diagnostic & Indicator LEDs:
+  ESP32 GPIO 12 (LEDC Ch 4) ───[ 330Ω ]───►| (Red PWR LED)  ───► GND  [*MTDI 3.3V Boot Pull-Down*]
+  ESP32 GPIO 2  (LEDC Ch 5) ───[ 220Ω ]───►| (Blue Wi-Fi)   ───► GND  [*On-board or External*]
+```
+* **Synchronous Auto-Dimming:** All 6 LEDs are driven by hardware LEDC PWM timers (12-bit / 5kHz), dynamically adjusting duty cycles from day mode (100%) to soft night mode (~6%) based on the LDR sensor.
+* **Boot Strapping Protection:** GPIO 12 is pulled low at startup via the Power LED resistor ($330\Omega$ to GND), guaranteeing the ESP32 powers on with correct 3.3V flash LDO voltage.
+
+---
+
+### 3.6 Tactile Override Buttons & System Diagnostics
+```
+ GPI Manual Override Push Buttons (GPI-only pins without internal pull-ups):
+            +3.3V (ESP32)
+              │
+             ┌┴┐ 10kΩ External Pull-Up Resistor
+             └┬┘
+              ├───► ESP32 GPIO (35, 36, 39)
+              │
+              ○  Tactile Momentary Push Button
+               \
+              ○
+              │
+             GND
+
+ Standard GPIO Push Buttons (Leveraging internal pull-ups):
+  ESP32 GPIO 16 (Button 4)  ───○ \ ○───► GND (Configured with pinMode(16, INPUT_PULLUP))
+  ESP32 GPIO 17 (Reset/AP)  ───○ \ ○───► GND (Configured with pinMode(17, INPUT_PULLUP))
+```
+* **GPI Pin Architecture:** GPIO 35, 36 (VP), and 39 (VN) are dedicated input-only pins lacking internal pull-up / pull-down silicon resistors. External $10\text{k}\Omega$ resistors pull these lines stiffly to $+3.3\text{V}$, preventing float.
+* **Config / Reset Operation:** Short press (<1s) reboots the ESP32 MCU cleanly. Holding down for $\ge 5\text{s}$ triggers SoftAP Wi-Fi provisioning mode.
 
 ---
 
