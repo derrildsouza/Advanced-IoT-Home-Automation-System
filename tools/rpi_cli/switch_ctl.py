@@ -13,7 +13,7 @@ import urllib.request
 import urllib.error
 
 # Environment / Defaults
-DEFAULT_HOST = os.getenv("SWITCH_HOST", "smartswitch.local")
+DEFAULT_HOST = os.getenv("SWITCH_HOST", "192.168.1.20")
 DEFAULT_MQTT_BROKER = os.getenv("MQTT_BROKER", "localhost")
 DEFAULT_MQTT_PORT = int(os.getenv("MQTT_PORT", "1883"))
 
@@ -136,6 +136,7 @@ def main():
 
     # status
     p_status = subparsers.add_parser("status", help="Get live appliance & sensor status")
+    p_status.add_argument("--json", action="store_true", help="Output status in raw JSON format")
     p_status.set_defaults(func=cmd_status)
 
     # on
