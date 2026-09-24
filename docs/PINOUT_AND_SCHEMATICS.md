@@ -192,8 +192,11 @@ When driving inductive loads (fans, fluorescent ballasts, refrigerator compresso
   ESP32 GPIO 12 (LEDC Ch 4) ───[ 330Ω ]───►| (Red PWR LED)  ───► GND  [*MTDI 3.3V Boot Pull-Down*]
   ESP32 GPIO 2  (LEDC Ch 5) ───[ 220Ω ]───►| (Blue Wi-Fi)   ───► GND  [*On-board or External*]
 ```
-* **Synchronous Auto-Dimming:** All 6 LEDs are driven by hardware LEDC PWM timers (12-bit / 5kHz), dynamically adjusting duty cycles from day mode (100%) to soft night mode (~6%) based on the LDR sensor.
+* **Synchronous Auto-Dimming:** All 6 LEDs are driven by hardware LEDC PWM timers (8-bit / 5kHz), dynamically adjusting duty cycles from day mode (100%) to soft night mode (~6%) based on the LDR sensor.
 * **Boot Strapping Protection:** GPIO 12 is pulled low at startup via the Power LED resistor ($330\Omega$ to GND), guaranteeing the ESP32 powers on with correct 3.3V flash LDO voltage.
+
+#### Dedicated 6-Channel Status & Diagnostic LEDs Schematic:
+![Dedicated 6-Channel Status and Diagnostic LEDs Schematic Diagram](images/status_leds_schematic.jpg)
 
 ---
 
