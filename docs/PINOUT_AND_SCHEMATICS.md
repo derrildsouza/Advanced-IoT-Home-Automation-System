@@ -241,8 +241,132 @@ When driving inductive loads (fans, fluorescent ballasts, refrigerator compresso
 
 ## 4. Power Architecture
 
-* **Primary Supply:** 5V 2A regulated power supply (e.g., Hi-Link HLK-PM01 AC-DC module or 5V 2A industrial SMPS).
-* The 5V rail powers:
-  * Relay coils (`JD-VCC`).
-  * ESP32 Board `5V / VIN` pin (fed into on-board AMS1117-3.3V regulator).
-* High-voltage AC mains wiring (Live & Neutral) must maintain a minimum of **5mm creepage distance** from the low-voltage DC traces on the PCB.
+### 4.1 Multi-Stage Regulated Power Distribution Architecture
+
+The system utilizes an industrial-grade, multi-stage power topology designed for continuous $24/7/365$ operation. High-voltage AC mains ($100\text{V}–240\text{V AC}$) is galvanic-isolated and converted to a regulated $+5\text{V DC}$ primary bus, which is split into two electrically isolated domains: a high-current inductive rail (**Rail 1: JD-VCC**) for the relay coils, and a precision logic rail (**Rail 2: VIN / 3.3V**) for the microcontroller, sensors, and status indicators. A secondary downstream low-pass filter stage creates a noise-free tertiary rail (**Rail 3: Filtered +3.3V**) exclusively powering the optical 15120P IR receiver.
+
+```
+ =====================================================================================================================
+                                      MASTER SYSTEM POWER FLOW & ISOLATION TOPOLOGY
+ =====================================================================================================================
+
+  100–240V AC     T2A 250V      14D471K MOV      ≥5.0mm Creepage     Hi-Link HLK-5M05
+  MAINS INPUT     SLOW-BLOW     (275V CLAMP)     ISOLATION SLOT      ISOLATED SMPS
+ ┌───────────┐    ┌───────┐     ┌───────────┐         │ │          ┌────────────────┐
+ │ LINE (L)  ├───►│ FUSE  ├──┬─►│  ┌─────┐  ├─────────┼─┼─────────►│ AC(L)          │
+ │ (Brown)   │    └───────┘  │  │  │ MOV │  │         │ │          │                │   +5V DC (2000mA MAX)
+ │           │               │  │  └─────┘  │         │ │          │    ISOLATED    ├─────────────────────────────┐
+ │ NEUT (N)  ├───────────────┴─►│           ├─────────┼─┼─────────►│ AC(N) FLYBACK  │                             │
+ │ (Blue)    │                  └───────────┘         │ │          │   (>3000V AC)  │   SMPS Star GND             │
+ │           │                                        │ │          │                ├──────────────┐              │
+ │ EARTH(PE) ├───► CHASSIS GROUND METAL ENCLOSURE     │ │          │ GND(V-)  +5V(V+)│              │              │
+ └───────────┘                                        │ │          └───────┬────────┴─────┘        │              │
+                                                                           │              │        │              │
+                                                                           │              ▼        ▼              ▼
+                                                                           │       ┌──────────────┴───────────────┴──┐
+                                                                           │       │ 1000µF 16V Bulk Low-ESR Reservoir│
+                                                                           │       │  || 100nF High-Frequency Ceramic│
+                                                                           │       └─────────────────────────────────┘
+                                                                           │                        │
+               ┌───────────────────────────────────────────────────────────┴────────────────────────┤
+               │                                                                                    │
+               ▼ [RAIL 1: HIGH-CURRENT INDUCTIVE POWER]                                             ▼ [RAIL 2: SENSITIVE LOGIC POWER]
+ ┌───────────────────────────────────────────┐                                ┌───────────────────────────────────────────┐
+ │ 4-CHANNEL RELAY BOARD POWER (ISOLATED)    │                                │ ESP32-WROOM-32 MCU & SYSTEM LOGIC         │
+ │                                           │                                │                                           │
+ │ • Supply: +5V JD-VCC (300mA peak, 4 coils)│                                │ • Input: 5V / VIN Pin                     │
+ │ • Return: RELAY GND (Direct to SMPS GND)  │                                │ • Regulator: AMS1117-3.3V SOT-223 LDO     │
+ │                                           │                                │   (10µF Tantalum In || 22µF Ceramic Out)  │
+ │ ⚠️  REMOVE JD-VCC JUMPER!                  │                                │ • Output: MAIN +3.3V SYSTEM LOGIC BUS     │
+ │   Guarantees 100% optical isolation       │                                │                                           │
+ │   Coil kickback returns via Relay GND     │                                │ Powers:                                   │
+ │   Zero noise enters ESP32 ground plane    │                                │  ├── ESP32 Dual Cores & Wi-Fi/BLE (310mA) │
+ └───────────────────────────────────────────┘                                │  ├── 4x EL817 Opto Anodes (VCC: 8mA)      │
+                                                                              │  ├── 6x LEDC PWM Status LEDs (<48mA)      │
+                                                                              │  └── LDR Ambient Light Divider (<0.33mA)  │
+                                                                              └─────────────────────┬─────────────────────┘
+                                                                                                    │
+                                                                                                    ▼ [RAIL 3: CLEAN FILTERED SENSOR POWER]
+                                                                              ┌───────────────────────────────────────────┐
+                                                                              │ DUAL LOW-PASS DECOUPLING FILTER STAGE     │
+                                                                              │                                           │
+                                                                              │  Main +3.3V ───[ 100Ω 1% ]───┬──► Sensor VCC
+                                                                              │                              │  (3.18V-3.26V)
+                                                                              │                             ┌┴┐ 4.7µF Bulk
+                                                                              │                             └┬┘ || 100nF RF
+                                                                              │                              │ (fc ≈ 338.6Hz)
+                                                                              │                             GND
+                                                                              │                                           │
+                                                                              │ Powers:                                   │
+                                                                              │  └── 15120P 38kHz IR Receiver (<1.2mA)    │
+                                                                              │      (15-Meter 180° Optical Demodulator)  │
+                                                                              │      Eliminates Wi-Fi RF & contact hash   │
+                                                                              └───────────────────────────────────────────┘
+ =====================================================================================================================
+```
+
+#### Dedicated Power Architecture & Dual-Rail Isolation Schematic:
+![Master Power Architecture and Dual-Rail Isolation Schematic Diagram](images/power_architecture_schematic.jpg)
+
+---
+
+### 4.2 Comprehensive System Power Budget & Load Analysis
+
+The total worst-case peak power consumption of the automation unit across all operating states is **671.3 mA @ 5V (3.36 W)**. When supplied by an industrial **5V 2.0A (10.0 W)** SMPS, the system operates with **66.4% reserve capacity (a 3.0x safety factor)**, ensuring indefinite continuous operation without thermal throttling or brownout vulnerabilities.
+
+| Subsystem / Load Component | Voltage Rail | Domain / Isolation Type | Typical Current ($I_{\text{typ}}$) | Worst-Case Peak ($I_{\text{peak}}$) | Operational Profile & Duty Cycle |
+|:---|:---:|:---:|:---:|:---:|:---|
+| **4x Relay Coils (SRD-05VDC)** | $+5.0\text{V}$ | **Rail 1** (JD-VCC / Isolated) | $0\,\text{mA}$ (all OFF) | $300.0\,\text{mA}$ (all 4 ON) | Dynamic load ($4 \times 75\,\text{mA}$ pull-in) |
+| **ESP32-WROOM-32 MCU** | $+3.3\text{V}$ | **Rail 2** (Logic / AMS1117) | $80.0\,\text{mA}$ | $310.0\,\text{mA}$ | Continuous (240MHz dual-core + Wi-Fi TX burst) |
+| **6x Status & Diagnostic LEDs** | $+3.3\text{V}$ | **Rail 2** (LEDC PWM Bus) | $3.0\,\text{mA}$ (night mode) | $48.0\,\text{mA}$ (day 100%) | Hardware PWM dimmed based on LDR ambient |
+| **4x EL817 Optocoupler Anodes** | $+3.3\text{V}$ | **Rail 2** (Logic VCC) | $0\,\text{mA}$ (all OFF) | $8.0\,\text{mA}$ (all 4 ON) | Active-LOW current loop sink ($2.0\,\text{mA}/\text{ch}$) |
+| **15120P 38kHz IR Receiver** | $+3.3\text{V}$ | **Rail 3** (Filtered RC) | $0.35\,\text{mA}$ (quiescent) | $5.0\,\text{mA}$ (burst + LED) | $0.35\,\text{mA}$ idle, brief $5\,\text{mA}$ pulse with D_ACT |
+| **LDR Ambient Light Sensor** | $+3.3\text{V}$ | **Rail 2** (ADC1 Divider) | $0.15\,\text{mA}$ | $0.33\,\text{mA}$ (bright daylight) | Continuous analog monitoring ($10\text{k}\Omega$ divider) |
+| **TOTAL SYSTEM PEAK LOAD** | **$+5.0\text{V}$** | **All Rails Combined** | **$\sim 83.5\,\text{mA}$** | **$671.3\,\text{mA}$ (3.36 W)** | **Power Supply Rating: 2000 mA (10.0 W)** |
+| **DESIGN RESERVE MARGIN** | — | — | **95.8% Headroom** | **66.4% Headroom** | **3.0x Safety Margin Factor Over Peak Load** |
+
+---
+
+### 4.3 Galvanic Isolation & Ground Domain Segregation Rules
+
+To guarantee industrial immunity against high-voltage AC mains transients, inductive kickback, and electro-mechanical contact arcing, the power architecture enforces rigorous ground segregation:
+
+1. **Physical Removal of the JD-VCC Jumper:** Standard 4-channel relay modules ship with a 2-pin shorting shunt linking `VCC` to `JD-VCC`. **This jumper MUST be removed.** Removing this jumper breaks the electrical connection between the relay coil power supply and the ESP32 microcontroller logic supply.
+2. **Dual Independent Ground Domains:**
+   * **Relay Coil Ground (`RELAY GND`):** Connected directly to the 5V SMPS negative terminal. Carries all heavy inductive coil discharge currents ($300\text{mA}$).
+   * **ESP32 System Logic Ground (`GND`):** Serves as the clean reference potential for the ESP32 MCU, analog ADC lines, and status indicators.
+   * **Zero Ground Loops:** Because `RELAY GND` returns independently to the SMPS star-ground point, inductive coil kickback and contactor bounce currents *never traverse the ESP32 ground plane*, completely eliminating audio buzz, ADC drift, and phantom microcontroller brownouts.
+3. **Optical Signal Barrier:** All four control lines from ESP32 GPIOs (18, 19, 21, 22) drive the internal GaAs infrared emitter LEDs of the EL817 optocouplers. The light beam couples across a transparent dielectric barrier with $>5000\,\text{V}_{\text{rms}}$ galvanic isolation.
+
+---
+
+### 4.4 Clean Filtered Sensor Rail Design (15120P IR Receiver)
+
+High-sensitivity infrared demodulator ICs (such as the 15120P 15-meter $180^\circ$ optical receiver) incorporate high-gain internal automatic gain control (AGC) and bandpass filters. In a smart home automation unit, high-frequency $2.4\text{GHz}$ Wi-Fi transmission bursts from the ESP32 onboard antenna and switching ripple from the 5V SMPS can inject spurious noise into the $3.3\text{V}$ bus, leading to phantom IR interrupts or reduced operational range.
+
+To isolate the optical receiver, a dedicated low-pass RC decoupling network is implemented between the Main $+3.3\text{V}$ Logic Bus and the sensor's $V_{\text{CC}}$ input (Pin 3):
+
+* **Transfer Function & Cutoff Frequency:**
+  $$f_c = \frac{1}{2 \pi \cdot R_{\text{FLT}} \cdot C_{\text{FLT}}} = \frac{1}{2 \pi \cdot 100\,\Omega \cdot 4.7\,\mu\text{F}} \approx 338.6\,\text{Hz}$$
+  Frequencies above $338.6\,\text{Hz}$ are attenuated at $-20\,\text{dB}/\text{decade}$, suppressing full-wave $100\text{Hz}$ rectified ripple and eliminating high-frequency RF packet noise.
+* **Dual Decoupling Complement:**
+  * **$4.7\,\mu\text{F}$ Bulk Electrolytic:** Absorbs low-frequency supply fluctuations and transient current steps.
+  * **$100\,\text{nF}$ (104) Multi-Layer Ceramic (MLCC):** Provides low equivalent series resistance (ESR) and low parasitic inductance to shunt high-frequency $2.4\text{GHz}$ Wi-Fi RF carrier hash directly to ground.
+* **Minimal DC Voltage Drop:** With a typical sensor current consumption of $I_Q = 0.35\,\text{mA} - 1.2\,\text{mA}$, the static voltage drop across $R_{\text{FLT}}$ ($100\Omega$) is negligible:
+  $$\Delta V = 1.2\,\text{mA} \times 100\,\Omega = 0.12\,\text{V} \implies V_{\text{sensor}} \approx 3.18\,\text{V} - 3.26\,\text{V}$$
+  This voltage resides well within the 15120P receiver's certified operating envelope of $2.7\text{V}–5.5\text{V}$, ensuring maximum optical sensitivity ($15\text{m}$) without risk of false triggering on GPIO 13.
+
+---
+
+### 4.5 AC Mains Safety Compliance & Physical Layout Rules
+
+1. **Creepage and Clearance Distances (IEC 60950-1 / IEC 62368-1):**
+   * A minimum physical creepage distance of **$>5.0\,\text{mm}$** must be maintained between all high-voltage AC mains tracks ($100–240\text{V AC}$) and low-voltage DC traces ($+5\text{V}$, $+3.3\text{V}$, and GND).
+   * A continuous **air routing slot (isolation groove)** should be milled into the PCB fiberglass substrate directly beneath the EL817 optocouplers and SMPS barrier to eliminate surface carbon tracking in high-humidity environments.
+2. **Primary Protection Components:**
+   * **T2A 250V Slow-Blow Cartridge Fuse:** Installed immediately at the AC Line ($L$) input terminal. Protects against primary short-circuits, transformer saturation, and board-level fire hazards.
+   * **14D471K Metal Oxide Varistor (MOV):** Clamped across Line and Neutral terminals. Clamps lightning surges and grid voltage spikes exceeding $275\text{V AC}$ with a response time $<25\,\text{ns}$ and energy absorption up to $70\,\text{J}$.
+   * **Chassis Earth (PE):** Earth ground must be mechanically bonded with a serrated star-washer directly to the metallic installation enclosure for touch-safe ground fault interruption.
+3. **Contact Arc Suppression (RC Snubbers):**
+   * Each relay output switching inductive loads (such as electric motors, fans, or fluorescent ballasts) must incorporate an external RC snubber network ($100\,\Omega\text{ 2W flame-proof resistor} + 100\,\text{nF 275V AC X2 metallized safety capacitor}$) wired directly across the relay `NO` and `COM` contacts. This absorbs contact break voltage spikes ($L \frac{di}{dt}$ up to thousands of volts), prevents contact welding, and eliminates electromagnetic interference (EMI) broadcast.
+
