@@ -155,26 +155,41 @@ When driving inductive loads (fans, fluorescent ballasts, refrigerator compresso
 
 ### 3.4 3-Pin TSOP 38kHz IR Receiver (15120P / TSOP38238) Interface Module
 ```
-          +3.3V (ESP32)
-            │
-           ┌┴┐ 100Ω Decoupling Resistor (R_FLT)
-           └┬┘
-            ├───► Filtered VCC (3.3V)
-            │       │                        │
-            │       ├─► VCC (Pin 3 TSOP)     ├─► [ 10kΩ R_PULL ] ──┐
-            │       │                        │                     │
-           ───      │                        └─►| (D_ACT LED)      │
-           ─── 4.7µF Bulk Cap (C_FLT)          │                   │
-            │  || 100nF Ceramic (C_BYP)       [ 470Ω R_LED ]       │
-            │       │                                │             │
-           GND ─────┴─► GND (Pin 2 TSOP)             ▼             ▼
-                                                     │             │
- ESP32 GPIO 13 ◄─────────────────────── OUT (Pin 1) ─┴─────────────┘
+       ESP32 Pin 3V3 (Raw +3.3V Logic Supply from ESP32 LDO/DC-DC)
+                      │
+                      ▼
+         ┌────────────────────────┐
+         │ R_FLT: 100Ω 1% Series  │  <-- Low-Pass Series Decoupling Resistor
+         └────────────┬───────────┘
+                      │
+══════════════════════╪════════════════════════════════════════════════════════════════════════════════ [ CLEAN FILTERED +3.3V RAIL ]
+         │                     │                    │                        │                      │
+         │                     │                    ▼ (Pin 3: VCC)           ▼                      ▼ (Anode +)
+       +─┴─+                  ─┴─           ┌───────────────┐          ┌───────────┐          ┌───────────┐
+       │4.7│ C_FLT            ─── C_BYP     │   TSOP38238   │          │  10kΩ 1%  │          │   D_ACT   │ Emerald Green
+       │ µF│ Bulk              │  100nF     │ 38kHz IR RCVR │          │  (R_PULL) │          │  IR LED   │ Reception LED
+       └─┬─┘ Low-Freq          │  Ceramic   │  15120P Opto  │          │  Pull-Up  │          └─────┬─────┘
+         │   Ripple            │  RF Bypass └───┬───────┬───┘          └─────┬─────┘                │ (Cathode -)
+         │   (100Hz)           │  (2.4GHz)      │       │                    │                ┌─────┴─────┐
+         │                     │         (Pin 2)│       │ (Pin 1: OUT)       │                │  470Ω 1%  │ Current Limiter
+         │                     │          GND   │       │ Open-Drain         │                │  (R_LED)  │
+         │                     │                │       └────────────┬───────┴────────────────┴─────┬─────┘
+         │                     │                │                    │                              │
+         │                     │                │                    ▼                              ▼
+         │                     │                │       ESP32 GPIO 13 (Hardware Interrupt)    Flashes on 38kHz
+         │                     │                │       Active-LOW Demodulated NEC Stream     Incoming Packets
+         ▼                     ▼                ▼
+───────────────────────────────────────────────────────────────────────────────────────────────────────── [ SYSTEM COMMON GND RAIL ]
 ```
-* **Active-LOW Reception Indicator LED ($D_{\text{ACT}}$):** Connected between Filtered VCC and OUT via a $470\Omega$ resistor ($R_{\text{LED}}$). Sits OFF during idle (both sides at 3.3V); flashes instantly (<5ms) on incoming 38kHz bursts when TSOP sinks Pin 1 to 0V.
-* **10kΩ Pull-Up ($R_{\text{PULL}}$):** Hardens the logic HIGH state against line capacitance and Wi-Fi RF crosstalk.
-* **Dual Decoupling Filter ($100\Omega + 4.7\mu\text{F} + 100\text{nF}$):** Blocks SMPS switching ripple and Wi-Fi RF brownout chatter ($f_c \approx 338.6\text{ Hz}$), eliminating phantom interrupts on GPIO 13.
-
+* **Single Power Rail Flow (Raw vs. Clean Filtered +3.3V):**
+  * **Raw +3.3V Supply (`ESP32 Pin 3V3`):** Unfiltered digital system rail powering the ESP32 chip and Wi-Fi radio; carries heavy 2.4GHz Wi-Fi switching spikes and SMPS DC-DC converter ripple.
+  * **Series Resistor ($R_{\text{FLT}} = 100\Omega$):** Acts as the series impedance element of the low-pass filter, dropping AC high-frequency ripple voltage while causing negligible DC voltage drop ($<0.05\text{V}$ given TSOP's tiny $0.35\text{mA}$ typical quiescent current draw).
+  * **Clean Filtered +3.3V Rail:** The single, noise-isolated power rail downstream of $R_{\text{FLT}}$ that powers the TSOP optical preamplifier (Pin 3), the $10\text{k}\Omega$ pull-up resistor ($R_{\text{PULL}}$), and the $D_{\text{ACT}}$ reception indicator LED.
+* **Dual Decoupling Filter ($100\Omega + 4.7\mu\text{F} \parallel 100\text{nF}$):** Forms an RC low-pass filter with cutoff frequency $f_c = \frac{1}{2\pi \cdot R \cdot C_{\text{tot}}} \approx 338.6\text{ Hz}$, eliminating false interrupt triggers on GPIO 13:
+  * **$C_{\text{FLT}}$ ($4.7\mu\text{F}$ Electrolytic Bulk):** Absorbs low-frequency $100\text{Hz}$ switching ripple and momentary supply dips caused by relay coils or LED transitions.
+  * **$C_{\text{BYP}}$ ($100\text{nF}$ Ceramic RF Bypass):** Placed in close physical proximity (<5mm) to TSOP Pin 3 and Pin 2 to shunt high-frequency $2.4\text{ GHz}$ Wi-Fi RF burst hash to ground.
+* **Active-LOW Reception Indicator LED ($D_{\text{ACT}}$):** Connected between Clean Filtered 3.3V and OUT via a $470\Omega$ current-limiting resistor ($R_{\text{LED}}$). Sits OFF during idle (both sides at 3.3V); flashes instantly (<5ms) on incoming 38kHz bursts when the TSOP internal photodiode/preamplifier sinks Pin 1 to 0V.
+* **10kΩ Pull-Up ($R_{\text{PULL}}$):** Hardens the logic HIGH state against line capacitance and prevents Wi-Fi RF pickup on long sensor leads.
 #### Dedicated 3-Pin TSOP 38kHz IR Receiver & Active Filter Schematic:
 ![3-Pin TSOP 38kHz IR Receiver Schematic Diagram](images/ir_receiver_schematic.jpg)
 

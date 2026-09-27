@@ -53,19 +53,21 @@
       <stop offset="100%" stop-color="#0c4a6e"/>
     </linearGradient>
 
-    <!-- Electrolytic Can Gradient -->
+    <!-- Electrolytic Can Gradient (Crisp Metallic 3D Cylinder) -->
     <linearGradient id="can_body" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#1e293b"/>
-      <stop offset="30%" stop-color="#334155"/>
-      <stop offset="70%" stop-color="#1e293b"/>
+      <stop offset="25%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#1d4ed8"/>
+      <stop offset="80%" stop-color="#1e293b"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
 
-    <!-- Ceramic Capacitor Body Gradient -->
+    <!-- Ceramic Capacitor Body Gradient (Warm Amber Disc) -->
     <linearGradient id="cap_ceramic" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="40%" stop-color="#eab308"/>
-      <stop offset="100%" stop-color="#a16207"/>
+      <stop offset="35%" stop-color="#eab308"/>
+      <stop offset="75%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#854d0e"/>
     </linearGradient>
 
     <!-- Remote Control Body Gradient -->
@@ -105,7 +107,7 @@
     <circle cx="16" cy="0" r="16" fill="#6366f1"/>
     <text x="16" y="6" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="18" font-weight="900">📡</text>
     <text x="45" y="0" class="main-title">3-PIN TSOP 38kHz INFRARED RECEIVER INTERFACE SCHEMATIC</text>
-    <text x="45" y="22" class="sub-title">ESP32-WROOM-32 GPIO 13 Hardware Interrupt | TSOP38238 Sensor | Active IR Reception Indicator LED | RC Ripple Decoupling</text>
+    <text x="45" y="22" class="sub-title">ESP32-WROOM-32 GPIO 13 Hardware Interrupt | TSOP38238 Sensor | Active IR Reception Indicator LED | Dual Decoupling Filter</text>
   </g>
 
   <!-- ESP32 DEV BOARD CHASSIS -->
@@ -148,13 +150,13 @@
     <rect x="64" y="844" width="470" height="200" rx="14" fill="#000000" opacity="0.45"/>
     <rect x="60" y="840" width="470" height="200" rx="14" fill="#111827" stroke="#6366f1" stroke-width="1.8"/>
     
-    <text x="82" y="866" fill="#a5b4fc" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="900">🔒 RC LOW-PASS POWER FILTER &amp; INDICATOR LED</text>
+    <text x="82" y="866" fill="#a5b4fc" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="900">🔒 DUAL RC LOW-PASS POWER FILTER &amp; INDICATOR LED</text>
     
     <text x="82" y="890" class="body-txt">• <tspan fill="#f87171" font-weight="700">Series 100Ω Resistor (R_FLT):</tspan> Placed in series with incoming 3.3V</text>
     <text x="90" y="908" class="body-txt">to isolate TSOP VCC from noisy ESP32 Wi-Fi bursts &amp; power rail ripple.</text>
 
-    <text x="82" y="934" class="body-txt">• <tspan fill="#38bdf8" font-weight="700">RC Filter Cutoff:</tspan> 100Ω + 4.7µF electrolytic bulk low-pass network:</text>
-    <text x="90" y="952" fill="#fde047" font-family="monospace" font-size="10.5">fc = 1 / (2π · 100Ω · 4.7µF) ≈ 338.6 Hz  (+ 100nF RF Bypass)</text>
+    <text x="82" y="934" class="body-txt">• <tspan fill="#38bdf8" font-weight="700">Dual Decoupling Cutoff:</tspan> 100Ω + 4.7µF (bulk) ∥ 100nF (RF ceramic):</text>
+    <text x="90" y="952" fill="#fde047" font-family="monospace" font-size="10.5">fc = 1 / (2π · 100Ω · 4.7µF) ≈ 338.6 Hz  (+ 100nF High-Freq RF Bypass)</text>
 
     <text x="82" y="978" class="body-txt">• <tspan fill="#4ade80" font-weight="700">Active-LOW Reception LED:</tspan> Connected from Filtered VCC to OUT.</text>
     <text x="90" y="996" class="body-txt">Sits OFF at 3.3V idle. Flashes instantly (&lt;5ms) on incoming 38kHz bursts</text>
@@ -166,7 +168,7 @@
     <rect x="564" y="139" width="630" height="905" rx="14" fill="#000000" opacity="0.45"/>
     <rect x="560" y="135" width="630" height="905" rx="14" fill="#0c1322" stroke="#38bdf8" stroke-width="2"/>
     <text x="875" y="163" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="800">3-PIN TSOP SENSOR &amp; COMPLETE RC FILTER INTERFACE</text>
-    <text x="875" y="183" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="700">TSOP38238 Demodulator | Active Reception LED | 10kΩ Pull-Up | Dual RF Decoupling</text>
+    <text x="875" y="183" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="700">TSOP38238 Demodulator | Active Reception LED | 10kΩ Pull-Up | Dual Low-Pass Decoupling Filter</text>
 
     <!-- BREAKOUT BOARD SUB-CHASSIS OUTLINE (Y=205 to Y=735) -->
     <rect x="615" y="205" width="560" height="530" rx="12" fill="#060c18" stroke="#1e3a8a" stroke-width="1.5" stroke-dasharray="5,4"/>
@@ -200,46 +202,67 @@
         <rect x="13"  y="-10" width="3" height="20" fill="#78350f"/> <!-- Brown -->
 
         <!-- Resistor Label Box (Above) -->
-        <rect x="-50" y="-28" width="100" height="17" rx="3" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+        <rect x="-52" y="-28" width="104" height="17" rx="3" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
         <text x="0" y="-16" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="800">100Ω 1% (R_FLT)</text>
       </g>
 
       <!-- Trace from 100Ω right lead to Filtered Bus Node at Y=310 -->
-      <path d="M 745,261 L 780,261 L 780,310" stroke="#ef4444" stroke-width="3.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="780" cy="261" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
-      <circle cx="780" cy="310" r="5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
+      <path d="M 745,261 L 775,261 L 775,310" stroke="#ef4444" stroke-width="3.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="775" cy="261" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
+      <circle cx="775" cy="310" r="5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
 
       <!-- Explanatory Tag: Series Filter Resistor -->
-      <rect x="800" y="250" width="180" height="22" rx="3" fill="#0f172a" stroke="#6366f1" stroke-width="1"/>
-      <text x="890" y="264" text-anchor="middle" fill="#c7d2fe" font-family="monospace" font-size="7.5" font-weight="700">SERIES NOISE FILTER RESISTOR</text>
+      <rect x="790" y="247" width="155" height="28" rx="4" fill="#0f172a" stroke="#6366f1" stroke-width="1.2"/>
+      <text x="867" y="259" text-anchor="middle" fill="#c7d2fe" font-family="monospace" font-size="7.5" font-weight="800">SERIES FILTER RESISTOR</text>
+      <text x="867" y="270" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="6.5">Raw 3.3V ──► Clean Filtered Bus</text>
+    </g>
+
+
+    <!-- ================= DUAL DECOUPLING FILTER ENCLOSURE BACKGROUND ================= -->
+    <!-- Drawn BEFORE bus bars and leads so bus bar at Y=310 is 100% visible and connected! -->
+    <g id="dual_filter_bg">
+      <rect x="955" y="242" width="210" height="440" rx="10" fill="#08101e" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="6,4"/>
+
+      <!-- Header Banner -->
+      <rect x="965" y="249" width="190" height="24" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
+      <text x="1060" y="265" text-anchor="middle" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="900">🎛️ DUAL DECOUPLING FILTER</text>
+
+      <!-- Subtitle Cutoff Formula Badge -->
+      <rect x="965" y="276" width="190" height="17" rx="3" fill="#1e1b4b" stroke="#818cf8" stroke-width="0.8"/>
+      <text x="1060" y="288" text-anchor="middle" fill="#fde047" font-family="monospace" font-size="7.3" font-weight="700">fc ≈ 338.6 Hz (100Ω + 4.7µF ∥ 100nF)</text>
     </g>
 
 
     <!-- ================= HORIZONTAL BUS BARS ================= -->
-    <!-- Filtered VCC (3.3V) Bus Bar: Y = 310, from X = 670 to X = 1120 -->
-    <path d="M 670,310 L 1120,310" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Filtered VCC (3.3V) Bus Bar: Y = 310, runs across all branches into Filter Box to X = 1110 -->
+    <path d="M 670,310 L 1110,310" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
     <circle cx="670" cy="310" r="4.5" fill="#ef4444"/>
     <circle cx="755" cy="310" r="4.5" fill="#ef4444"/>
-    <circle cx="955" cy="310" r="4.5" fill="#ef4444"/>
-    <circle cx="1030" cy="310" r="5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
-    <circle cx="1120" cy="310" r="4.5" fill="#ef4444"/>
+    <circle cx="775" cy="310" r="5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="925" cy="310" r="4.5" fill="#ef4444"/>
+    <circle cx="1010" cy="310" r="5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="1110" cy="310" r="5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
     
-    <!-- Filtered VCC Label -->
-    <rect x="805" y="299" width="110" height="22" rx="3" fill="#1e1b4b" stroke="#ef4444" stroke-width="1.2"/>
-    <text x="860" y="314" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="8.5" font-weight="900">FILTERED 3V3 BUS</text>
+    <!-- Filtered VCC Labels -->
+    <rect x="795" y="299" width="112" height="22" rx="3" fill="#1e1b4b" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="851" y="314" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="8.5" font-weight="900">FILTERED 3V3 BUS</text>
 
-    <!-- Active-LOW Data Bus Bar: Y = 535, from X = 590 to X = 847 (Pin 1) -->
-    <path d="M 590,535 L 847,535" stroke="#6366f1" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Filtered Rail Label inside Filter Box (fits cleanly between leads at X=1010 and X=1110) -->
+    <rect x="1022" y="318" width="76" height="16" rx="3" fill="#1e1b4b" stroke="#ef4444" stroke-width="1"/>
+    <text x="1060" y="329" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="6.8" font-weight="800">FILTERED +3.3V</text>
+
+    <!-- Active-LOW Data Bus Bar: Y = 535, from X = 590 to X = 837 (Pin 1) -->
+    <path d="M 590,535 L 837,535" stroke="#6366f1" stroke-width="3.5" stroke-linecap="round"/>
     <circle cx="590" cy="535" r="5" fill="#6366f1" stroke="#ffffff" stroke-width="1.5"/>
     <circle cx="670" cy="535" r="4.5" fill="#6366f1"/>
     <circle cx="755" cy="535" r="4.5" fill="#6366f1"/>
-    <circle cx="847" cy="535" r="4.5" fill="#6366f1"/>
+    <circle cx="837" cy="535" r="4.5" fill="#6366f1"/>
     
     <!-- Data Bus Label (Below wire) -->
     <rect x="682" y="546" width="62" height="18" rx="3" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.2"/>
     <text x="713" y="559" text-anchor="middle" fill="#c7d2fe" font-family="monospace" font-size="7.5" font-weight="800">DATA BUS</text>
 
-    <!-- GROUND POWER RAIL (Bottom): Y = 695, from X = 635 to X = 1145 -->
+    <!-- GROUND POWER RAIL (Bottom): Y = 688, from X = 635 to X = 1145 -->
     <rect x="635" y="688" width="510" height="28" rx="6" fill="#0f172a" stroke="#cbd5e1" stroke-width="1.5"/>
     <circle cx="655" cy="702" r="6" fill="#cbd5e1"/>
     <text x="890" y="707" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="11" font-weight="800">ESP32 GROUND RAIL (SYSTEM COMMON GND BUS)</text>
@@ -303,14 +326,14 @@
 
     <!-- ================= 2. 10kΩ EXTERNAL PULL-UP RESISTOR (X = 755) ================= -->
     <g id="pullup_resistor_branch" transform="translate(755, 0)">
-      <!-- Top Lead Wire from Filtered VCC (Y=310) to Resistor Top (Y=378) -->
-      <line x1="0" y1="310" x2="0" y2="378" stroke="#ef4444" stroke-width="3"/>
-      <circle cx="0" cy="378" r="3.5" fill="#cbd5e1"/>
+      <!-- Top Lead Wire from Filtered VCC (Y=310) to Resistor Top (Y=380) -->
+      <line x1="0" y1="310" x2="0" y2="380" stroke="#ef4444" stroke-width="3"/>
+      <circle cx="0" cy="380" r="3.5" fill="#cbd5e1"/>
 
       <!-- 10kΩ 1% Metal Film Resistor (R_PULL) -->
       <g id="resistor_r_pull" transform="translate(0, 400)">
         <!-- Leads -->
-        <line x1="0" y1="-22" x2="0" y2="-18" stroke="#cbd5e1" stroke-width="3"/>
+        <line x1="0" y1="-20" x2="0" y2="-18" stroke="#cbd5e1" stroke-width="3"/>
         <line x1="0" y1="18" x2="0" y2="135" stroke="#6366f1" stroke-width="3"/>
 
         <!-- Resistor Cylindrical Body -->
@@ -323,7 +346,7 @@
         <rect x="-10" y="5"   width="20" height="2.8" fill="#ef4444"/> <!-- Red -->
         <rect x="-10" y="11"  width="20" height="2.8" fill="#78350f"/> <!-- Brown -->
 
-        <!-- Label Box (Placed to the left of X=755, between X=670 and X=755) -->
+        <!-- Label Box (Placed to the left of X=755) -->
         <rect x="-65" y="-15" width="50" height="28" rx="3" fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
         <text x="-40" y="-3" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="800">10kΩ</text>
         <text x="-40" y="7" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="6.8">R_PULL</text>
@@ -331,8 +354,8 @@
     </g>
 
 
-    <!-- ================= 3. TSOP38238 / 15120P SENSOR MODULE (X = 875) ================= -->
-    <g id="tsop_sensor_module" transform="translate(875, 410)">
+    <!-- ================= 3. TSOP38238 / 15120P SENSOR MODULE (X = 865) ================= -->
+    <g id="tsop_sensor_module" transform="translate(865, 410)">
       <!-- Sensor Epoxy Housing (76 x 92) -->
       <rect x="-38" y="-55" width="76" height="92" rx="8" fill="url(#tsop_case)" stroke="#6366f1" stroke-width="2"/>
       <rect x="-34" y="-51" width="68" height="84" rx="6" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.15"/>
@@ -351,85 +374,111 @@
       <!-- Pin 1: OUT (Left, x = -28) -->
       <rect x="-31" y="37" width="6" height="42" fill="#cbd5e1" rx="1"/>
       <circle cx="-28" cy="79" r="4.5" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
-      <rect x="-43" y="85" width="30" height="15" rx="3" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
-      <text x="-28" y="96" text-anchor="middle" fill="#c7d2fe" font-family="monospace" font-size="7.5" font-weight="900">1:OUT</text>
+      <rect x="-42" y="85" width="28" height="15" rx="3" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+      <text x="-28" y="96" text-anchor="middle" fill="#c7d2fe" font-family="monospace" font-size="7" font-weight="900">1:OUT</text>
 
       <!-- Pin 2: GND (Center, x = 0) -->
       <rect x="-3" y="37" width="6" height="42" fill="#cbd5e1" rx="1"/>
       <circle cx="0" cy="79" r="4.5" fill="#cbd5e1" stroke="#ffffff" stroke-width="1.2"/>
-      <rect x="-15" y="103" width="30" height="15" rx="3" fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
-      <text x="0" y="114" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7.5" font-weight="900">2:GND</text>
+      <rect x="-14" y="85" width="28" height="15" rx="3" fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="0" y="96" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7" font-weight="900">2:GND</text>
 
       <!-- Pin 3: VCC (Right, x = +28) -->
       <rect x="25" y="37" width="6" height="42" fill="#cbd5e1" rx="1"/>
       <circle cx="28" cy="79" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.2"/>
-      <rect x="13" y="85" width="30" height="15" rx="3" fill="#1e1b4b" stroke="#ef4444" stroke-width="1"/>
-      <text x="28" y="96" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="7.5" font-weight="900">3:VCC</text>
+      <rect x="14" y="85" width="28" height="15" rx="3" fill="#1e1b4b" stroke="#ef4444" stroke-width="1"/>
+      <text x="28" y="96" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="7" font-weight="900">3:VCC</text>
     </g>
 
     <!-- TSOP Pin Lead Wires: -->
-    <!-- Pin 1 (OUT) Wire: from (847, 489) down to Data Bus at (847, 535) -->
-    <path d="M 847,489 L 847,535" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+    <!-- Pin 1 (OUT) Wire: from bottom of box at (837, 510) down to Data Bus at (837, 535) -->
+    <path d="M 837,510 L 837,535" stroke="#6366f1" stroke-width="3.5" stroke-linecap="round"/>
 
-    <!-- Pin 2 (GND) Wire: from (875, 489) straight down to Ground Rail at Y = 688 -->
-    <path d="M 875,489 L 875,688" stroke="#cbd5e1" stroke-width="3.5" stroke-linecap="round"/>
-    <circle cx="875" cy="688" r="4.5" fill="#cbd5e1"/>
+    <!-- Pin 2 (GND) Wire: from bottom of box at (865, 510) straight down to Ground Rail at Y = 688 -->
+    <path d="M 865,510 L 865,688" stroke="#cbd5e1" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="865" cy="688" r="4.5" fill="#cbd5e1"/>
 
-    <!-- Pin 3 (VCC) Wire: Completely routes around TSOP casing with 42px clearance! -->
-    <!-- From Pin 3 at (903, 489) drops to Y=518, steps right to X=955, then rises to Y=310 -->
-    <path d="M 903,489 L 903,518 L 955,518 L 955,310" stroke="#ef4444" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- Pin 3 (VCC) Wire: Direct right from dot at (893, 489) to X=925, then rises straight to Y=310 (ZERO OVERLAPS!) -->
+    <path d="M 893,489 L 925,489 L 925,310" stroke="#ef4444" stroke-width="3.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="925" cy="489" r="4" fill="#ef4444"/>
 
 
-    <!-- ================= 4. DECOUPLING CAPACITORS (X = 1030, X = 1120) ================= -->
-    <!-- 4.7µF 50V Bulk Electrolytic Capacitor (C_FLT): at X = 1030, Y = 415 -->
-    <g id="bulk_capacitor_4u7" transform="translate(1030, 415)">
-      <!-- Solid Lead Wires connecting to Filtered 3V3 and Ground -->
-      <line x1="0" y1="-105" x2="0" y2="-27" stroke="#ef4444" stroke-width="3"/>
-      <circle cx="0" cy="-27" r="3.5" fill="#ef4444"/>
-      <line x1="0" y1="27" x2="0" y2="273" stroke="#cbd5e1" stroke-width="3"/>
+    <!-- ================= 4. DEDICATED DUAL DECOUPLING LOW-PASS FILTER ENCLOSURE COMPONENTS ================= -->
+    <g id="dual_decoupling_filter_enclosure">
 
-      <!-- Positive Polarity Terminal Marker (+) on Left -->
-      <circle cx="-14" cy="-35" r="7" fill="#1e1b4b" stroke="#ef4444" stroke-width="1.2"/>
-      <text x="-14" y="-31" text-anchor="middle" fill="#f87171" font-size="11" font-weight="900">+</text>
 
-      <!-- Cylindrical Aluminum Can Body -->
-      <rect x="-15" y="-27" width="30" height="54" rx="4" fill="url(#can_body)" stroke="#475569" stroke-width="1.5"/>
-      <ellipse cx="0" cy="-27" rx="15" ry="3.5" fill="#64748b"/>
+      <!-- ===== COMPONENT 1: 4.7µF 50V Bulk Electrolytic Capacitor (C_FLT) ===== -->
+      <!-- Center: X = 1010, Y = 430 -->
+      <g id="bulk_capacitor_4u7" transform="translate(1010, 430)">
+        <!-- Top Lead Wire from Filtered 3V3 Bus (Y=310 -> Y=395) -->
+        <line x1="0" y1="-120" x2="0" y2="-35" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="0" cy="-35" r="3.5" fill="#ef4444"/>
 
-      <!-- Negative Polarity Stripe -->
-      <rect x="5" y="-27" width="8" height="54" fill="#e2e8f0"/>
-      <text x="9" y="-11" text-anchor="middle" fill="#020617" font-size="10" font-weight="900">−</text>
-      <text x="9" y="6"   text-anchor="middle" fill="#020617" font-size="10" font-weight="900">−</text>
-      <text x="9" y="23"  text-anchor="middle" fill="#020617" font-size="10" font-weight="900">−</text>
+        <!-- Positive Polarity (+) Indicator -->
+        <circle cx="-16" cy="-44" r="7" fill="#1e1b4b" stroke="#ef4444" stroke-width="1.2"/>
+        <text x="-16" y="-40" text-anchor="middle" fill="#f87171" font-size="11" font-weight="900">+</text>
 
-      <!-- Silkscreen -->
-      <text x="-3" y="-4" text-anchor="middle" fill="#f8fafc" font-family="monospace" font-size="8" font-weight="800">4.7µF</text>
-      <text x="-3" y="8" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="7">50V</text>
+        <!-- Cylindrical Aluminum Can Body (32 x 64) -->
+        <rect x="-16" y="-32" width="32" height="64" rx="5" fill="url(#can_body)" stroke="#475569" stroke-width="1.5"/>
+        <ellipse cx="0" cy="-32" rx="16" ry="4" fill="#64748b"/>
 
-      <!-- Functional Label (Bulk Low-Frequency Decoupling) -->
-      <rect x="-84" y="-16" width="58" height="32" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
-      <text x="-55" y="-3" text-anchor="middle" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="800">4.7µF BULK</text>
-      <text x="-55" y="9" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Low-Freq</text>
+        <!-- Negative Polarity Stripe (Right Side) -->
+        <rect x="7" y="-32" width="9" height="64" fill="#e2e8f0"/>
+        <text x="11.5" y="-14" text-anchor="middle" fill="#020617" font-size="11" font-weight="900">−</text>
+        <text x="11.5" y="6"   text-anchor="middle" fill="#020617" font-size="11" font-weight="900">−</text>
+        <text x="11.5" y="24"  text-anchor="middle" fill="#020617" font-size="11" font-weight="900">−</text>
+
+        <!-- Silkscreen on Dark Can Body (Unclipped & Crystal Clear) -->
+        <text x="-4" y="-5" text-anchor="middle" fill="#f8fafc" font-family="monospace" font-size="9" font-weight="900">4.7µF</text>
+        <text x="-4" y="9"  text-anchor="middle" fill="#93c5fd" font-family="monospace" font-size="8" font-weight="800">50V</text>
+
+        <!-- Bottom Lead Wire from Can to Ground Rail (Y=462 -> Y=688) -->
+        <line x1="0" y1="32" x2="0" y2="258" stroke="#cbd5e1" stroke-width="3.5" stroke-linecap="round"/>
+      </g>
+      <circle cx="1010" cy="688" r="4.5" fill="#cbd5e1"/>
+
+      <!-- Label Box for 4.7µF (Placed cleanly below at Y=500..536) -->
+      <rect x="965" y="500" width="90" height="34" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
+      <text x="1010" y="514" text-anchor="middle" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="900">4.7µF BULK</text>
+      <text x="1010" y="526" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.8">Low-Freq Ripple</text>
+
+
+      <!-- ===== COMPONENT 2: 100nF Ceramic RF Bypass Capacitor (C_BYP) ===== -->
+      <!-- Center: X = 1110, Y = 430 -->
+      <g id="bypass_capacitor_100nf" transform="translate(1110, 430)">
+        <!-- Top Lead Wire from Filtered 3V3 Bus (Y=310 -> Y=413) -->
+        <line x1="0" y1="-120" x2="0" y2="-17" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="0" cy="-17" r="3.5" fill="#ef4444"/>
+
+        <!-- Ceramic Disc Body (26 x 34) -->
+        <rect x="-13" y="-17" width="26" height="34" rx="6" fill="url(#cap_ceramic)" stroke="#854d0e" stroke-width="1.4"/>
+        <text x="0" y="4" text-anchor="middle" fill="#451a03" font-family="monospace" font-size="9.5" font-weight="900">104</text>
+
+        <!-- Bottom Lead Wire from Disc to Ground Rail (Y=447 -> Y=688) -->
+        <line x1="0" y1="17" x2="0" y2="258" stroke="#cbd5e1" stroke-width="3.5" stroke-linecap="round"/>
+      </g>
+      <circle cx="1110" cy="688" r="4.5" fill="#cbd5e1"/>
+
+      <!-- Label Box for 100nF (Placed cleanly below at Y=500..536) -->
+      <rect x="1065" y="500" width="90" height="34" rx="4" fill="#0f172a" stroke="#facc15" stroke-width="1.2"/>
+      <text x="1110" y="514" text-anchor="middle" fill="#fef08a" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="900">100nF RF</text>
+      <text x="1110" y="526" text-anchor="middle" fill="#facc15" font-family="monospace" font-size="6.8">2.4GHz Wi-Fi Shunt</text>
+
+
+      <!-- ===== FILTER BENEFIT EXPLANATORY CARD (Bottom of Enclosure) ===== -->
+      <rect x="965" y="555" width="190" height="115" rx="6" fill="#0a1324" stroke="#1e293b" stroke-width="1.2"/>
+      <rect x="965" y="555" width="190" height="20" rx="6" fill="#1e1b4b"/>
+      <text x="1060" y="569" text-anchor="middle" fill="#a5b4fc" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="900">PARALLEL DECOUPLING ROLES</text>
+
+      <text x="975" y="589" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="800">• 4.7µF Electrolytic:</text>
+      <text x="983" y="601" fill="#cbd5e1" font-family="sans-serif" font-size="7.2">Absorbs SMPS 100Hz ripple &amp; sags</text>
+
+      <text x="975" y="618" fill="#facc15" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="800">• 100nF Ceramic (104):</text>
+      <text x="983" y="630" fill="#cbd5e1" font-family="sans-serif" font-size="7.2">Shunts 2.4GHz Wi-Fi bursts to GND</text>
+
+      <text x="975" y="647" fill="#4ade80" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="800">• Combined Protection:</text>
+      <text x="983" y="659" fill="#94a3b8" font-family="sans-serif" font-size="7.2">Prevents phantom interrupt pulses</text>
     </g>
-    <circle cx="1030" cy="688" r="4.5" fill="#cbd5e1"/>
-
-    <!-- 100nF (0.1µF) High-Frequency RF Bypass Ceramic Capacitor (C_BYP): at X = 1120, Y = 415 -->
-    <g id="bypass_capacitor_100nf" transform="translate(1120, 415)">
-      <!-- Solid Lead Wires connecting to Filtered 3V3 and Ground -->
-      <line x1="0" y1="-105" x2="0" y2="-14" stroke="#ef4444" stroke-width="3"/>
-      <circle cx="0" cy="-14" r="3.5" fill="#ef4444"/>
-      <line x1="0" y1="14" x2="0" y2="273" stroke="#cbd5e1" stroke-width="3"/>
-
-      <!-- Ceramic Disc Body -->
-      <rect x="-11" y="-14" width="22" height="28" rx="5" fill="url(#cap_ceramic)" stroke="#854d0e" stroke-width="1.2"/>
-      <text x="0" y="3" text-anchor="middle" fill="#451a03" font-family="monospace" font-size="8.5" font-weight="900">104</text>
-
-      <!-- Functional Label (High-Frequency RF Bypass) -->
-      <rect x="18" y="-16" width="58" height="32" rx="4" fill="#0f172a" stroke="#facc15" stroke-width="1.2"/>
-      <text x="47" y="-3" text-anchor="middle" fill="#fef08a" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="800">100nF RF</text>
-      <text x="47" y="9" text-anchor="middle" fill="#facc15" font-family="monospace" font-size="6.5">2.4GHz Wi-Fi</text>
-    </g>
-    <circle cx="1120" cy="688" r="4.5" fill="#cbd5e1"/>
 
 
     <!-- ================= OPERATIONAL SPECIFICATION TABLE (Bottom of Center Column) ================= -->
@@ -448,207 +497,201 @@
       <text x="135" y="48" class="tbl-cell" fill="#facc15">38.0 kHz (TSOP38238)</text>
       <text x="270" y="48" class="tbl-cell">Tuned bandpass rejects daylight &amp; ambient room flicker</text>
 
-      <!-- Row 2: Active Indicator LED -->
-      <line x1="0" y1="58" x2="590" y2="58" stroke="#1e293b" stroke-width="0.8"/>
-      <text x="15" y="74" class="tbl-cell" fill="#4ade80" font-weight="700">IR Indicator LED</text>
-      <text x="135" y="74" class="tbl-cell" fill="#86efac">D_ACT (Emerald) + 470Ω</text>
-      <text x="270" y="74" class="tbl-cell">Flashes on 38kHz burst without adding software CPU load</text>
+      <!-- Row 2: IR Indicator LED -->
+      <line x1="0" y1="58" x2="590" y2="58" stroke="#1e293b" stroke-width="1"/>
+      <text x="15" y="78" class="tbl-cell" fill="#34d399" font-weight="700">IR Indicator LED</text>
+      <text x="135" y="78" class="tbl-cell" fill="#34d399">D_ACT (Emerald) + 470Ω</text>
+      <text x="270" y="78" class="tbl-cell">Flashes on 38kHz burst without adding software CPU load</text>
 
       <!-- Row 3: Logic Hardening -->
-      <line x1="0" y1="84" x2="590" y2="84" stroke="#1e293b" stroke-width="0.8"/>
-      <text x="15" y="100" class="tbl-cell" fill="#818cf8" font-weight="700">Logic Hardening</text>
-      <text x="135" y="100" class="tbl-cell" fill="#38bdf8">10kΩ Pull-Up (R_PULL)</text>
-      <text x="270" y="100" class="tbl-cell">Hardens logic HIGH; guarantees crisp falling edges on Pin 1</text>
+      <line x1="0" y1="88" x2="590" y2="88" stroke="#1e293b" stroke-width="1"/>
+      <text x="15" y="106" class="tbl-cell" fill="#38bdf8" font-weight="700">Logic Hardening</text>
+      <text x="135" y="106" class="tbl-cell" fill="#38bdf8">10kΩ Pull-Up (R_PULL)</text>
+      <text x="270" y="106" class="tbl-cell">Hardens logic HIGH; guarantees crisp falling edges on Pin 1</text>
 
       <!-- Row 4: Power Decoupling -->
-      <line x1="0" y1="110" x2="590" y2="110" stroke="#1e293b" stroke-width="0.8"/>
-      <text x="15" y="126" class="tbl-cell" fill="#818cf8" font-weight="700">Power Decoupling</text>
-      <text x="135" y="126" class="tbl-cell">100Ω + 4.7µF + 100nF</text>
-      <text x="270" y="126" class="tbl-cell">Blocks SMPS hash &amp; Wi-Fi RF brownout phantom interrupts</text>
+      <line x1="0" y1="116" x2="590" y2="116" stroke="#1e293b" stroke-width="1"/>
+      <text x="15" y="126" class="tbl-cell" fill="#f87171" font-weight="700">Power Decoupling</text>
+      <text x="135" y="126" class="tbl-cell" fill="#f87171">100Ω + 4.7µF ∥ 100nF</text>
+      <text x="270" y="126" class="tbl-cell">Dual RC filter blocks SMPS hash &amp; Wi-Fi brownout chatter</text>
     </g>
   </g>
 
-  <!-- RIGHT COLUMN: IR REMOTE CONTROLLER & NEC ENGINE -->
-  <g id="ir_remote_engine">
+  <!-- NEC PROTOCOL & HARDWARE ENGINE -->
+  <g id="nec_protocol_panel">
     <rect x="1224" y="139" width="640" height="905" rx="14" fill="#000000" opacity="0.45"/>
-    <rect x="1220" y="135" width="640" height="905" rx="14" fill="#0a101d" stroke="#334155" stroke-width="2"/>
+    <rect x="1220" y="135" width="640" height="905" rx="14" fill="#0a0f1d" stroke="#334155" stroke-width="2"/>
     <text x="1540" y="163" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="800">NEC IR PROTOCOL &amp; REMOTE INTEGRATION</text>
-    <text x="1540" y="183" text-anchor="middle" fill="#818cf8" font-family="monospace" font-size="11">38kHz Demodulation | Optical Radiation | Key Mapping</text>
+    <text x="1540" y="183" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="11">38kHz Demodulation | Optical Radiation | Key Mapping</text>
 
-    <!-- SECTION A: HANDHELD REMOTE CLIPART & KEY TABLE -->
-    <g id="remote_clipart_section" transform="translate(1250, 250)">
-      <!-- Remote Clipart Body (Width: 140, Height: 240) -->
-      <g id="remote_handheld">
-        <rect x="0" y="0" width="140" height="240" rx="20" fill="url(#remote_body)" stroke="#475569" stroke-width="2.5"/>
-        <rect x="4" y="4" width="132" height="232" rx="16" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.1"/>
-
-        <!-- Top IR Transmitter LED Dome -->
-        <rect x="56" y="-10" width="28" height="12" rx="6" fill="#4338ca" stroke="#818cf8" stroke-width="1.5"/>
-        <circle cx="70" cy="-4" r="5" fill="#a5b4fc"/>
-
-        <!-- Emitted IR Optical Radiation Waves (Targeted at TSOP sensor) -->
-        <path d="M 40,-20 A 40,40 0 0,1 100,-20" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-        <path d="M 25,-32 A 60,60 0 0,1 115,-32" stroke="#6366f1" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <path d="M 10,-44 A 80,80 0 0,1 130,-44" stroke="#4f46e5" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.4"/>
-        <text x="70" y="-50" text-anchor="middle" fill="#a5b4fc" font-family="sans-serif" font-size="9" font-weight="800">950nm IR PULSES</text>
-
-        <!-- Remote Brand Header -->
-        <text x="70" y="24" text-anchor="middle" fill="#e2e8f0" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="900" letter-spacing="1px">SMART REMOTE</text>
-        <line x1="25" y1="30" x2="115" y2="30" stroke="#334155" stroke-width="1"/>
-
-        <!-- Power Button (Emergency All OFF) -->
-        <circle cx="70" cy="52" r="14" fill="#dc2626" stroke="#f87171" stroke-width="1.5"/>
-        <text x="70" y="56" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="900">⏻</text>
-
-        <!-- 4 Channel Control Buttons (Relay 1 to 4) -->
-        <!-- Row 1: Key 1 & Key 2 -->
-        <rect x="22" y="78" width="42" height="32" rx="7" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
-        <text x="43" y="98" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="900">1</text>
-
-        <rect x="76" y="78" width="42" height="32" rx="7" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
-        <text x="97" y="98" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="900">2</text>
-
-        <!-- Row 2: Key 3 & Key 4 -->
-        <rect x="22" y="118" width="42" height="32" rx="7" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
-        <text x="43" y="138" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="900">3</text>
-
-        <rect x="76" y="118" width="42" height="32" rx="7" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
-        <text x="97" y="138" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="900">4</text>
-
-        <!-- Navigation D-Pad -->
-        <circle cx="70" cy="188" r="30" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
-        <circle cx="70" cy="188" r="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
-        <text x="70" y="192" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="8" font-weight="900">OK</text>
-        <text x="70" y="167" text-anchor="middle" fill="#94a3b8" font-size="9">▲</text>
-        <text x="70" y="214" text-anchor="middle" fill="#94a3b8" font-size="9">▼</text>
-        <text x="47" y="191" text-anchor="middle" fill="#94a3b8" font-size="9">◀</text>
-        <text x="93" y="191" text-anchor="middle" fill="#94a3b8" font-size="9">▶</text>
-      </g>
-
-      <!-- Key Mapping Lookup Table (Placed adjacent to remote clipart) -->
-      <g id="nec_key_table" transform="translate(160, 0)">
-        <rect x="0" y="0" width="420" height="240" rx="8" fill="#090e1a" stroke="#1e293b" stroke-width="1.5"/>
-        <rect x="0" y="0" width="420" height="28" rx="8" fill="#0f172a"/>
-        
-        <text x="12" y="19" class="tbl-hdr">KEY</text>
-        <text x="65" y="19" class="tbl-hdr">NEC CODE</text>
-        <text x="165" y="19" class="tbl-hdr">DEFAULT FIRMWARE ACTION</text>
-        <line x1="0" y1="28" x2="420" y2="28" stroke="#1e293b" stroke-width="1"/>
-
-        <!-- Row 1: Key 1 -->
-        <text x="12" y="52" class="tbl-cell" fill="#38bdf8" font-weight="800">BTN 1</text>
-        <text x="65" y="52" class="tbl-cell" fill="#facc15">0xFFA25D</text>
-        <text x="165" y="52" class="tbl-cell">Toggle Relay 1 (Ch 1)</text>
-        <line x1="0" y1="64" x2="420" y2="64" stroke="#1e293b" stroke-width="0.8"/>
-
-        <!-- Row 2: Key 2 -->
-        <text x="12" y="86" class="tbl-cell" fill="#38bdf8" font-weight="800">BTN 2</text>
-        <text x="65" y="86" class="tbl-cell" fill="#facc15">0xFF629D</text>
-        <text x="165" y="86" class="tbl-cell">Toggle Relay 2 (Ch 2)</text>
-        <line x1="0" y1="98" x2="420" y2="98" stroke="#1e293b" stroke-width="0.8"/>
-
-        <!-- Row 3: Key 3 -->
-        <text x="12" y="120" class="tbl-cell" fill="#38bdf8" font-weight="800">BTN 3</text>
-        <text x="65" y="120" class="tbl-cell" fill="#facc15">0xFFE21D</text>
-        <text x="165" y="120" class="tbl-cell">Toggle Relay 3 (Ch 3)</text>
-        <line x1="0" y1="132" x2="420" y2="132" stroke="#1e293b" stroke-width="0.8"/>
-
-        <!-- Row 4: Key 4 -->
-        <text x="12" y="154" class="tbl-cell" fill="#38bdf8" font-weight="800">BTN 4</text>
-        <text x="65" y="154" class="tbl-cell" fill="#facc15">0xFF22DD</text>
-        <text x="165" y="154" class="tbl-cell">Toggle Relay 4 (Ch 4)</text>
-        <line x1="0" y1="166" x2="420" y2="166" stroke="#1e293b" stroke-width="0.8"/>
-
-        <!-- Row 5: Power Button -->
-        <text x="12" y="188" class="tbl-cell" fill="#f87171" font-weight="800">POWER</text>
-        <text x="65" y="188" class="tbl-cell" fill="#facc15">0xFF02FD</text>
-        <text x="165" y="188" class="tbl-cell">ALL RELAYS OFF (Safety)</text>
-        <line x1="0" y1="200" x2="420" y2="200" stroke="#1e293b" stroke-width="0.8"/>
-
-        <!-- Row 6: Repeat Code Note -->
-        <text x="12" y="222" class="tbl-cell" fill="#94a3b8" font-size="9">REPEAT</text>
-        <text x="65" y="222" class="tbl-cell" fill="#a5b4fc" font-size="9">0xFFFFFFFF</text>
-        <text x="165" y="222" class="tbl-cell" fill="#94a3b8" font-size="9">Suppressed (Bounce Filter)</text>
-      </g>
-    </g>
-
-    <!-- SECTION B: DEMODULATION & ACTIVE-LOW TIMING DIAGRAM -->
-    <g id="timing_diagram_section" transform="translate(1250, 475)">
-      <rect x="0" y="0" width="580" height="280" rx="10" fill="#090e1a" stroke="#1e293b" stroke-width="1.5"/>
-      <text x="20" y="26" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="800">38kHz CARRIER BURST VS. DEMODULATED ACTIVE-LOW OUTPUT</text>
-
-      <!-- Trace 1: 38kHz Modulated Optical Burst Stream -->
-      <g transform="translate(20, 45)">
-        <rect x="0" y="0" width="118" height="24" rx="4" fill="#0f172a" stroke="#818cf8" stroke-width="1"/>
-        <text x="59" y="16" text-anchor="middle" fill="#c7d2fe" font-family="monospace" font-size="8.5" font-weight="700">1. Optical IR</text>
-        
-        <!-- Carrier Wave visualization (bursts of 38kHz) -->
-        <path d="M 145,30 L 150,30 
-                 L 152,10 L 154,30 L 156,10 L 158,30 L 160,10 L 162,30 L 164,10 L 166,30 L 168,10 L 170,30
-                 L 172,10 L 174,30 L 176,10 L 178,30 L 180,10 L 182,30 L 184,10 L 186,30 L 188,10 L 190,30
-                 L 192,10 L 194,30 L 196,10 L 198,30 L 200,10 L 202,30 L 204,10 L 206,30 L 208,10 L 210,30
-                 L 212,10 L 214,30 L 216,10 L 218,30 L 220,10 L 222,30 L 224,10 L 226,30 L 228,10 L 230,30
-                 L 232,10 L 234,30 L 236,10 L 238,30 L 240,10 L 242,30 L 244,10 L 246,30 L 248,10 L 250,30
-                 L 310,30 
-                 L 312,10 L 314,30 L 316,10 L 318,30 L 320,10 L 322,30 L 324,10 L 326,30 L 328,10 L 330,30
-                 L 350,30
-                 L 352,10 L 354,30 L 356,10 L 358,30 L 360,10 L 362,30 L 364,10 L 366,30 L 368,10 L 370,30
-                 L 530,30" 
-              fill="none" stroke="#818cf8" stroke-width="1.2"/>
-        <text x="200" y="4" text-anchor="middle" fill="#a5b4fc" font-family="monospace" font-size="8.5">38kHz Burst</text>
-        <text x="280" y="44" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="8.5">No Carrier</text>
-      </g>
-
-      <!-- Downward Arrow: Demodulation -->
-      <path d="M 280,120 L 280,135" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
-      <polygon points="280,142 276,134 284,134" fill="#4ade80"/>
-      <text x="295" y="132" fill="#4ade80" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="800">TSOP Active-LOW Demodulation (Carrier Stripped)</text>
-
-      <!-- Trace 2: Demodulated Digital Output Stream (Active LOW at GPIO 13) -->
-      <g transform="translate(20, 150)">
-        <rect x="0" y="0" width="118" height="24" rx="4" fill="#0f172a" stroke="#4ade80" stroke-width="1"/>
-        <text x="59" y="16" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8.5" font-weight="700">2. Demod OUT</text>
-        
-        <!-- Voltage levels -->
-        <text x="145" y="16" text-anchor="end" fill="#f87171" font-family="monospace" font-size="8">3.3V (HIGH)</text>
-        <text x="145" y="48" text-anchor="end" fill="#64748b" font-family="monospace" font-size="8">0.0V (LOW)</text>
-
-        <!-- Digital Pulse Train (Active LOW) -->
-        <path d="M 145,14 L 150,14 L 150,46 L 250,46 L 250,14 L 310,14 L 310,46 L 330,46 L 330,14 L 350,14 L 350,46 L 370,46 L 370,14 L 530,14" 
-              fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        
-        <circle cx="200" cy="46" r="3" fill="#4ade80"/>
-        <text x="200" y="60" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8.5" font-weight="700">9ms AGC Lead</text>
-        
-        <circle cx="280" cy="14" r="3" fill="#4ade80"/>
-        <text x="280" y="4" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8.5" font-weight="700">4.5ms Space</text>
-
-        <text x="340" y="60" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Bit 0 (1.12ms)</text>
-        <text x="395" y="28" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Bit 1 (2.25ms)</text>
-      </g>
-
-      <text x="20" y="255" fill="#cbd5e1" font-family="'Segoe UI', sans-serif" font-size="10.5">
-        ✓ <tspan fill="#4ade80" font-weight="700">Hardware Interrupt Trigger:</tspan> Triggers ESP32 GPIO 13 on FALLING edge (<tspan fill="#a5b4fc" font-family="monospace">&lt;5ms latency</tspan> to relay switch).
-      </text>
-    </g>
-
-    <!-- SECTION C: FIRMWARE IMPLEMENTATION SUMMARY -->
-    <g id="firmware_summary" transform="translate(1250, 780)">
-      <rect x="0" y="0" width="580" height="230" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-      <text x="16" y="24" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="12.5" font-weight="800">FreeRTOS HARDWARE ENGINE &amp; NVS PERSISTENCE</text>
+    <!-- Handheld Remote Clipart (X = 1245, Y = 210, W = 100, H = 220) -->
+    <g id="handheld_remote" transform="translate(1245, 210)">
+      <!-- Remote Casing -->
+      <rect x="0" y="0" width="95" height="215" rx="18" fill="url(#remote_body)" stroke="#475569" stroke-width="2"/>
+      <rect x="5" y="5" width="85" height="205" rx="14" fill="none" stroke="#64748b" stroke-width="0.8" opacity="0.4"/>
       
-      <!-- Code Box -->
-      <rect x="15" y="38" width="550" height="76" rx="6" fill="#020617" stroke="#334155" stroke-width="1"/>
-      <text x="25" y="56" class="code-txt">// IRremoteESP8266 Decoding Loop (Core 1 Hardware Task)</text>
-      <text x="25" y="74" class="code-txt">if (irRecv.decode(&amp;results)) {</text>
-      <text x="25" y="92" class="code-txt">    if (results.value != 0xFFFFFFFF) executeCommand(results.value);</text>
-      <text x="25" y="106" class="code-txt">    irRecv.resume(); // Receive next frame</text>
-      <text x="25" y="114" class="code-txt">}</text>
+      <!-- IR Emitter Diode Dome at Top -->
+      <path d="M 37,0 A 10,10 0 0,1 58,0 Z" fill="#6366f1" stroke="#818cf8" stroke-width="1.2"/>
+      <circle cx="47.5" cy="-2" r="3" fill="#ffffff" opacity="0.75"/>
 
-      <text x="16" y="140" class="body-txt">• <tspan fill="#38bdf8" font-weight="700">Zero Network Dependency:</tspan> Operates continuously during router outage</text>
-      <text x="16" y="160" class="body-txt">• <tspan fill="#facc15" font-weight="700">Dynamic Key Learning:</tspan> Stored in ESP32 Non-Volatile Storage (<tspan fill="#facc15" font-family="monospace">Preferences API</tspan>)</text>
-      <text x="16" y="180" class="body-txt">• <tspan fill="#4ade80" font-weight="700">Repeat Code Suppression:</tspan> Discards <tspan fill="#a5b4fc" font-family="monospace">0xFFFFFFFF</tspan> hold codes to avoid bounce</text>
-      <text x="16" y="202" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="800">✓ Web Dashboard &amp; REST API allow remapping any IR remote key on the fly!</text>
+      <!-- Optical Beam Rays -->
+      <path d="M 47.5,-6 L 35,-22 M 47.5,-6 L 47.5,-26 M 47.5,-6 L 60,-22" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round"/>
+      <text x="47.5" y="-30" text-anchor="middle" fill="#a5b4fc" font-family="monospace" font-size="7.5" font-weight="800">950nm IR PULSES</text>
+
+      <text x="47.5" y="24" text-anchor="middle" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="7.5" font-weight="900">SMART REMOTE</text>
+
+      <!-- Power Button (Red) -->
+      <circle cx="47.5" cy="46" r="11" fill="#991b1b" stroke="#ef4444" stroke-width="1.5"/>
+      <path d="M 47.5,41 L 47.5,46 M 44,43 A 5,5 0 1,0 51,43" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- Keypad Buttons: 1, 2, 3, 4 -->
+      <rect x="18" y="70" width="26" height="20" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="31" y="84" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="800">1</text>
+
+      <rect x="52" y="70" width="26" height="20" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="65" y="84" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="800">2</text>
+
+      <rect x="18" y="98" width="26" height="20" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="31" y="112" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="800">3</text>
+
+      <rect x="52" y="98" width="26" height="20" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="65" y="112" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="800">4</text>
+
+      <!-- D-Pad Navigation -->
+      <circle cx="47.5" cy="150" r="24" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+      <circle cx="47.5" cy="150" r="10" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+      <text x="47.5" y="153" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="6.5" font-weight="900">OK</text>
+      <!-- D-Pad Arrows -->
+      <path d="M 47.5,130 L 45,135 L 50,135 Z" fill="#94a3b8"/>
+      <path d="M 47.5,170 L 45,165 L 50,165 Z" fill="#94a3b8"/>
+      <path d="M 27.5,150 L 32.5,147.5 L 32.5,152.5 Z" fill="#94a3b8"/>
+      <path d="M 67.5,150 L 62.5,147.5 L 62.5,152.5 Z" fill="#94a3b8"/>
+
+      <!-- Bottom Small Buttons -->
+      <circle cx="28" cy="192" r="4.5" fill="#334155"/>
+      <circle cx="47.5" cy="192" r="4.5" fill="#334155"/>
+      <circle cx="67" cy="192" r="4.5" fill="#334155"/>
+    </g>
+
+    <!-- NEC Key Map Table (X = 1360, Y = 210, W = 475, H = 215) -->
+    <g id="nec_key_table" transform="translate(1360, 210)">
+      <rect x="0" y="0" width="475" height="215" rx="8" fill="#090e1a" stroke="#1e293b" stroke-width="1.5"/>
+      <rect x="0" y="0" width="475" height="26" rx="8" fill="#0f172a"/>
+
+      <!-- Table Header -->
+      <text x="15" y="17" class="tbl-hdr">KEY</text>
+      <text x="75" y="17" class="tbl-hdr">NEC CODE</text>
+      <text x="180" y="17" class="tbl-hdr">DEFAULT FIRMWARE ACTION</text>
+
+      <!-- Row 1: Button 1 -->
+      <line x1="0" y1="26" x2="475" y2="26" stroke="#1e293b" stroke-width="1"/>
+      <text x="15" y="44" class="tbl-cell" fill="#ffffff" font-weight="700">BTN 1</text>
+      <text x="75" y="44" class="tbl-cell" fill="#facc15">0xFFA25D</text>
+      <text x="180" y="44" class="tbl-cell">Toggle Relay 1 (Ch 1)</text>
+
+      <!-- Row 2: Button 2 -->
+      <line x1="0" y1="58" x2="475" y2="58" stroke="#1e293b" stroke-width="1"/>
+      <text x="15" y="76" class="tbl-cell" fill="#ffffff" font-weight="700">BTN 2</text>
+      <text x="75" y="76" class="tbl-cell" fill="#facc15">0xFF629D</text>
+      <text x="180" y="76" class="tbl-cell">Toggle Relay 2 (Ch 2)</text>
+
+      <!-- Row 3: Button 3 -->
+      <line x1="0" y1="90" x2="475" y2="90" stroke="#1e293b" stroke-width="1"/>
+      <text x="15" y="108" class="tbl-cell" fill="#ffffff" font-weight="700">BTN 3</text>
+      <text x="75" y="108" class="tbl-cell" fill="#facc15">0xFFE21D</text>
+      <text x="180" y="108" class="tbl-cell">Toggle Relay 3 (Ch 3)</text>
+
+      <!-- Row 4: Button 4 -->
+      <line x1="0" y1="122" x2="475" y2="122" stroke="#1e293b" stroke-width="1"/>
+      <text x="15" y="140" class="tbl-cell" fill="#ffffff" font-weight="700">BTN 4</text>
+      <text x="75" y="140" class="tbl-cell" fill="#facc15">0xFF22DD</text>
+      <text x="180" y="140" class="tbl-cell">Toggle Relay 4 (Ch 4)</text>
+
+      <!-- Row 5: Power Button -->
+      <line x1="0" y1="154" x2="475" y2="154" stroke="#1e293b" stroke-width="1"/>
+      <text x="15" y="172" class="tbl-cell" fill="#f87171" font-weight="700">POWER</text>
+      <text x="75" y="172" class="tbl-cell" fill="#f87171">0xFF02FD</text>
+      <text x="180" y="172" class="tbl-cell" fill="#fca5a5">ALL RELAYS OFF (Safety)</text>
+
+      <!-- Row 6: Repeat Code -->
+      <line x1="0" y1="186" x2="475" y2="186" stroke="#1e293b" stroke-width="1"/>
+      <text x="15" y="203" class="tbl-cell" fill="#94a3b8">REPEAT</text>
+      <text x="75" y="203" class="tbl-cell" fill="#94a3b8">0xFFFFFFFF</text>
+      <text x="180" y="203" class="tbl-cell" fill="#94a3b8">Suppressed (Bounce Filter)</text>
+    </g>
+
+
+    <!-- ================= 38kHz CARRIER BURST VS ACTIVE-LOW DEMODULATED SIGNAL ================= -->
+    <g id="demodulation_waveform_graph" transform="translate(1245, 455)">
+      <rect x="0" y="0" width="590" height="250" rx="8" fill="#090e1a" stroke="#1e293b" stroke-width="1.5"/>
+      <text x="15" y="22" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="11.5" font-weight="800">38kHz CARRIER BURST VS. DEMODULATED ACTIVE-LOW OUTPUT</text>
+
+      <!-- Trace 1: Optical 38kHz IR Signal -->
+      <rect x="15" y="36" width="110" height="18" rx="3" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+      <text x="70" y="49" text-anchor="middle" fill="#c7d2fe" font-family="monospace" font-size="8" font-weight="800">1. Optical IR</text>
+
+      <!-- High-Frequency 38kHz Bursts -->
+      <g stroke="#818cf8" stroke-width="1.2">
+        <!-- 9ms AGC Burst (Dense 38kHz Square Waves) -->
+        <line x1="140" y1="58" x2="140" y2="38"/><line x1="143" y1="58" x2="143" y2="38"/><line x1="146" y1="58" x2="146" y2="38"/><line x1="149" y1="58" x2="149" y2="38"/><line x1="152" y1="58" x2="152" y2="38"/><line x1="155" y1="58" x2="155" y2="38"/><line x1="158" y1="58" x2="158" y2="38"/><line x1="161" y1="58" x2="161" y2="38"/><line x1="164" y1="58" x2="164" y2="38"/><line x1="167" y1="58" x2="167" y2="38"/><line x1="170" y1="58" x2="170" y2="38"/><line x1="173" y1="58" x2="173" y2="38"/><line x1="176" y1="58" x2="176" y2="38"/><line x1="179" y1="58" x2="179" y2="38"/><line x1="182" y1="58" x2="182" y2="38"/><line x1="185" y1="58" x2="185" y2="38"/><line x1="188" y1="58" x2="188" y2="38"/><line x1="191" y1="58" x2="191" y2="38"/><line x1="194" y1="58" x2="194" y2="38"/><line x1="197" y1="58" x2="197" y2="38"/><line x1="200" y1="58" x2="200" y2="38"/><line x1="203" y1="58" x2="203" y2="38"/><line x1="206" y1="58" x2="206" y2="38"/><line x1="209" y1="58" x2="209" y2="38"/>
+        <line x1="212" y1="58" x2="280" y2="58" stroke="#475569" stroke-width="1"/> <!-- 4.5ms Space -->
+        <!-- Bit 1 Burst -->
+        <line x1="280" y1="58" x2="280" y2="38"/><line x1="283" y1="58" x2="283" y2="38"/><line x1="286" y1="58" x2="286" y2="38"/><line x1="289" y1="58" x2="289" y2="38"/><line x1="292" y1="58" x2="292" y2="38"/><line x1="295" y1="58" x2="295" y2="38"/><line x1="298" y1="58" x2="298" y2="38"/><line x1="301" y1="58" x2="301" y2="38"/>
+        <line x1="304" y1="58" x2="330" y2="58" stroke="#475569" stroke-width="1"/>
+        <!-- Bit 0 Burst -->
+        <line x1="330" y1="58" x2="330" y2="38"/><line x1="333" y1="58" x2="333" y2="38"/><line x1="336" y1="58" x2="336" y2="38"/><line x1="339" y1="58" x2="339" y2="38"/><line x1="342" y1="58" x2="342" y2="38"/><line x1="345" y1="58" x2="345" y2="38"/><line x1="348" y1="58" x2="348" y2="38"/><line x1="351" y1="58" x2="351" y2="38"/>
+        <line x1="354" y1="58" x2="560" y2="58" stroke="#475569" stroke-width="1"/>
+      </g>
+      <text x="176" y="32" text-anchor="middle" fill="#a5b4fc" font-family="monospace" font-size="7">38kHz Burst</text>
+      <text x="246" y="68" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="7">No Carrier</text>
+
+      <!-- Divider -->
+      <line x1="15" y1="80" x2="575" y2="80" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,4"/>
+
+      <!-- Trace 2: Demodulated Output on Pin 1 (Active-LOW) -->
+      <rect x="15" y="96" width="110" height="18" rx="3" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+      <text x="70" y="109" text-anchor="middle" fill="#a7f3d0" font-family="monospace" font-size="7.5" font-weight="800">2. Demod OUT</text>
+      <text x="128" y="105" fill="#f87171" font-family="monospace" font-size="7.5" font-weight="800">3.3V (HIGH)</text>
+      <text x="128" y="138" fill="#38bdf8" font-family="monospace" font-size="7.5" font-weight="800">0.0V (LOW)</text>
+
+      <!-- Active-LOW Square Waveform: High (Idle) -> LOW during Burst -> High during Space -->
+      <path d="M 125,98 L 140,98 L 140,135 L 212,135 L 212,98 L 280,98 L 280,135 L 304,135 L 304,98 L 330,98 L 330,135 L 354,135 L 354,98 L 570,98" 
+            fill="none" stroke="#34d399" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- Annotations for AGC Lead, Space, and Bits -->
+      <line x1="140" y1="142" x2="212" y2="142" stroke="#64748b" stroke-width="1"/>
+      <text x="176" y="154" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="7.5">9ms AGC Lead</text>
+
+      <line x1="212" y1="90" x2="280" y2="90" stroke="#64748b" stroke-width="1"/>
+      <text x="246" y="86" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="7.5">4.5ms Space</text>
+
+      <text x="317" y="132" text-anchor="middle" fill="#facc15" font-family="monospace" font-size="7.5">Bit 1 (2.25ms)</text>
+      <text x="342" y="154" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="7.5">Bit 0 (1.12ms)</text>
+
+      <!-- Carrier Stripped Explanatory Banner -->
+      <rect x="250" y="168" width="320" height="24" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+      <text x="260" y="184" fill="#34d399" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="800">▼ TSOP Active-LOW Demodulation (Carrier Stripped)</text>
+
+      <text x="15" y="210" fill="#a7f3d0" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="700">✓ Hardware Interrupt Trigger: <tspan fill="#ffffff" font-weight="400">Triggers ESP32 GPIO 13 on FALLING edge (&lt;5ms latency to relay switch).</tspan></text>
+    </g>
+
+
+    <!-- ================= FREERTOS HARDWARE TASK CARD (Bottom Right) ================= -->
+    <g id="freertos_ir_card" transform="translate(1245, 730)">
+      <rect x="0" y="0" width="590" height="155" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+      <text x="15" y="22" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="11.5" font-weight="800">FreeRTOS HARDWARE ENGINE &amp; NVS PERSISTENCE</text>
+
+      <rect x="15" y="34" width="560" height="52" rx="4" fill="#020617" stroke="#1e293b" stroke-width="1"/>
+      <text x="25" y="50" class="code-txt">// IRremoteESP8266 Decoding Loop (Core 1 Hardware Task)</text>
+      <text x="25" y="64" class="code-txt">if (irRecv.decode(&amp;results)) {</text>
+      <text x="25" y="78" class="code-txt">  if (results.value != 0xFFFFFFFF) executeCommand(results.value);</text>
+      <text x="25" y="92" class="code-txt">  irRecv.resume(); // Receive next frame</text>
+      <text x="25" y="106" class="code-txt">}</text>
+
+      <text x="15" y="112" class="body-txt">• <tspan fill="#38bdf8" font-weight="700">Zero Network Dependency:</tspan> Operates continuously during router outage</text>
+      <text x="15" y="128" class="body-txt">• <tspan fill="#34d399" font-weight="700">Dynamic Key Learning:</tspan> Stored in ESP32 Non-Volatile Storage (<tspan fill="#facc15">Preferences API</tspan>)</text>
+      <text x="15" y="144" class="body-txt">• <tspan fill="#f87171" font-weight="700">Repeat Code Suppression:</tspan> Discards 0xFFFFFFFF hold codes to avoid bounce</text>
+      <text x="15" y="160" fill="#a7f3d0" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700">✓ Web Dashboard &amp; REST API allow remapping any IR remote key on the fly!</text>
     </g>
   </g>
   <!-- FOREGROUND INTERCONNECTING WIRES -->
@@ -661,7 +704,7 @@
     <rect x="170" y="788" width="300" height="24" rx="4" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.3"/>
     <text x="320" y="804" text-anchor="middle" fill="#c7d2fe" class="wire-txt">DEMODULATED IR DATA ──► GPIO 13</text>
 
-    <!-- +3.3V Logic Supply from ESP32 to Filter Resistor Input (With Arc Bridge over Data Line) -->
+    <!-- +3.3V Logic Supply from ESP32 to Filter Resistor Input -->
     <path d="M 515,674 L 546,674 L 546,261 L 641,261" fill="none" stroke="#ef4444" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="515" cy="674" r="5" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
     <rect x="522" y="380" width="48" height="20" rx="4" fill="#1e1b4b" stroke="#ef4444" stroke-width="1.2"/>
