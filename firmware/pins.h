@@ -61,7 +61,7 @@
 // -----------------------------------------------------------------------------
 // 4. Sensors
 // -----------------------------------------------------------------------------
-// Infrared Receiver (TSOP38238 / 15120P, 38kHz demodulated Active-LOW stream)
+// Infrared Receiver (15120P 15m 180° / TSOP38238 compatible, 38kHz demodulated Active-LOW stream)
 #define PIN_IR_RECV         13    // IR Data Input (Left Pin 13)
 
 // Ambient Light Sensor (LDR Voltage Divider on ADC1 Channel 6)

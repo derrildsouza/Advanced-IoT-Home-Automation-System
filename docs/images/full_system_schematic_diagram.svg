@@ -486,14 +486,14 @@
     </g>
   </g>
 
-  <!-- BOX 4: TSOP 38kHz IR RECEIVER (DEDICATED) -->
+  <!-- BOX 4: 15120P 38kHz IR RECEIVER (DEDICATED) -->
   <g id="box_tsop_ir">
     <rect x="49" y="709" width="470" height="245" rx="12" fill="#000000" opacity="0.45"/>
     <rect x="45" y="705" width="470" height="245" rx="12" fill="#0f172a" stroke="#818cf8" stroke-width="1.5"/>
-    <text x="65" y="727" class="box-title" fill="#a5b4fc">3-PIN TSOP 38kHz IR RECEIVER (15120P / TSOP38238)</text>
+    <text x="65" y="727" class="box-title" fill="#a5b4fc">3-PIN 15120P 38kHz IR RECEIVER (15m, 180°)</text>
     <text x="65" y="741" class="box-sub">Active-LOW Optical Demodulator | RC Power Filter &amp; Active D_ACT Indicator LED</text>
 
-    <!-- Internal TSOP Interface Circuit -->
+    <!-- Internal 15120P Interface Circuit -->
     <g transform="translate(65, 751)">
       <rect x="0" y="0" width="430" height="188" rx="8" fill="#182234" stroke="#818cf8" stroke-width="0.9"/>
 
@@ -526,12 +526,12 @@
       <text x="165" y="65" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="6.5" font-weight="700">104</text>
       <path d="M 165,74 L 165,145" stroke="#94a3b8" stroke-width="1.5"/>
 
-      <!-- TSOP 38kHz Clipart Package -->
+      <!-- 15120P 38kHz Clipart Package -->
       <g transform="translate(195, 45)">
         <rect x="0" y="0" width="55" height="55" rx="6" fill="#111827" stroke="#6366f1" stroke-width="1.5"/>
         <circle cx="27" cy="27" r="14" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.2"/>
         <text x="27" y="27" text-anchor="middle" fill="#c7d2fe" font-family="'Segoe UI', sans-serif" font-size="7.5" font-weight="700">38kHz</text>
-        <text x="27" y="38" text-anchor="middle" fill="#a5b4fc" font-family="monospace" font-size="6">TSOP</text>
+        <text x="27" y="38" text-anchor="middle" fill="#a5b4fc" font-family="monospace" font-size="6">15120P</text>
 
         <!-- Pin 3: VCC (Top-Right) -->
         <path d="M 42,0 L 42,-21" stroke="#ef4444" stroke-width="1.8"/>
@@ -989,7 +989,7 @@
     <circle cx="704" cy="658.0" r="4.5" fill="#10b981" stroke="#fff" stroke-width="1.5"/>
     <circle cx="475" cy="630" r="4" fill="#10b981"/>
 
-    <!-- TSOP IR to GPIO 13 (Lane L1 X=552) -->
+    <!-- 15120P IR to GPIO 13 (Lane L1 X=552) -->
     <path d="M 475,851 L 552,851 L 552,686.0 L 704,686.0" fill="none" stroke="#818cf8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="704" cy="686.0" r="4.5" fill="#818cf8" stroke="#fff" stroke-width="1.5"/>
     <circle cx="475" cy="851" r="4" fill="#818cf8"/>

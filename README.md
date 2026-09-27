@@ -54,7 +54,7 @@ The system is split across two computing nodes: your **Raspberry Pi Server** (fo
 | **Status LED 4** | `GPIO 33` | Left Pin 7 | LEDC PWM (Ch 3) | 220Ω resistor; mirrors Relay 4 (PWM auto-dimmed via LDR) |
 | **Power Indicator LED** | `GPIO 12` | Left Pin 12 | LEDC PWM (Ch 4) | 330Ω to GND; Always ON (*MTDI 3.3V flash boot-safe*, auto-dimmed) |
 | **Wi-Fi Status LED** | `GPIO 2` | Right Pin 12 | LEDC PWM (Ch 5) | On-board Blue LED (Solid connected / Breathing AP / Auto-dimmed) |
-| **TSOP 38kHz IR RX** | `GPIO 13` | Left Pin 13 | Digital In / INT | 38kHz IR demodulator (TSOP38238 / 15120P) + Active LED indicator |
+| **15120P 38kHz IR RX** | `GPIO 13` | Left Pin 13 | Digital In / INT | 38kHz IR demodulator (15120P 15m 180° / TSOP38238 compatible) + Active LED indicator |
 | **Ambient LDR Sensor** | `GPIO 34` | Left Pin 4 | ADC1_CH6 | 10kΩ voltage divider (ADC1 operates concurrently with Wi-Fi) |
 | **[RESERVED] I2C SDA** | `GPIO 21` | Right Pin 5 | Hardware I2C | Native Wire Data line for OLED displays, RTC, sensors |
 | **[RESERVED] I2C SCL** | `GPIO 22` | Right Pin 2 | Hardware I2C | Native Wire Clock line |

@@ -12,7 +12,7 @@ The **Advanced IoT Home Automation System** is an industrial-grade, edge-resilie
 | **Edge Autonomy** | Zero-latency local switching without reliance on Wi-Fi, routers, or servers. | Dedicated hardware interrupt / tight polling loop running on ESP32 Core 1. |
 | **Physical Feedback** | Visual confirmation of active circuits and system state. | 4 status LEDs mapped 1:1 to relay channels, auto-dimmed via hardware PWM. |
 | **Ambient Adaptation** | Non-intrusive nighttime illumination. | LDR sensor on ADC1 measuring ambient lux and adjusting LED brightness via EMA filter. |
-| **Wireless Input** | Secondary local wireless line-of-sight control (up to 15m range). | 3-Pin TSOP 38kHz IR Receiver (15120P / TSOP38238) decoding NEC/RC5 protocols. |
+| **Wireless Input** | Secondary local wireless line-of-sight control (up to 15m range). | 3-Pin 15120P 38kHz IR Receiver (15m, 180° FOV; TSOP38238-compatible) decoding NEC/RC5 protocols. |
 | **Power-Cut Recovery** | Restore previous operational states after grid power failure. | Persistent state storage in ESP32 Non-Volatile Storage (NVS / Preferences API). |
 | **System Diagnostics** | Hard reboot and network reconfiguration. | Dedicated external button (short press = reboot; hold 5s = Wi-Fi config AP mode). |
 | **Network Interfaces** | Local browser UI, REST API, MQTT telemetry, and Raspberry Pi CLI. | Dual-core FreeRTOS task on Core 0 running HTTP server, WebSockets, and MQTT client. |
@@ -47,7 +47,7 @@ The **Advanced IoT Home Automation System** is an industrial-grade, edge-resilie
      Relay 3 (GPIO27) | [ ]           [ ] | RX2 (Button 4 - GP16)
      Relay 4 (GPIO14) | [ ]           [ ] | D4  (Status LED 1 - GP4)
    Power LED (GPIO12) | [ ]           [ ] | D2  (Wi-Fi Status LED - GP2)
-  TSOP IR RX (GPIO13) | [ ]           [ ] | D15 (Status LED 2 - GP15)
+  15120P IR RX (GP13) | [ ]           [ ] | D15 (Status LED 2 - GP15)
                   GND | [ ]           [ ] | GND
                   VIN | [ ]           [ ] | 3V3
                       +-------------------+
@@ -65,7 +65,7 @@ The **Advanced IoT Home Automation System** is an industrial-grade, edge-resilie
 | **GPIO 33** | Left Pin 7  | Output | **Status LED 4** | LEDC PWM (Ch 3) | $220\Omega$ resistor; mirrors Relay 4 (PWM auto-dimmed) |
 | **GPIO 12** | Left Pin 12 | Output | **Power Indicator LED** | LEDC PWM (Ch 4) | $330\Omega$ resistor to GND; **PWM auto-dimmed** (*MTDI safe pull-down*) |
 | **GPIO 2**  | Right Pin 12| Output | **Wi-Fi Status LED** | LEDC PWM (Ch 5) | On-board Blue LED (or external); **PWM auto-dimmed** |
-| **GPIO 13** | Left Pin 13 | Input  | **TSOP 38kHz IR RX** | Digital In / INT | Demodulated Active-LOW pulse stream from TSOP38238 |
+| **GPIO 13** | Left Pin 13 | Input  | **15120P 38kHz IR RX** | Digital In / INT | Demodulated Active-LOW pulse stream from 15120P (15m, 180° FOV) |
 | **GPIO 34** | Left Pin 4  | Input  | **LDR Ambient Sensor**| ADC1_CH6 | Analog voltage divider (ADC1 operates concurrently with Wi-Fi) |
 | **GPIO 35** | Left Pin 5  | Input  | **Button 1 (Manual)** | Digital In (GPI) | Momentary to GND + **External $10\text{k}\Omega$ pull-up to 3.3V** |
 | **GPIO 36** | Left Pin 2 (VP)| Input | **Button 2 (Manual)** | Digital In (GPI) | Momentary to GND + **External $10\text{k}\Omega$ pull-up to 3.3V** |
@@ -153,7 +153,7 @@ When driving inductive loads (fans, fluorescent ballasts, refrigerator compresso
 
 ---
 
-### 3.4 3-Pin TSOP 38kHz IR Receiver (15120P / TSOP38238) Interface Module
+### 3.4 3-Pin 15120P 38kHz IR Receiver (15-Meter 180°) Interface Module
 ```
        ESP32 Pin 3V3 (Raw +3.3V Logic Supply from ESP32 LDO/DC-DC)
                       │
@@ -166,9 +166,9 @@ When driving inductive loads (fans, fluorescent ballasts, refrigerator compresso
          │                     │                    │                        │                      │
          │                     │                    ▼ (Pin 3: VCC)           ▼                      ▼ (Anode +)
        +─┴─+                  ─┴─           ┌───────────────┐          ┌───────────┐          ┌───────────┐
-       │4.7│ C_FLT            ─── C_BYP     │   TSOP38238   │          │  10kΩ 1%  │          │   D_ACT   │ Emerald Green
+       │4.7│ C_FLT            ─── C_BYP     │    15120P     │          │  10kΩ 1%  │          │   D_ACT   │ Emerald Green
        │ µF│ Bulk              │  100nF     │ 38kHz IR RCVR │          │  (R_PULL) │          │  IR LED   │ Reception LED
-       └─┬─┘ Low-Freq          │  Ceramic   │  15120P Opto  │          │  Pull-Up  │          └─────┬─────┘
+       └─┬─┘ Low-Freq          │  Ceramic   │ 15m 180° Opto │          │  Pull-Up  │          └─────┬─────┘
          │   Ripple            │  RF Bypass └───┬───────┬───┘          └─────┬─────┘                │ (Cathode -)
          │   (100Hz)           │  (2.4GHz)      │       │                    │                ┌─────┴─────┐
          │                     │         (Pin 2)│       │ (Pin 1: OUT)       │                │  470Ω 1%  │ Current Limiter
@@ -183,15 +183,15 @@ When driving inductive loads (fans, fluorescent ballasts, refrigerator compresso
 ```
 * **Single Power Rail Flow (Raw vs. Clean Filtered +3.3V):**
   * **Raw +3.3V Supply (`ESP32 Pin 3V3`):** Unfiltered digital system rail powering the ESP32 chip and Wi-Fi radio; carries heavy 2.4GHz Wi-Fi switching spikes and SMPS DC-DC converter ripple.
-  * **Series Resistor ($R_{\text{FLT}} = 100\Omega$):** Acts as the series impedance element of the low-pass filter, dropping AC high-frequency ripple voltage while causing negligible DC voltage drop ($<0.05\text{V}$ given TSOP's tiny $0.35\text{mA}$ typical quiescent current draw).
-  * **Clean Filtered +3.3V Rail:** The single, noise-isolated power rail downstream of $R_{\text{FLT}}$ that powers the TSOP optical preamplifier (Pin 3), the $10\text{k}\Omega$ pull-up resistor ($R_{\text{PULL}}$), and the $D_{\text{ACT}}$ reception indicator LED.
+  * **Series Resistor ($R_{\text{FLT}} = 100\Omega$):** Acts as the series impedance element of the low-pass filter, dropping AC high-frequency ripple voltage while causing negligible DC voltage drop ($<0.05\text{V}$ given 15120P's tiny $0.35\text{mA}$ typical quiescent current draw).
+  * **Clean Filtered +3.3V Rail:** The single, noise-isolated power rail downstream of $R_{\text{FLT}}$ that powers the 15120P optical preamplifier (Pin 3), the $10\text{k}\Omega$ pull-up resistor ($R_{\text{PULL}}$), and the $D_{\text{ACT}}$ reception indicator LED.
 * **Dual Decoupling Filter ($100\Omega + 4.7\mu\text{F} \parallel 100\text{nF}$):** Forms an RC low-pass filter with cutoff frequency $f_c = \frac{1}{2\pi \cdot R \cdot C_{\text{tot}}} \approx 338.6\text{ Hz}$, eliminating false interrupt triggers on GPIO 13:
   * **$C_{\text{FLT}}$ ($4.7\mu\text{F}$ Electrolytic Bulk):** Absorbs low-frequency $100\text{Hz}$ switching ripple and momentary supply dips caused by relay coils or LED transitions.
-  * **$C_{\text{BYP}}$ ($100\text{nF}$ Ceramic RF Bypass):** Placed in close physical proximity (<5mm) to TSOP Pin 3 and Pin 2 to shunt high-frequency $2.4\text{ GHz}$ Wi-Fi RF burst hash to ground.
-* **Active-LOW Reception Indicator LED ($D_{\text{ACT}}$):** Connected between Clean Filtered 3.3V and OUT via a $470\Omega$ current-limiting resistor ($R_{\text{LED}}$). Sits OFF during idle (both sides at 3.3V); flashes instantly (<5ms) on incoming 38kHz bursts when the TSOP internal photodiode/preamplifier sinks Pin 1 to 0V.
+  * **$C_{\text{BYP}}$ ($100\text{nF}$ Ceramic RF Bypass):** Placed in close physical proximity (<5mm) to 15120P Pin 3 and Pin 2 to shunt high-frequency $2.4\text{ GHz}$ Wi-Fi RF burst hash to ground.
+* **Active-LOW Reception Indicator LED ($D_{\text{ACT}}$):** Connected between Clean Filtered 3.3V and OUT via a $470\Omega$ current-limiting resistor ($R_{\text{LED}}$). Sits OFF during idle (both sides at 3.3V); flashes instantly (<5ms) on incoming 38kHz bursts when the 15120P internal photodiode/preamplifier sinks Pin 1 to 0V.
 * **10kΩ Pull-Up ($R_{\text{PULL}}$):** Hardens the logic HIGH state against line capacitance and prevents Wi-Fi RF pickup on long sensor leads.
-#### Dedicated 3-Pin TSOP 38kHz IR Receiver & Active Filter Schematic:
-![3-Pin TSOP 38kHz IR Receiver Schematic Diagram](images/ir_receiver_schematic.jpg)
+#### Dedicated 3-Pin 15120P 38kHz IR Receiver & Active Filter Schematic:
+![3-Pin 15120P 38kHz IR Receiver Schematic Diagram](images/ir_receiver_schematic.jpg)
 
 ---
 

@@ -106,8 +106,8 @@
   <g transform="translate(60, 36)">
     <circle cx="16" cy="0" r="16" fill="#6366f1"/>
     <text x="16" y="6" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="18" font-weight="900">📡</text>
-    <text x="45" y="0" class="main-title">3-PIN TSOP 38kHz INFRARED RECEIVER INTERFACE SCHEMATIC</text>
-    <text x="45" y="22" class="sub-title">ESP32-WROOM-32 GPIO 13 Hardware Interrupt | TSOP38238 Sensor | Active IR Reception Indicator LED | Dual Decoupling Filter</text>
+    <text x="45" y="0" class="main-title">3-PIN 15120P 38kHz INFRARED RECEIVER INTERFACE SCHEMATIC</text>
+    <text x="45" y="22" class="sub-title">ESP32-WROOM-32 GPIO 13 Hardware Interrupt | 15120P (15m, 180°) Sensor | Active IR Reception Indicator LED | Dual Decoupling Filter</text>
   </g>
 
   <!-- ESP32 DEV BOARD CHASSIS -->
@@ -153,7 +153,7 @@
     <text x="82" y="866" fill="#a5b4fc" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="900">🔒 DUAL RC LOW-PASS POWER FILTER &amp; INDICATOR LED</text>
     
     <text x="82" y="890" class="body-txt">• <tspan fill="#f87171" font-weight="700">Series 100Ω Resistor (R_FLT):</tspan> Placed in series with incoming 3.3V</text>
-    <text x="90" y="908" class="body-txt">to isolate TSOP VCC from noisy ESP32 Wi-Fi bursts &amp; power rail ripple.</text>
+    <text x="90" y="908" class="body-txt">to isolate 15120P VCC from noisy ESP32 Wi-Fi bursts &amp; power rail ripple.</text>
 
     <text x="82" y="934" class="body-txt">• <tspan fill="#38bdf8" font-weight="700">Dual Decoupling Cutoff:</tspan> 100Ω + 4.7µF (bulk) ∥ 100nF (RF ceramic):</text>
     <text x="90" y="952" fill="#fde047" font-family="monospace" font-size="10.5">fc = 1 / (2π · 100Ω · 4.7µF) ≈ 338.6 Hz  (+ 100nF High-Freq RF Bypass)</text>
@@ -163,17 +163,17 @@
     <text x="90" y="1014" class="body-txt">without adding software CPU load or degrading GPIO 13 input signals.</text>
   </g>
 
-  <!-- TSOP HARDWARE CIRCUIT CHASSIS -->
-  <g id="tsop_hardware_circuit">
+  <!-- 15120P HARDWARE CIRCUIT CHASSIS -->
+  <g id="ir_hardware_circuit">
     <rect x="564" y="139" width="630" height="905" rx="14" fill="#000000" opacity="0.45"/>
     <rect x="560" y="135" width="630" height="905" rx="14" fill="#0c1322" stroke="#38bdf8" stroke-width="2"/>
-    <text x="875" y="163" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="800">3-PIN TSOP SENSOR &amp; COMPLETE RC FILTER INTERFACE</text>
-    <text x="875" y="183" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="700">TSOP38238 Demodulator | Active Reception LED | 10kΩ Pull-Up | Dual Low-Pass Decoupling Filter</text>
+    <text x="875" y="163" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="800">3-PIN 15120P SENSOR &amp; COMPLETE RC FILTER INTERFACE</text>
+    <text x="875" y="183" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="700">15120P (15m, 180°) Demodulator | Active Reception LED | 10kΩ Pull-Up | Dual Low-Pass Decoupling Filter</text>
 
     <!-- BREAKOUT BOARD SUB-CHASSIS OUTLINE (Y=205 to Y=735) -->
     <rect x="615" y="205" width="560" height="530" rx="12" fill="#060c18" stroke="#1e3a8a" stroke-width="1.5" stroke-dasharray="5,4"/>
     <rect x="710" y="212" width="370" height="20" rx="4" fill="#0f172a" stroke="#1e3a8a" stroke-width="1.2"/>
-    <text x="895" y="226" text-anchor="middle" fill="#60a5fa" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="800">🛠 TSOP38238 &amp; ACTIVE FILTER DAUGHTERBOARD</text>
+    <text x="895" y="226" text-anchor="middle" fill="#60a5fa" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="800">🛠 15120P &amp; ACTIVE FILTER DAUGHTERBOARD</text>
 
     <!-- ================= POWER ENTRY & SERIES 100Ω RESISTOR (R_FLT) ================= -->
     <g id="power_entry_filter_resistor">
@@ -354,7 +354,7 @@
     </g>
 
 
-    <!-- ================= 3. TSOP38238 / 15120P SENSOR MODULE (X = 865) ================= -->
+    <!-- ================= 3. 15120P (15m 180°) SENSOR MODULE (X = 865) ================= -->
     <g id="tsop_sensor_module" transform="translate(865, 410)">
       <!-- Sensor Epoxy Housing (76 x 92) -->
       <rect x="-38" y="-55" width="76" height="92" rx="8" fill="url(#tsop_case)" stroke="#6366f1" stroke-width="2"/>
@@ -367,8 +367,8 @@
       <text x="0" y="-7" text-anchor="middle" fill="#a5b4fc" font-family="sans-serif" font-size="6.5">IR LENS</text>
 
       <!-- Laser Etched Silkscreen -->
-      <text x="0" y="16" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="9" font-weight="900">TSOP38238</text>
-      <text x="0" y="27" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="7.5">15120P</text>
+      <text x="0" y="16" text-anchor="middle" fill="#f8fafc" font-family="monospace" font-size="9.5" font-weight="900">15120P</text>
+      <text x="0" y="27" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="7.5" font-weight="800">15m · 180°</text>
 
       <!-- 3 Pins Emerging from Bottom: -->
       <!-- Pin 1: OUT (Left, x = -28) -->
@@ -494,7 +494,7 @@
       <!-- Row 1: Carrier Frequency -->
       <line x1="0" y1="28" x2="590" y2="28" stroke="#1e293b" stroke-width="1"/>
       <text x="15" y="48" class="tbl-cell" fill="#818cf8" font-weight="700">Carrier Frequency</text>
-      <text x="135" y="48" class="tbl-cell" fill="#facc15">38.0 kHz (TSOP38238)</text>
+      <text x="135" y="48" class="tbl-cell" fill="#facc15">38.0 kHz (15120P / TSOP38238)</text>
       <text x="270" y="48" class="tbl-cell">Tuned bandpass rejects daylight &amp; ambient room flicker</text>
 
       <!-- Row 2: IR Indicator LED -->
@@ -670,7 +670,7 @@
 
       <!-- Carrier Stripped Explanatory Banner -->
       <rect x="250" y="168" width="320" height="24" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
-      <text x="260" y="184" fill="#34d399" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="800">▼ TSOP Active-LOW Demodulation (Carrier Stripped)</text>
+      <text x="260" y="184" fill="#34d399" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="800">▼ 15120P Active-LOW Demodulation (Carrier Stripped)</text>
 
       <text x="15" y="210" fill="#a7f3d0" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="700">✓ Hardware Interrupt Trigger: <tspan fill="#ffffff" font-weight="400">Triggers ESP32 GPIO 13 on FALLING edge (&lt;5ms latency to relay switch).</tspan></text>
     </g>
