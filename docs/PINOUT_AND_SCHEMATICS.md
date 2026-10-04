@@ -308,6 +308,9 @@ The system utilizes an industrial-grade, multi-stage power topology designed for
 #### Dedicated Power Architecture & Dual-Rail Isolation Schematic:
 ![Master Power Architecture and Dual-Rail Isolation Schematic Diagram](images/power_architecture_schematic.jpg)
 
+#### Ultra-Minimalist Power Architecture Diagram (Single 1000µF Buffer):
+![ESP32 Ultra-Minimalist Power Architecture Diagram](images/minimal_devkit_power_schematic.jpg)
+
 ---
 
 ### 4.2 Comprehensive System Power Budget & Load Analysis
