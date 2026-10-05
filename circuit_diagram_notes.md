@@ -363,3 +363,95 @@ Before clicking **Convert Schematic to PCB** in EasyEDA, run through this final 
 - [ ] **LDR ADC Channel:** Confirm the LDR divider enters pin **`D34`** (ADC1).
 - [ ] **Relay VCC:** Confirm the relay control header pin labeled `VCC` is tied to `+3.3V`, and `JD-VCC` is tied to `+5V`.
 - [ ] **Power LED on D12:** Confirm pin **`D12`** is wired to the Anode with Cathode to `GND` via 330Ω (guarantees safe MTDI boot).
+
+---
+
+## Step 8: Optimal 2D PCB Component Placement & Routing Architecture
+
+![Optimal 2D PCB Component Placement](images/2D_PCB_VIEW.jpg)
+
+### 8.1 Why the Previous Draft Needed Re-Architecting
+In the initial unrouted layout:
+1. **Severe High-Voltage Contamination:** 230V AC traces crossed near low-voltage sensitive pins without clearance or physical separation.
+2. **Trapped Interior Connectors:** `JST1`–`JST5` were bunched inside the PCB. Plugging in external wiring harnesses would cause 20+ cables to drape directly over the ESP32, SMPS, and analog lines, picking up electromagnetic interference (EMI) and blocking physical access.
+3. **Crisscrossed High-Speed Busses:** Expansion headers for SPI (`D5`, `D18`, `D19`, `D23`) and I2C/UART (`D21`, `D22`, `TX0`, `RX0`) were positioned on the right edge, forcing high-speed digital lines to snake all the way across the board underneath power components.
+4. **Obstructed USB & Antenna:** The ESP32 USB port and 2.4 GHz PCB antenna were oriented toward the board interior, risking poor Wi-Fi reception and mechanical interference when flashing code.
+
+---
+
+### 8.2 The 4-Quadrant Functional Floorplan
+
+To achieve an industrial-grade, visually appealing, and zero-headache PCB, the board is partitioned into **4 balanced functional quadrants**:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│  [ZONE 1: HIGH VOLTAGE & REGULATION (Top-Left)] │  [ZONE 2: RELAY POWER & CONTROL (Top-Right)] │
+│                                                 │                                              │
+│   230V-AC-IN  │ 5mm │  HLK-5M05 (U1)    C1      │    CN1: JD-VCC (+5V)    JST1: 4-RELAYS       │
+│   [ 2-Pin ]   │ Air │  ┌──────────┐   1000µF    │    [ 2-Pin Header ]     [ 6-Pin Connector ]  │
+│               │ Slot│  │          │   (Can)     │                         (Opto Active-LOW)    │
+│   5V-DC-IN    │     │  │          │     │       │                                              │
+│   [ 2-Pin ]   │     │  └──────────┘    [J1]     │    Relay Optocoupler Isolation Architecture  │
+│   (Aux Bench) │     │                  Selector │    100% Galvanic Separation between Coils/MCU│
+├─────────────────────────────────────────────────┼──────────────────────────────────────────────┤
+│  [ZONE 3: CORE MCU & BUSSES (Bottom-Left)]      │  [ZONE 4: SENSORS & USER I/O (Bottom-Right)] │
+│                                                 │                                              │
+│               ┌──────────────────┐              │    JST5: IR & LDR        JST3: RELAY LEDS    │
+│               │   [Micro-USB]    │              │    [ 6-Pin Connector ]   [ 6-Pin ] + R4-R7   │
+│   JST6        │                  │   BANK A     │                                              │
+│  (I2C/UART)   │     ESP32        │   +3.3V Taps │    JST2: 4-SWITCHES      JST4: PWR & WI-FI   │
+│               │    DevKit        │   (CN2-CN4)  │    [ 6-Pin ] + R1-R3     [ 4-Pin ] + R8-R9   │
+│   JST7        │   (30-Pin)       │   3x 2-Pin   │    (10k Pull-ups)        (Series Resistors)  │
+│   (VSPI)      │                  │              │                                              │
+│               └──────────────────┘              │    BANK B: +5.0V TAPS    EASYEDA SPECS BOX   │
+│   KEY1 (Reset / AP Switch)                      │    (CN5, CN6, CN7)       182mm × 96mm FR-4   │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 8.3 Complete 24-Component Placement Inventory (By Quadrant)
+
+| Designator | Component Name | Quadrant Zone | Board Location | Orientation / Pin Alignment Strategy |
+| :--- | :--- | :--- | :--- | :--- |
+| **`230V-AC-IN`** | KF301-2P Terminal | Zone 1 (Top-Left) | Left Outer Perimeter | Wire entry facing left. ≥5.0mm milled creepage slot isolates it from low voltage. |
+| **`U1`** | HLK-5M05 SMPS | Zone 1 (Top-Left) | Center of Zone 1 | AC pins face left toward terminal; DC pins face right toward C1. |
+| **`C1`** | 1000µF 16V Capacitor | Zone 1 (Top-Left) | Right side of Zone 1 | `CAP-D10.0×F5.0` reservoir immediately beside +5V and GND outputs. |
+| **`5V-DC-IN`** | KF301-2P Terminal | Zone 1 (Top-Left) | Lower-Left of Zone 1 | Auxiliary bench power input facing outer perimeter. |
+| **`J1`** | 1x3 Pin Header | Zone 1 (Top-Left) | Next to 5V-DC-IN | Jumper selects between HLK internal mains supply or external bench 5V. |
+| **`CN1`** | 2-Pin JST Header | Zone 2 (Top-Right)| Left side of Zone 2 | Dedicated JD-VCC +5V isolated relay coil supply tap. |
+| **`JST1`** | 6-Pin JST Connector | Zone 2 (Top-Right)| Center of Zone 2 | Plugs face upward/right. Aligned with right header pins `D14`, `D27`, `D26`, `D25`. |
+| **`JST6`** | 6-Pin JST Connector | Zone 3 (Bottom-Left)| Upper-Left Perimeter | Aligned directly with ESP32 left header (`3V3`, `D21`, `D22`, `TX0`, `RX0`, `GND`). |
+| **`JST7`** | 6-Pin JST Connector | Zone 3 (Bottom-Left)| Mid-Left Perimeter | Aligned directly with ESP32 SPI pins (`3V3`, `D5`, `D18`, `D19`, `D23`, `GND`). |
+| **`KEY1`** | Tactile Pushbutton | Zone 3 (Bottom-Left)| Lower-Left Corner | Accessible reset / config AP button wired to `TX2` (GPIO 17) and `GND`. |
+| **`U1-MCU`** | ESP32 NodeMCU V1 | Zone 3 (Bottom-Left)| Center of Zone 3 | Dual 1x15 female sockets. USB port oriented toward top perimeter gap. |
+| **`CN2–CN4`** | 3x 2-Pin JST Headers| Zone 3 (Bottom-Left)| Right side of Zone 3 | Bank A: Dedicated +3.3V & GND auxiliary expansion taps. |
+| **`JST5`** | 6-Pin JST Connector | Zone 4 (Bottom-Right)| Upper-Left of Zone 4 | Connects remote IR demodulator (`D13`) and ambient LDR divider (`D34`). |
+| **`JST2`** | 6-Pin JST Connector | Zone 4 (Bottom-Right)| Mid-Left of Zone 4 | Connects 4 physical wall switches (`3V3`, `D35`, `VP`, `VN`, `RX2`, `GND`). |
+| **`R1–R3`** | 10kΩ Axial Resistors| Zone 4 (Bottom-Right)| Next to JST2 | Mandatory external pull-up resistors to +3.3V for input-only pins `D35`, `VP`, `VN`. |
+| **`JST3`** | 6-Pin JST Connector | Zone 4 (Bottom-Right)| Upper-Right of Zone 4| Facing right/upward. Connects front-panel cabinet relay indicator LEDs. |
+| **`R4–R7`** | 220Ω Resistor Array | Zone 4 (Bottom-Right)| Right of JST3 | Current limiting resistors in series with `D33`, `D32`, `D15`, `D4`. |
+| **`JST4`** | 4-Pin JST Connector | Zone 4 (Bottom-Right)| Mid-Right of Zone 4 | Facing right/upward. Connects Power LED (`D12`) and Wi-Fi LED (`D2`). |
+| **`R8, R9`** | 330Ω & 220Ω Resistors| Zone 4 (Bottom-Right)| Right of JST4 | `R8` (330Ω) on `D12` prevents boot-latch; `R9` (220Ω) on `D2`. |
+| **`CN5–CN7`** | 3x 2-Pin JST Headers| Zone 4 (Bottom-Right)| Lower-Left of Zone 4 | Bank B: Dedicated +5.0V & GND auxiliary expansion taps. |
+
+---
+
+### 8.4 Recommended PCB Routing & Layout Rules in EasyEDA
+
+1. **AC Mains High-Voltage Isolation:**
+   - Maintain a minimum of **3.5mm creepage/clearance** between 230V AC lines and any low-voltage copper.
+   - Mill a physical **board outline cutout slot (≥ 5.0mm wide)** between the AC terminal block and low-voltage traces to prevent electrical flashover under high humidity.
+   - AC trace widths: **≥ 2.5mm (100 mil)** with rounded $45^\circ$ corners.
+2. **Ground Planes (Top & Bottom):**
+   - Place a **GND Copper Pour** on both Top and Bottom layers.
+   - Stitch top and bottom ground planes together with via fences around sensitive analog lines (`D34` LDR) and along the board perimeter.
+3. **Power Trace Widths:**
+   - +5V Primary Trunk (from HLK to C1, J1, and ESP32 VIN): **≥ 1.0mm – 1.5mm (40–60 mil)**.
+   - +3.3V Logic Bus: **≥ 0.8mm (32 mil)**.
+   - Digital Signals & LED Lines: **0.254mm (10 mil)**.
+4. **Capacitor C1 Placement:**
+   - C1 must be placed **immediately at the HLK output pins** so inrush currents from relay coil activations are buffered directly at the source, preventing VCC brownouts on the ESP32.
+5. **No Cross-Harness Draping:**
+   - All 9 JST/terminal connectors face outward along the perimeter edges. Cable bundles run straight out to enclosure panels without crisscrossing over the PCB.
+
